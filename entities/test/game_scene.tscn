@@ -25,10 +25,12 @@ texture = ExtResource("2_ln0xr")
 [node name="PinJoint2D" type="PinJoint2D" parent="Player_Bacteria/bacteria_body" unique_id=462205582]
 node_a = NodePath("..")
 node_b = NodePath("../../Bacteria_Tail")
-softness = 16.0
+bias = 0.9
+softness = 4.0
 
 [node name="Bacteria_Tail" type="RigidBody2D" parent="Player_Bacteria" unique_id=2030703235]
 position = Vector2(23, 19)
+linear_damp = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player_Bacteria/Bacteria_Tail" unique_id=572710789]
 shape = SubResource("CircleShape2D_ln0xr")
@@ -40,10 +42,11 @@ texture = ExtResource("2_ln0xr")
 [node name="PinJoint2D2" type="PinJoint2D" parent="Player_Bacteria/Bacteria_Tail" unique_id=766861691]
 node_a = NodePath("..")
 node_b = NodePath("../../Bacteria_Tail2")
-softness = 16.0
+softness = 4.0
 
 [node name="Bacteria_Tail2" type="RigidBody2D" parent="Player_Bacteria" unique_id=1980683547]
 position = Vector2(53, 18)
+linear_damp = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player_Bacteria/Bacteria_Tail2" unique_id=1360005695]
 shape = SubResource("CircleShape2D_ln0xr")
@@ -55,10 +58,11 @@ texture = ExtResource("2_ln0xr")
 [node name="PinJoint2D3" type="PinJoint2D" parent="Player_Bacteria/Bacteria_Tail2" unique_id=1317693453]
 node_a = NodePath("..")
 node_b = NodePath("../../Bacteria_Tail3")
-softness = 16.0
+softness = 4.0
 
 [node name="Bacteria_Tail3" type="RigidBody2D" parent="Player_Bacteria" unique_id=621295484]
 position = Vector2(79, 18)
+linear_damp = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player_Bacteria/Bacteria_Tail3" unique_id=1100379389]
 shape = SubResource("CircleShape2D_ln0xr")
@@ -70,10 +74,11 @@ texture = ExtResource("2_ln0xr")
 [node name="PinJoint2D4" type="PinJoint2D" parent="Player_Bacteria/Bacteria_Tail3" unique_id=845876841]
 node_a = NodePath("..")
 node_b = NodePath("../../Bacteria_Tail4")
-softness = 16.0
+softness = 4.0
 
 [node name="Bacteria_Tail4" type="RigidBody2D" parent="Player_Bacteria" unique_id=924716143]
 position = Vector2(105, 19)
+linear_damp = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player_Bacteria/Bacteria_Tail4" unique_id=88067339]
 shape = SubResource("CircleShape2D_ln0xr")
@@ -85,10 +90,11 @@ texture = ExtResource("2_ln0xr")
 [node name="PinJoint2D5" type="PinJoint2D" parent="Player_Bacteria/Bacteria_Tail4" unique_id=90828051]
 node_a = NodePath("..")
 node_b = NodePath("../../Bacteria_Tail5")
-softness = 16.0
+softness = 4.0
 
 [node name="Bacteria_Tail5" type="RigidBody2D" parent="Player_Bacteria" unique_id=1310233618]
 position = Vector2(132, 20)
+linear_damp = 2.0
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Player_Bacteria/Bacteria_Tail5" unique_id=311021665]
 shape = SubResource("CircleShape2D_ln0xr")
