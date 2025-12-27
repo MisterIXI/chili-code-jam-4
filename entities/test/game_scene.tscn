@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4mgha1whfl8e" path="res://entities/test/player_controller.gd" id="1_ln0xr"]
 [ext_resource type="Texture2D" uid="uid://c450n5w02tgeg" path="res://textures/test_bacteria.png" id="2_ln0xr"]
+[ext_resource type="Texture2D" uid="uid://t54se15rx8o6" path="res://textures/test_bacteria_eye.png" id="3_u8k4i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ln0xr"]
 radius = 30.0
@@ -11,6 +12,7 @@ radius = 30.0
 [node name="Player_Bacteria" type="Node2D" parent="." unique_id=779174777]
 
 [node name="bacteria_body" type="RigidBody2D" parent="Player_Bacteria" unique_id=213954961]
+rotation = 1.4922565
 linear_damp = 0.8
 angular_damp = 7.0
 script = ExtResource("1_ln0xr")
@@ -21,6 +23,11 @@ shape = SubResource("CircleShape2D_ln0xr")
 [node name="Sprite2D2" type="Sprite2D" parent="Player_Bacteria/bacteria_body" unique_id=1198091302]
 scale = Vector2(0.415, 0.415)
 texture = ExtResource("2_ln0xr")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Player_Bacteria/bacteria_body" unique_id=537454608]
+z_index = 1
+scale = Vector2(0.415, 0.415)
+texture = ExtResource("3_u8k4i")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="Player_Bacteria/bacteria_body" unique_id=462205582]
 node_a = NodePath("..")
