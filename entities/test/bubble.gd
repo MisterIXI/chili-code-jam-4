@@ -1,6 +1,6 @@
 extends RigidBody2D
 class_name Bacteria
-var life_time : float = 10.0
+var life_time : float = 100.0
 var well_fed : int = 0
 
 # Called when the node instantiate
@@ -30,5 +30,5 @@ func eat(_amount : int) ->void:
 
 func cellula_divisio() ->void:
 	#Spawn Manager with Timer give position
-	get_parent().spawn(well_fed,global_position)
-	#well_fed = 0
+	get_parent().spawn(1,global_position)
+	well_fed = 0
