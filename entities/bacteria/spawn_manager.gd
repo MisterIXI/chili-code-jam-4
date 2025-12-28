@@ -8,17 +8,21 @@ var _start_health : int = 100
 var _start_speed  : float = 300
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	spawn(1,global_position)
+	_new_bacteria(global_position)
 	
 func get_current_bacterias_count() -> int:
 	return get_child_count()
 
-func spawn(value : int, _pos : Vector2) ->void:
-	#if get_child_count(false) < 1000:
-	for n in value:
+func spawn(_pos : Vector2) ->void:
+	# Use range(value) to iterate the requested number of times
+	for n in range(1):
+		_new_bacteria(_pos)
 
-		var _new = BACTERIA_SCENE.instantiate()
-		_new.setup(_start_health, _start_speed)
-		_new.global_position = _pos
-		stat_spawned_bacterias += 1
-		self.add_child(_new)
+func _new_bacteria(_pos : Vector2) ->void:
+
+	var _bacteria_scene = BACTERIA_SCENE.instantiate() as RigidBody2D
+	add_child(_bacteria_scene)
+	_bacteria_scene.global_position = _pos
+	_bacteria_scene.setup(_start_health, _start_speed)
+	stat_spawned_bacterias += 1
+		# Defer add_child

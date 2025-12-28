@@ -1,0 +1,474 @@
+[gd_scene format=3 uid="uid://dwvoty2x2wcd4"]
+
+[ext_resource type="Script" uid="uid://dp7g88r0g5nme" path="res://entities/ui/game_ui.gd" id="1_7g2dv"]
+[ext_resource type="Script" uid="uid://443ttvxwvpsk" path="res://entities/ui/menu.gd" id="1_7wnj1"]
+[ext_resource type="Texture2D" uid="uid://04dxp6hclosk" path="res://icon.svg" id="1_uvj7p"]
+[ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="2_7g2dv"]
+[ext_resource type="Shader" uid="uid://cibke4huika2y" path="res://shaders/background_color_wave.gdshader" id="4_t6hpy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
+shader = ExtResource("4_t6hpy")
+shader_parameter/color_a = Color(0.6784314, 0.7921569, 0.8392157, 1)
+shader_parameter/color_b = Color(0, 0.43137255, 0.5647059, 1)
+shader_parameter/speed = 1.0
+shader_parameter/distortion_strength = 1.355
+shader_parameter/wave_scale = 1.655
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wygod"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uvj7p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7wnj1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7g2dv"]
+
+[node name="Game_UI" type="CanvasLayer" unique_id=845483542]
+process_mode = 3
+script = ExtResource("1_7g2dv")
+
+[node name="Menu" type="Control" parent="." unique_id=1287745693]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7wnj1")
+
+[node name="ColorRect" type="ColorRect" parent="Menu" unique_id=942755489]
+material = ExtResource("2_7g2dv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu" unique_id=1137180163]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button_Container" type="PanelContainer" parent="Menu/HBoxContainer" unique_id=718957878]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="Menu/HBoxContainer/Button_Container" unique_id=1741450381]
+material = SubResource("ShaderMaterial_pp468")
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/HBoxContainer/Button_Container" unique_id=311688449]
+layout_mode = 2
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_top = 55
+theme_override_constants/margin_right = 55
+theme_override_constants/margin_bottom = 55
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Button_Container/MarginContainer" unique_id=1670214078]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1517888432]
+layout_mode = 2
+texture = ExtResource("1_uvj7p")
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=511826757]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1791398860]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "-Made Bacteria Pili great again - "
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1378679493]
+layout_mode = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1086517589]
+layout_mode = 2
+theme_override_constants/separation = 41
+theme_override_styles/separator = SubResource("StyleBoxEmpty_wygod")
+
+[node name="Button_start" type="Button" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=737202906]
+layout_mode = 2
+text = "Start"
+expand_icon = true
+
+[node name="Button_settings" type="Button" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1863208181]
+layout_mode = 2
+text = "Settings"
+expand_icon = true
+
+[node name="Button_credits" type="Button" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=994687029]
+layout_mode = 2
+text = "Credits"
+expand_icon = true
+
+[node name="Button_quit" type="Button" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1275553646]
+layout_mode = 2
+text = "Quit"
+expand_icon = true
+
+[node name="Settings_Container" type="PanelContainer" parent="Menu/HBoxContainer" unique_id=477675301]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container" unique_id=1341116063]
+layout_mode = 2
+
+[node name="AudioContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer" unique_id=2002410897]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer" unique_id=1051856336]
+layout_mode = 2
+
+[node name="SFX_Header" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer" unique_id=1509721163]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "SFX Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer" unique_id=1232223776]
+layout_mode = 2
+
+[node name="MasterContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer" unique_id=54539567]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MasterContainer" unique_id=782510389]
+layout_mode = 2
+
+[node name="master_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MasterContainer/VBoxContainer" unique_id=1341904383]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="master_HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MasterContainer/VBoxContainer" unique_id=1778389085]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="MusicContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer" unique_id=1251390613]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MusicContainer" unique_id=680083044]
+layout_mode = 2
+
+[node name="music_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MusicContainer/VBoxContainer" unique_id=1940459165]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="music_HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MusicContainer/VBoxContainer" unique_id=6648829]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SoundContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer" unique_id=633325145]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer" unique_id=239373605]
+layout_mode = 2
+
+[node name="sound_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer" unique_id=1252903908]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="sound_HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer" unique_id=429800659]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="VideoContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer" unique_id=894883721]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer" unique_id=114575955]
+layout_mode = 2
+
+[node name="Video_Header" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=971691282]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "Video Settings"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=1716482552]
+layout_mode = 2
+
+[node name="FullScreenContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=1208481727]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FullScreenContainer" unique_id=934467090]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "FullScreen"
+
+[node name="FPS_Counter_Container" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=236469204]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FPS_Counter_Container" unique_id=532502094]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Show FPS"
+
+[node name="MaxSpawnsContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=262832111]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer" unique_id=1363263355]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=76709071]
+layout_mode = 2
+
+[node name="sound_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=961440745]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "  Max Spawning Bacterias:"
+
+[node name="VSeparator" type="VSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=1984132218]
+layout_mode = 2
+theme_override_constants/separation = 292
+theme_override_styles/separator = SubResource("StyleBoxEmpty_uvj7p")
+
+[node name="sound_label2" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=1514551232]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 12
+text = "1000"
+
+[node name="HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=1214656080]
+layout_mode = 2
+max_value = 5000.0
+step = 5.0
+value = 1000.0
+
+[node name="PersistentContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer" unique_id=948492001]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer" unique_id=719427515]
+layout_mode = 2
+
+[node name="Persistent_Header" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer" unique_id=125701694]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "Persistent Data"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer" unique_id=1958203765]
+layout_mode = 2
+
+[node name="Save_Data_Container" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer" unique_id=499806913]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Save_Data_Container" unique_id=1626725950]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+button_pressed = true
+text = "Save game progression"
+
+[node name="MaxSpawnsContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer" unique_id=1024608854]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer" unique_id=957116204]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=657552215]
+layout_mode = 2
+
+[node name="sound_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=53895903]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Save Interval:"
+
+[node name="VSeparator" type="VSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=866029853]
+layout_mode = 2
+theme_override_constants/separation = 329
+theme_override_styles/separator = SubResource("StyleBoxEmpty_uvj7p")
+
+[node name="sound_label2" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=318620564]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 12
+text = "60seconds"
+
+[node name="HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=1675263052]
+layout_mode = 2
+min_value = 1.0
+max_value = 360.0
+value = 61.0
+
+[node name="Clear_Data_Container2" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer" unique_id=1090434499]
+layout_mode = 2
+
+[node name="Clear_Button" type="Button" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Clear_Data_Container2" unique_id=946433418]
+layout_mode = 2
+text = "-Reset all data -"
+
+[node name="Delete_Button" type="Button" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Clear_Data_Container2" unique_id=1616314340]
+visible = false
+layout_mode = 2
+text = "YES - CLEAR ALL MY DATA"
+
+[node name="Credits_Container" type="PanelContainer" parent="Menu/HBoxContainer" unique_id=705337905]
+visible = false
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Credits_Container" unique_id=709461899]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SazzlesContainer" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer" unique_id=296415633]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer" unique_id=1839543369]
+layout_mode = 2
+
+[node name="sazzles_Header" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer" unique_id=1646513056]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "Sazzles"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer" unique_id=1094823672]
+layout_mode = 2
+
+[node name="MasterContainer" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer" unique_id=406901537]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer/MasterContainer" unique_id=2025252007]
+layout_mode = 2
+
+[node name="master_label" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer/MasterContainer/VBoxContainer" unique_id=1224445255]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "2D Art"
+horizontal_alignment = 1
+
+[node name="MusicContainer" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer" unique_id=978266235]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer/MusicContainer" unique_id=1876813349]
+layout_mode = 2
+
+[node name="music_label" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/SazzlesContainer/VBoxContainer/MusicContainer/VBoxContainer" unique_id=1874552402]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Design"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer" unique_id=133127938]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_7wnj1")
+
+[node name="RobertContainer" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer" unique_id=987575559]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer" unique_id=2124882852]
+layout_mode = 2
+
+[node name="Video_Header" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer/VBoxContainer" unique_id=1308055990]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "ChocolandTV"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer/VBoxContainer" unique_id=946260961]
+layout_mode = 2
+
+[node name="FullScreenContainer" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer/VBoxContainer" unique_id=1148843962]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer/VBoxContainer/FullScreenContainer" unique_id=1290082298]
+layout_mode = 2
+text = "Programming"
+
+[node name="FPS_Counter_Container" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer/VBoxContainer" unique_id=1550852943]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/RobertContainer/VBoxContainer/FPS_Counter_Container" unique_id=1716616521]
+layout_mode = 2
+text = "2D Art"
+
+[node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer" unique_id=740947055]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxEmpty_7g2dv")
+
+[node name="Yannik_Container" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer" unique_id=657207003]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container" unique_id=545123037]
+layout_mode = 2
+
+[node name="yannik_Header" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container/VBoxContainer" unique_id=1192924909]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "MisterIXI"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container/VBoxContainer" unique_id=1277290173]
+layout_mode = 2
+
+[node name="Save_Data_Container" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container/VBoxContainer" unique_id=1378767521]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container/VBoxContainer/Save_Data_Container" unique_id=626103097]
+layout_mode = 2
+text = "Programming"
+
+[node name="MaxSpawnsContainer" type="PanelContainer" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container/VBoxContainer" unique_id=759377537]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Menu/HBoxContainer/Credits_Container/VBoxContainer/Yannik_Container/VBoxContainer/MaxSpawnsContainer" unique_id=558144620]
+layout_mode = 2
+text = "Director"

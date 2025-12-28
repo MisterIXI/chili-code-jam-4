@@ -7,6 +7,7 @@ var well_fed : int = 0
 func setup(_life_time : float, _speed : float) -> void:
 	linear_velocity = Vector2(_speed,_speed)
 	life_time = _life_time
+	print("setup complete")
 
 func _physics_process(delta: float) -> void:
 	life_time -= delta
@@ -25,10 +26,10 @@ func _died() ->void:
 
 func eat(_amount : int) ->void:
 	well_fed += _amount
-	print("eat")
 	cellula_divisio()
 
 func cellula_divisio() ->void:
 	#Spawn Manager with Timer give position
-	get_parent().spawn(1,global_position)
+
+	get_parent().spawn(global_position)
 	well_fed = 0
