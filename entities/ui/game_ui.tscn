@@ -113,6 +113,7 @@ text = "Quit"
 expand_icon = true
 
 [node name="Settings_Container" type="PanelContainer" parent="Menu/HBoxContainer" unique_id=477675301]
+visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
