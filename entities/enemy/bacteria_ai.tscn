@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c468o0ucnn5o"]
+
+[ext_resource type="PackedScene" uid="uid://bfhie18g76lue" path="res://entities/modules/healt_component.tscn" id="1_2lktg"]
+[ext_resource type="Texture2D" uid="uid://1futmjcqdt3g" path="res://textures/test_bacteria2.png" id="1_pskc5"]
+[ext_resource type="Script" uid="uid://iutev8rjhr5e" path="res://entities/enemy/bacteria_ai.gd" id="1_su2hi"]
+[ext_resource type="PackedScene" uid="uid://dqysonr4jj16j" path="res://entities/modules/hurtbox_component.tscn" id="3_su2hi"]
+[ext_resource type="PackedScene" uid="uid://cku7lehw17qfo" path="res://entities/modules/attack_pili.tscn" id="4_gn37m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0e7kf"]
+radius = 78.11
+height = 453.77
+
+[node name="Bacteria_AI" type="Node2D" unique_id=2043903943]
+script = ExtResource("1_su2hi")
+
+[node name="Healt_Component" parent="." unique_id=533804621 instance=ExtResource("1_2lktg")]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1786590639]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=352584841]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0e7kf")
+
+[node name="Hurtbox_Component" parent="RigidBody2D" unique_id=1501618438 node_paths=PackedStringArray("health_component") instance=ExtResource("3_su2hi")]
+health_component = NodePath("../../Healt_Component")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D/Hurtbox_Component" unique_id=1699157652]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_0e7kf")
+
+[node name="attack_pili_mother" type="Node2D" parent="RigidBody2D" unique_id=1709171336]
+
+[node name="Attack_Pili" parent="RigidBody2D/attack_pili_mother" unique_id=4449630 instance=ExtResource("4_gn37m")]
+position = Vector2(-38, -91)
+
+[node name="Attack_Pili2" parent="RigidBody2D/attack_pili_mother" unique_id=201729790 instance=ExtResource("4_gn37m")]
+position = Vector2(-47, 101)
+rotation = 3.1101768
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Attack_Pili3" parent="RigidBody2D/attack_pili_mother" unique_id=49108324 instance=ExtResource("4_gn37m")]
+position = Vector2(132, -76.97)
+rotation = 0.2495821
+
+[node name="Attack_Pili4" parent="RigidBody2D/attack_pili_mother" unique_id=666913007 instance=ExtResource("4_gn37m")]
+position = Vector2(123, 92.34)
+rotation = 2.8605947
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D" unique_id=73229414]
+texture = ExtResource("1_pskc5")

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cmb6rtxo55gr"]
+
+[ext_resource type="Script" uid="uid://b4mgha1whfl8e" path="res://entities/test/player_controller.gd" id="1_0xef5"]
+[ext_resource type="Texture2D" uid="uid://1futmjcqdt3g" path="res://textures/test_bacteria2.png" id="2_4ib2q"]
+[ext_resource type="PackedScene" uid="uid://cku7lehw17qfo" path="res://entities/modules/attack_pili.tscn" id="3_gkuxe"]
+[ext_resource type="PackedScene" uid="uid://dqysonr4jj16j" path="res://entities/modules/hurtbox_component.tscn" id="4_7s7cg"]
+[ext_resource type="PackedScene" uid="uid://bfhie18g76lue" path="res://entities/modules/healt_component.tscn" id="5_utksp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ln0xr"]
+radius = 30.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s5in4"]
+radius = 69.65
+height = 467.37
+
+[node name="Player_Bacteria" type="Node2D" unique_id=1138721639]
+
+[node name="bacteria_body" type="RigidBody2D" parent="." unique_id=1619263442]
+linear_damp = 0.8
+angular_damp = 7.0
+script = ExtResource("1_0xef5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bacteria_body" unique_id=92709900]
+shape = SubResource("CircleShape2D_ln0xr")
+
+[node name="Sprite2D2" type="Sprite2D" parent="bacteria_body" unique_id=1965156446]
+rotation = 1.5707964
+texture = ExtResource("2_4ib2q")
+
+[node name="Attack_Pili" parent="bacteria_body" unique_id=4449630 instance=ExtResource("3_gkuxe")]
+position = Vector2(97, -2)
+rotation = 1.4922565
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Hurtbox_Component" parent="bacteria_body" unique_id=1501618438 node_paths=PackedStringArray("health_component") instance=ExtResource("4_7s7cg")]
+health_component = NodePath("../../Healt_Component")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bacteria_body/Hurtbox_Component" unique_id=881121067]
+shape = SubResource("CapsuleShape2D_s5in4")
+
+[node name="Healt_Component" parent="." unique_id=533804621 instance=ExtResource("5_utksp")]

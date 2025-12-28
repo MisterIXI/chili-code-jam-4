@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cku7lehw17qfo"]
+
+[ext_resource type="Script" uid="uid://2c8ycyoq21mb" path="res://entities/modules/attack_pili.gd" id="1_363l5"]
+[ext_resource type="PackedScene" uid="uid://bl4gpigj282a4" path="res://entities/modules/hitbox_component.tscn" id="1_qrnn2"]
+[ext_resource type="Texture2D" uid="uid://ba1um32vc8cw3" path="res://textures/test_bacteria2_hair.png" id="2_363l5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gb36e"]
+size = Vector2(76, 158)
+
+[node name="Attack_Pili" type="Node2D" unique_id=4449630]
+script = ExtResource("1_363l5")
+
+[node name="Hitbox_Component" parent="." unique_id=584807212 instance=ExtResource("1_qrnn2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox_Component" unique_id=942507051]
+position = Vector2(0, -79)
+shape = SubResource("RectangleShape2D_gb36e")
+debug_color = Color(0.9647059, 0, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1418244200]
+position = Vector2(0, -64)
+texture = ExtResource("2_363l5")

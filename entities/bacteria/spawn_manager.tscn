@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bkyt3dnhvyv6a"]
+
+[ext_resource type="Script" uid="uid://cylit3bor5bo5" path="res://entities/bacteria/spawn_manager.gd" id="1_igys3"]
+
+[node name="Spawn_Manager" type="Node2D" unique_id=1027638047]
+script = ExtResource("1_igys3")

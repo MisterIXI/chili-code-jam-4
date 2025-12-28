@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqvqqbgr564lb"]
+
+[ext_resource type="Script" uid="uid://b14a75thuvtt4" path="res://entities/test/bubble.gd" id="1_t2k6f"]
+[ext_resource type="Texture2D" uid="uid://1futmjcqdt3g" path="res://textures/test_bacteria2.png" id="2_t2k6f"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fh42i"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t2k6f"]
+radius = 14.035668
+
+[node name="bubble" type="RigidBody2D" unique_id=333076184]
+collision_layer = 3
+physics_material_override = SubResource("PhysicsMaterial_fh42i")
+script = ExtResource("1_t2k6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=74351563]
+shape = SubResource("CircleShape2D_t2k6f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=982568655]
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_t2k6f")
