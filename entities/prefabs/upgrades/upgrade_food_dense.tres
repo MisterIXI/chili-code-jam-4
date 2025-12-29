@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Upgrade_Food_Dense" format=3 uid="uid://b10ql57ckeft1"]
+
+[ext_resource type="Script" uid="uid://bhco65yfhkg7e" path="res://entities/upgrades/upgrade_food_dense.gd" id="1_vcutv"]
+
+[resource]
+script = ExtResource("1_vcutv")
+upgrade_name = "Food Improvement"
+upgrade_description = "Made the Food more dense."
+upgrade_cost = 10
+upgrade_base_cost = 10
+upgrade_multiplier = 2.0
+upgrade_cost_increase_multiplier = 2.0
+metadata/_custom_type_script = "uid://bhco65yfhkg7e"

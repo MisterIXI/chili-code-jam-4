@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://0mnd48woektt"]
+
+[ext_resource type="Script" uid="uid://cuvrft81188nj" path="res://autoload/upgrade_manager.gd" id="1_ot2vy"]
+[ext_resource type="Script" uid="uid://c2ifxgiogc70s" path="res://entities/upgrades/upgrade_class.gd" id="2_rxt34"]
+[ext_resource type="Resource" uid="uid://b10ql57ckeft1" path="res://entities/prefabs/upgrades/upgrade_food_dense.tres" id="3_0g3lt"]
+
+[node name="Upgrade_Manager" type="Node" unique_id=2047545250]
+script = ExtResource("1_ot2vy")
+upgrade_list = Array[ExtResource("2_rxt34")]([ExtResource("3_0g3lt")])
