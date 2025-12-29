@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dxy2w32qiii0b"]
+
+[ext_resource type="Texture2D" uid="uid://cnj7d4fekigab" path="res://textures/food_01-Sheet.png" id="1_jd34r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n4m0"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ic43"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_716oo"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvpk6"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhv2n"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ekfe"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hn8dr"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ej000"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jsxr"]
+atlas = ExtResource("1_jd34r")
+region = Rect2(64, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n4m0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ic43")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_716oo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvpk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhv2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ekfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hn8dr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ej000")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jsxr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]

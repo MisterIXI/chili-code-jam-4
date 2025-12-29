@@ -3,6 +3,9 @@ class_name Bacteria
 var life_time : float = 100.0
 var well_fed : int = 0
 
+@onready var anim_sprite :AnimatedSprite2D =$AnimatedSprite2D
+func _ready() -> void:
+	anim_sprite.animation_finished.connect(_on_animation_finished_dying)
 # Called when the node instantiate
 func setup(_life_time : float, _speed : float) -> void:
 	linear_velocity = Vector2(_speed,_speed)
@@ -18,11 +21,9 @@ func _check_death() -> void:
 		_died()
 	
 func _died() ->void:
-	# wait 1 seconds and animation
 
-	#chance to drop food if die after ugprade is enabled
-	print("bacteria died")
-	queue_free()
+	anim_sprite.play("dying")
+	linear_damp = 0.9
 
 func eat(_amount : int) ->void:
 	well_fed += _amount
@@ -33,3 +34,9 @@ func cellula_divisio() ->void:
 
 	get_parent().spawn(global_position)
 	well_fed = 0
+
+func _on_animation_finished_dying() ->void:
+	if anim_sprite.animation == "dying":
+		print("bacteria died")
+		#chance to drop food if die after ugprade is enabled
+		queue_free()

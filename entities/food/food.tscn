@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhfnk54e15csh"]
 
-[ext_resource type="Texture2D" uid="uid://04dxp6hclosk" path="res://icon.svg" id="1_bw6vg"]
 [ext_resource type="Script" uid="uid://c0aap1joie500" path="res://entities/food/food.gd" id="1_tn4ro"]
+[ext_resource type="SpriteFrames" uid="uid://dxy2w32qiii0b" path="res://entities/food/food_sprite_frames.tres" id="2_tn4ro"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tn4ro"]
 radius = 30.066593
@@ -14,6 +14,7 @@ script = ExtResource("1_tn4ro")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714297895]
 shape = SubResource("CircleShape2D_tn4ro")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=675895493]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_bw6vg")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1628930130]
+sprite_frames = ExtResource("2_tn4ro")
+autoplay = "default"
+frame_progress = 0.23164769

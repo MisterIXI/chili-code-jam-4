@@ -2,6 +2,26 @@
 
 [ext_resource type="Texture2D" uid="uid://b1w0eddjl4anj" path="res://textures/bacteria/bacteria_01.png" id="1_bboed"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bboed"]
+atlas = ExtResource("1_bboed")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omjmu"]
+atlas = ExtResource("1_bboed")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa4un"]
+atlas = ExtResource("1_bboed")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeo08"]
+atlas = ExtResource("1_bboed")
+region = Rect2(576, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ypoi"]
+atlas = ExtResource("1_bboed")
+region = Rect2(640, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u2xhs"]
 atlas = ExtResource("1_bboed")
 region = Rect2(0, 0, 64, 64)
@@ -28,6 +48,26 @@ region = Rect2(320, 0, 64, 64)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bboed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omjmu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa4un")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeo08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ypoi")
+}],
+"loop": false,
+"name": &"dying",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_u2xhs")
