@@ -16,6 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+GameData="*uid://cfm0lktxn84hs"
+PersistentManager="*uid://cstjq72d8dxvf"
 UpgradeManager="*uid://0mnd48woektt"
 
 [input]

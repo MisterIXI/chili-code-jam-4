@@ -113,7 +113,6 @@ text = "Quit"
 expand_icon = true
 
 [node name="Settings_Container" type="PanelContainer" parent="Menu/HBoxContainer" unique_id=477675301]
-visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
@@ -186,7 +185,7 @@ layout_mode = 2
 [node name="sound_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer" unique_id=1252903908]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Music Volume"
+text = "Sound Volume"
 horizontal_alignment = 1
 
 [node name="sound_HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer" unique_id=429800659]

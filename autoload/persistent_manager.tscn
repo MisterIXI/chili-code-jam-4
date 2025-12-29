@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cstjq72d8dxvf"]
+
+[ext_resource type="Script" uid="uid://byt16agrp3ag6" path="res://autoload/persistent_manager.gd" id="1_u23og"]
+
+[node name="Persistent_Manager" type="Node" unique_id=1604724034]
+script = ExtResource("1_u23og")
+
+[node name="Timer" type="Timer" parent="." unique_id=352070521]
+wait_time = 60.0
+autostart = true
