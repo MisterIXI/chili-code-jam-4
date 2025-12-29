@@ -1,0 +1,33 @@
+[gd_resource type="Theme" format=3 uid="uid://di4cph6tj0ntt"]
+
+[ext_resource type="Texture2D" uid="uid://trfb1s1avh1o" path="res://textures/ui/toggle_on.png" id="1_6ki1c"]
+[ext_resource type="Texture2D" uid="uid://dh8kk48y1y8rd" path="res://textures/ui/toggle_off.png" id="2_2l6yh"]
+[ext_resource type="Texture2D" uid="uid://b3k7h0a8yuj5m" path="res://textures/ui/slider_grabber.png" id="3_2w6q3"]
+[ext_resource type="Texture2D" uid="uid://c12oj8jmrofw3" path="res://textures/ui/slider_grabber_hl.png" id="4_7v2m8"]
+[ext_resource type="Texture2D" uid="uid://c63galqkfiyvg" path="res://textures/ui/hslider_tick.png" id="5_x5k43"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w6q3"]
+bg_color = Color(0, 0.43137255, 0.5647059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ryiu"]
+bg_color = Color(0, 0.1882353, 0.25490198, 0.7764706)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.94509804, 0.56078434, 0.003921569, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 20
+
+[resource]
+CheckButton/icons/checked = ExtResource("1_6ki1c")
+CheckButton/icons/unchecked = ExtResource("2_2l6yh")
+HSlider/icons/grabber = ExtResource("3_2w6q3")
+HSlider/icons/grabber_highlight = ExtResource("4_7v2m8")
+HSlider/icons/tick = ExtResource("5_x5k43")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_2w6q3")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_0ryiu")

@@ -10,7 +10,7 @@ func _ready() -> void:
 func setup(_life_time : float, _speed : float) -> void:
 	linear_velocity = Vector2(_speed,_speed)
 	life_time = _life_time
-	print("setup complete")
+	anim_sprite.play("spawn")
 
 func _physics_process(delta: float) -> void:
 	life_time -= delta
