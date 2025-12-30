@@ -1,3 +1,4 @@
+class_name Food
 extends Area2D
 const TWEEN_DURATION : float = 0.35
 var food_amount : int = 1
@@ -6,12 +7,13 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(_body: Node2D) ->void:
-	if _body is Bacteria:
+	if _body is Bacteria or _body is SmartBacteria:
 		if !_is_allready_eaten:
 			_is_allready_eaten = true
-			monitorable = false
-			monitoring = false
-			_body.eat(food_amount)
+			# monitorable = false
+			# monitoring = false
+			# _body.eat(food_amount)
+			_body.ate_food()
 			# Tween food getting eaten: bouncy scale to 0 then free
 			_died()
 

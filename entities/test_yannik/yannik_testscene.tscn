@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cyf3e2sdua44n"]
+
+[ext_resource type="PackedScene" uid="uid://i1afhnqilliw" path="res://entities/bacteria/smart_bacteria.tscn" id="1_3yl65"]
+[ext_resource type="Script" uid="uid://cylit3bor5bo5" path="res://entities/bacteria/spawn_manager.gd" id="2_8vrxk"]
+[ext_resource type="Script" uid="uid://43w5ncglu8mp" path="res://entities/test_yannik/test_camera.gd" id="2_nj8fx"]
+[ext_resource type="PackedScene" uid="uid://bm2qdu4vgow0m" path="res://autoload/food_manager.tscn" id="3_mn17p"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nj8fx"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nj8fx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72j42"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vu6mj"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k4vc5"]
+normal = Vector2(1, 0)
+
+[node name="TestScene" type="Node2D" unique_id=222849327]
+
+[node name="Spawn_Manager" type="Node2D" parent="." unique_id=539620619]
+script = ExtResource("2_8vrxk")
+metadata/_custom_type_script = "uid://cylit3bor5bo5"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1037799361]
+zoom = Vector2(0.275, 0.275)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 4.665
+script = ExtResource("2_nj8fx")
+
+[node name="SmartBacteria" parent="." unique_id=328930080 instance=ExtResource("1_3yl65")]
+linear_damp = 1.0
+
+[node name="Food_Manager" parent="." unique_id=683063397 instance=ExtResource("3_mn17p")]
+
+[node name="SafetyBox" type="StaticBody2D" parent="." unique_id=341692049]
+collision_layer = 5
+physics_material_override = SubResource("PhysicsMaterial_nj8fx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafetyBox" unique_id=1920075832]
+position = Vector2(0, 1030)
+shape = SubResource("WorldBoundaryShape2D_nj8fx")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="SafetyBox" unique_id=1797060700]
+position = Vector2(0, -1000)
+shape = SubResource("WorldBoundaryShape2D_72j42")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="SafetyBox" unique_id=187022264]
+position = Vector2(1845, -6)
+shape = SubResource("WorldBoundaryShape2D_vu6mj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="SafetyBox" unique_id=1928862710]
+position = Vector2(-1826, 3)
+shape = SubResource("WorldBoundaryShape2D_k4vc5")
