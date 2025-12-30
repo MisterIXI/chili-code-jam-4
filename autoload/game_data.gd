@@ -1,5 +1,7 @@
 extends Node
 
+const GAME_SCENE : String ="res://entities/game/game_scene.tscn"
+
 var current_upgrades : Dictionary = {
     "upgrade_food_dense" : 0
 }

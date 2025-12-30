@@ -120,6 +120,7 @@ text = "Quit"
 expand_icon = true
 
 [node name="Settings_Container" type="PanelContainer" parent="Menu/HBoxContainer" unique_id=477675301]
+visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
@@ -225,7 +226,7 @@ layout_mode = 2
 [node name="FullScreenContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=1208481727]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FullScreenContainer" unique_id=934467090]
+[node name="Fullscreen_CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FullScreenContainer" unique_id=934467090]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "FullScreen"
@@ -233,7 +234,7 @@ text = "FullScreen"
 [node name="FPS_Counter_Container" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=236469204]
 layout_mode = 2
 
-[node name="CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FPS_Counter_Container" unique_id=532502094]
+[node name="Fps_CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FPS_Counter_Container" unique_id=532502094]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Show FPS"
@@ -659,7 +660,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_01" unique_id=234773086]
+[node name="upgrade_01" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_01" unique_id=234773086]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Upgrade Bacteria"
@@ -672,7 +673,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_02" unique_id=239659868]
+[node name="upgrade_02" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_02" unique_id=239659868]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Upgrade Bacteria"
@@ -685,7 +686,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_03" unique_id=379740818]
+[node name="upgrade_03" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_03" unique_id=379740818]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Upgrade Bacteria"
@@ -698,7 +699,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_04" unique_id=1746218459]
+[node name="upgrade_04" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_04" unique_id=1746218459]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Upgrade Bacteria"
@@ -723,7 +724,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Button" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_05" unique_id=2054204383]
+[node name="upgrade_05" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_05" unique_id=2054204383]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "Upgrade Bacteria"
