@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Food_Drop_Max" format=3 uid="uid://b8st0inlovsyl"]
+
+[ext_resource type="Script" uid="uid://bp4qetqvy5v55" path="res://entities/upgrades/food_drop_max.gd" id="1_lwjxi"]
+[ext_resource type="Texture2D" uid="uid://cufboyvmfvv7n" path="res://textures/ui/upgrade_food.png" id="2_vouhc"]
+
+[resource]
+script = ExtResource("1_lwjxi")
+upgrade_name = "Increase Food drop"
+upgrade_description = "Feed your Bacterias with more food, becareful to much food with toxicity your Bacterias and let them die."
+upgrade_texture = ExtResource("2_vouhc")
+upgrade_max_level = 99
+upgrade_cost = 10
+upgrade_multiplier = 2.0
+metadata/_custom_type_script = "uid://bp4qetqvy5v55"

@@ -6,8 +6,9 @@
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="2_7g2dv"]
 [ext_resource type="Shader" uid="uid://cibke4huika2y" path="res://shaders/background_color_wave.gdshader" id="4_t6hpy"]
 [ext_resource type="Texture2D" uid="uid://b6aioio1nq4k8" path="res://textures/ui/currency_dna.png" id="6_6wbph"]
+[ext_resource type="Script" uid="uid://cxl1p3v14n1lf" path="res://entities/ui/dna_value.gd" id="7_6wbph"]
 [ext_resource type="Script" uid="uid://bi10p48krxa57" path="res://entities/ui/fps_counter.gd" id="8_3kqnw"]
-[ext_resource type="Texture2D" uid="uid://d2v7nnfuwswtq" path="res://textures/ui/upgrade_speed.png" id="8_w31hu"]
+[ext_resource type="PackedScene" uid="uid://d1c8cg8ilnlx3" path="res://entities/ui/upgrade_button_base.tscn" id="8_6wbph"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
 shader = ExtResource("4_t6hpy")
@@ -32,6 +33,7 @@ process_mode = 3
 script = ExtResource("1_7g2dv")
 
 [node name="Menu" type="Control" parent="." unique_id=1287745693]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -239,54 +241,57 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=1716482552]
 layout_mode = 2
 
-[node name="FullScreenContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=1208481727]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=1039910100]
 layout_mode = 2
 
-[node name="Fullscreen_CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FullScreenContainer" unique_id=934467090]
+[node name="FullScreenContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer" unique_id=1208481727]
+layout_mode = 2
+
+[node name="Fullscreen_CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/FullScreenContainer" unique_id=934467090]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "FullScreen"
 
-[node name="FPS_Counter_Container" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=236469204]
+[node name="FPS_Counter_Container" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer" unique_id=236469204]
 layout_mode = 2
 
-[node name="Fps_CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FPS_Counter_Container" unique_id=532502094]
+[node name="Fps_CheckButton" type="CheckButton" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/FPS_Counter_Container" unique_id=532502094]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "Show FPS"
 
-[node name="MaxSpawnsContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer" unique_id=262832111]
+[node name="MaxSpawnsContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer" unique_id=262832111]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer" unique_id=1363263355]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer" unique_id=1363263355]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=76709071]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=76709071]
-layout_mode = 2
-
-[node name="max_spawn_header_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=961440745]
+[node name="max_spawn_header_label" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=961440745]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "  Max Spawning Bacterias:"
+text = "  Max visible Bacterias:"
 
-[node name="VSeparator" type="VSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=1984132218]
+[node name="VSeparator" type="VSeparator" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=1984132218]
 layout_mode = 2
-theme_override_constants/separation = 292
 theme_override_styles/separator = SubResource("StyleBoxEmpty_uvj7p")
 
-[node name="max_spawn_value" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=1514551232]
+[node name="max_spawn_value" type="Label" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer" unique_id=1514551232]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_font_sizes/font_size = 12
 text = "1000"
 
-[node name="Margin_C" type="MarginContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=1187635180]
+[node name="Margin_C" type="MarginContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer" unique_id=1187635180]
 layout_mode = 2
 theme_override_constants/margin_left = 11
 theme_override_constants/margin_right = 11
 theme_override_constants/margin_bottom = 11
 
-[node name="HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C" unique_id=1214656080]
+[node name="HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C" unique_id=1214656080]
 layout_mode = 2
 min_value = 100.0
 max_value = 5000.0
@@ -521,9 +526,10 @@ custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 29
-text = "2.5933 SEPTILLION"
+text = "35"
 fit_content = true
 horizontal_alignment = 1
+script = ExtResource("7_6wbph")
 
 [node name="Stats_Margin" type="MarginContainer" parent="HUD" unique_id=583007973]
 layout_mode = 1
@@ -609,12 +615,17 @@ layout_mode = 2
 
 [node name="Button_Margin" type="MarginContainer" parent="HUD" unique_id=2010309721]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -264.0
-offset_bottom = 566.0
+anchor_bottom = 1.0
+offset_left = -266.81
+offset_top = 14.865
+offset_right = 123.190186
+offset_bottom = 364.865
 grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.65, 0.65)
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -633,7 +644,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="SFX_Header" type="Label" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_header" unique_id=1304589102]
+[node name="Upgrade_Header" type="Label" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_header" unique_id=1304589102]
 custom_minimum_size = Vector2(250, 50)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
@@ -645,61 +656,25 @@ theme_override_constants/shadow_outline_size = 7
 theme_override_font_sizes/font_size = 25
 text = "Upgrade Menu"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=706811083]
 layout_mode = 2
 
-[node name="Button_01" type="MarginContainer" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=709358504]
+[node name="Button_01" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=748105293 instance=ExtResource("8_6wbph")]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="upgrade_01" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_01" unique_id=234773086]
+[node name="Button_02" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=487711594 instance=ExtResource("8_6wbph")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Upgrade Bacteria"
-icon = ExtResource("8_w31hu")
 
-[node name="Button_02" type="MarginContainer" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=779669658]
+[node name="Button_03" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1271748014 instance=ExtResource("8_6wbph")]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="upgrade_02" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_02" unique_id=239659868]
+[node name="Button_04" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1405241935 instance=ExtResource("8_6wbph")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Upgrade Bacteria"
-icon = ExtResource("8_w31hu")
 
-[node name="Button_03" type="MarginContainer" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1769445352]
+[node name="Button_05" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1865164897 instance=ExtResource("8_6wbph")]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="upgrade_03" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_03" unique_id=379740818]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Upgrade Bacteria"
-icon = ExtResource("8_w31hu")
-
-[node name="Button_04" type="MarginContainer" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1465490427]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="upgrade_04" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_04" unique_id=1746218459]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Upgrade Bacteria"
-icon = ExtResource("8_w31hu")
 
 [node name="HSeparator2" type="HSeparator" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=753344662]
 layout_mode = 2
@@ -713,25 +688,16 @@ horizontal_alignment = 1
 [node name="HSeparator3" type="HSeparator" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=916192843]
 layout_mode = 2
 
-[node name="Button_05" type="MarginContainer" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1659418296]
+[node name="Button_06" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1249277910 instance=ExtResource("8_6wbph")]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="upgrade_05" type="Button" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer/Button_05" unique_id=2054204383]
+[node name="Button_07" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=258510811 instance=ExtResource("8_6wbph")]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Upgrade Bacteria"
-icon = ExtResource("8_w31hu")
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=352442472]
+[node name="Button_08" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1754269694 instance=ExtResource("8_6wbph")]
+visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
 [node name="Food_Slider_Margin" type="MarginContainer" parent="HUD" unique_id=85516309]
 layout_mode = 1
@@ -740,11 +706,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -81.0
-offset_right = 53.0
+offset_left = -188.60501
+offset_top = -89.875
+offset_right = 441.3955
+offset_bottom = 18.125
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(0.59, 0.59)
 
 [node name="PanelContainer" type="PanelContainer" parent="HUD/Food_Slider_Margin" unique_id=82638676]
 layout_mode = 2

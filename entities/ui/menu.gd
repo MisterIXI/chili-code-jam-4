@@ -13,10 +13,10 @@ extends Control
 @onready var _music_volume_slider : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MusicContainer/VBoxContainer/Margin_C/music_HSlider
 @onready var _sound_volume_slider :HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer/Margin_C/sound_HSlider
 ### Video Settins
-@onready var _fullscreen_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FullScreenContainer/Fullscreen_CheckButton
-@onready var _fps_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FPS_Counter_Container/Fps_CheckButton
-@onready var _max_bacteria_spawn : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C/HSlider
-@onready var _max_bacteria_value : Label = $HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer/max_spawn_value
+@onready var _fullscreen_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/FullScreenContainer/Fullscreen_CheckButton
+@onready var _fps_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/FPS_Counter_Container/Fps_CheckButton
+@onready var _max_bacteria_spawn : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C/HSlider
+@onready var _max_bacteria_value : Label = $HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer/max_spawn_value
 ### Persistent data
 @onready var _save_data_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Save_Data_Container/CheckButton
 @onready var _save_game_interval : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C/HSlider

@@ -5,7 +5,7 @@ extends Node
 ################################## Functions ##################################
 func _ready() -> void:
     ### DEBUG 
-    #GameData.reset_game_data()
+    delete_game_data()
     ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
     #Load existing game data if available
@@ -23,7 +23,8 @@ func _on_timer_timeout() -> void:
 func save_game_data() -> void:
     var data_to_save : Dictionary = {
         "game_settings" : GameData.game_settings,
-        "player_progress" : GameData.player_progress
+        "player_progress" : GameData.player_progress,
+        "current_upgrades" : GameData.current_upgrades
     }
     # Create a ConfigFile to save the data
     var config = ConfigFile.new()
@@ -54,6 +55,7 @@ func load_game_data() -> void:
     if saved_data != null:
         GameData.game_settings = saved_data.get("game_settings", GameData.game_settings)
         GameData.player_progress = saved_data.get("player_progress", GameData.player_progress)
+        GameData.current_upgrades = saved_data.get("current_upgrades", GameData.current_upgrades)
         print("Game data loaded successfully.")
     else:
         print("No saved data found in the save file.")

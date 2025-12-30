@@ -1,9 +1,17 @@
 extends Node
 
+signal dna_changed(_value : float)
+
 const GAME_SCENE : String ="res://entities/game/game_scene.tscn"
 
 var current_upgrades : Dictionary = {
-    "upgrade_food_dense" : 0
+    "food_drop_max" : 0, # Food drop/s max increase
+    "petri_dishes" : 0, # increase Global multiplier
+    "bacteria_speed" : 0, # Increase Speed of Bacteria
+    "bacteria_division_cdr" : 0,# Bacterias will division faster
+    "basic_graphs" : 0, # Line2D
+    "advanced_graphs" : 0, # Detail with numbers
+    "auto_upgrader" :0 # IF upgrade is possible, auto upgrade
 }
 var game_settings : Dictionary = {
     "master_volume" : 0.5,
@@ -16,18 +24,21 @@ var game_settings : Dictionary = {
     "save_interval" :60
 }
 var player_progress : Dictionary = {
+    "dna_currency" : 0,
+    "total_bacterias_spawned" : 1,
     "bacterias" : 1,
-    "petri_dishes" : 0,
-    "player_archived_game_goal" : 0,
-    "epic_stat_01" : 0,
-    "epic_stat_02" : 0,
-    "epic_stat_03" : 0,
-    "epic_stat_04" : 0,
-    "upgrades": current_upgrades
+    "food_slider" : 0.5,
+    "player_archived_game_goal" : 0
 }
 func reset_game_data() -> void:
     current_upgrades = {
-        "upgrade_food_dense" : 0
+        "food_drop_max" : 0, # Food drop/s max increase
+        "petri_dishes" : 0, # increase Global multiplier
+        "bacteria_speed" : 0, # Increase Speed of Bacteria
+        "bacteria_division_cdr" : 0,# Bacterias will division faster
+        "basic_graphs" : 0, # Line2D
+        "advanced_graphs" : 0, # Detail with numbers
+        "auto_upgrader" :0 # IF upgrade is possible, auto upgrade   
     }
     game_settings = {
         "master_volume" : 0.5,
@@ -40,8 +51,12 @@ func reset_game_data() -> void:
         "save_interval" :60
     }
     player_progress = {
+        "dna_currency" : 0.0,
+        "total_bacterias_spawned" : 1,
         "bacterias" : 1,
-        "petri_dishes" : 0,
-        "player_archived_game_goal" : 0,
-        "upgrades": current_upgrades
+        "food_slider" : 0.5,
+        "player_archived_game_goal" : 0
 }
+func increase_dna(_value : float) ->void:
+    player_progress["dna_currency"] += _value
+    dna_changed.emit(player_progress["dna_currency"])

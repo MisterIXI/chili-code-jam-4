@@ -10,6 +10,10 @@
 bg_color = Color(0, 0.43137255, 0.5647059, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ryiu"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 bg_color = Color(0, 0.1882353, 0.25490198, 0.7764706)
 border_width_left = 2
 border_width_top = 2
@@ -21,7 +25,6 @@ corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
-corner_detail = 20
 
 [resource]
 CheckButton/icons/checked = ExtResource("1_6ki1c")
@@ -30,4 +33,5 @@ HSlider/icons/grabber = ExtResource("3_2w6q3")
 HSlider/icons/grabber_highlight = ExtResource("4_7v2m8")
 HSlider/icons/tick = ExtResource("5_x5k43")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_2w6q3")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_2w6q3")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_0ryiu")

@@ -7,3 +7,5 @@ func apply_upgrade():
     # effect
     #increase level
     pass
+func get_effect_value_text()  ->String:
+    return "Effect Text"

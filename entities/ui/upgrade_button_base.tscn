@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://d1c8cg8ilnlx3"]
+
+[ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="1_qy2tv"]
+[ext_resource type="Script" uid="uid://22lv5gwe3c7l" path="res://entities/ui/upgrade_button_base.gd" id="1_s3ktl"]
+[ext_resource type="Resource" uid="uid://b10ql57ckeft1" path="res://entities/prefabs/upgrades/upgrade_food_dense.tres" id="2_qxtno"]
+[ext_resource type="Texture2D" uid="uid://bhnradq6o4yp5" path="res://textures/ui/currency_dna_small.png" id="2_s3ktl"]
+
+[node name="Button_01" type="MarginContainer" unique_id=748105293]
+custom_minimum_size = Vector2(320, 0)
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_s3ktl")
+upgrade = ExtResource("2_qxtno")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=174293824]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=750993384]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=467207918]
+layout_mode = 2
+theme_override_constants/margin_right = 15
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/MarginContainer" unique_id=806465378]
+layout_mode = 2
+texture = ExtResource("1_qy2tv")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1000641184]
+layout_mode = 2
+
+[node name="upgrade_name" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=264998211]
+layout_mode = 2
+text = "Bacteria Speed"
+
+[node name="Level_value" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1420205943]
+layout_mode = 2
+text = "Level: 55"
+
+[node name="effect_value" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=708772559]
+layout_mode = 2
+text = "Speed: + 2093%"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1994686020]
+layout_mode = 2
+
+[node name="upgrade_cost" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=58688274]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Cost: 31243"
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1827186651]
+layout_mode = 2
+texture = ExtResource("2_s3ktl")
