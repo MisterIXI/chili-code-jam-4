@@ -33,7 +33,6 @@ process_mode = 3
 script = ExtResource("1_7g2dv")
 
 [node name="Menu" type="Control" parent="." unique_id=1287745693]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -481,7 +480,12 @@ size_flags_horizontal = 4
 layout_mode = 2
 text = "Director"
 
+[node name="delete_Timer" type="Timer" parent="Menu" unique_id=1452135277]
+wait_time = 5.0
+one_shot = true
+
 [node name="HUD" type="Control" parent="." unique_id=35774597]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -779,3 +783,42 @@ value = 0.5
 tick_count = 10
 ticks_on_borders = true
 ticks_position = 2
+
+[node name="Debug" type="Control" parent="." unique_id=1614430941]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Debug" unique_id=844518353]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 11
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 11
+theme_override_constants/margin_bottom = 11
+
+[node name="PanelContainer" type="PanelContainer" parent="Debug/MarginContainer" unique_id=452900976]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Debug/MarginContainer/PanelContainer" unique_id=1162146864]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Debug/MarginContainer/PanelContainer/MarginContainer" unique_id=350504944]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Debug/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=931228579]
+layout_mode = 2
+text = "FPS:"
+
+[node name="Label2" type="Label" parent="Debug/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=680242999]
+layout_mode = 2
+text = "5555"

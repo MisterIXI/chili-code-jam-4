@@ -7,6 +7,7 @@ var stat_spawned_bacterias : int =  1
 var start_health : int = 10
 var start_speed  : float = 100
 var cooldown : float = 2.0
+
 static var singleton
 func _init():
 	singleton = self
@@ -18,9 +19,9 @@ func get_current_bacterias_count() -> int:
 	return get_child_count()
 
 func spawn(_pos : Vector2) ->void:
-	# Use range(value) to iterate the requested number of times
-	#for n in range(1):
-	_new_bacteria(start_health,start_speed, _pos)
+	if get_child_count() >GameData.game_settings["max_bacterias"]:
+
+		_new_bacteria(start_health,start_speed, _pos)
 
 func _new_bacteria(_start_health : int, _start_speed : float, _pos : Vector2) ->void:
 

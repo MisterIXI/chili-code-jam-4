@@ -5,7 +5,7 @@ var base_food_spawntime : float = 0.5
 var stat_food_cycles : int  = 0
 var offset : Vector2 = Vector2( 50,50)
 #privates
-var _game_ui_node : Node
+var _game_ui_node : CanvasLayer
 @onready var timer : Timer = $Timer
 
 func _ready() -> void:
