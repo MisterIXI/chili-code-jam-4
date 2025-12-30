@@ -6,6 +6,10 @@ var stat_spawned_bacterias : int =  1
 
 var start_health : int = 10
 var start_speed  : float = 100
+var cooldown : float = 2.0
+static var singleton
+func _init():
+	singleton = self
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_new_bacteria(start_health * 10,start_speed*2,  global_position)
