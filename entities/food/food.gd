@@ -9,6 +9,8 @@ func _on_body_entered(_body: Node2D) ->void:
 	if _body is Bacteria:
 		if !_is_allready_eaten:
 			_is_allready_eaten = true
+			monitorable = false
+			monitoring = false
 			_body.eat(food_amount)
 			# Tween food getting eaten: bouncy scale to 0 then free
 			_died()
