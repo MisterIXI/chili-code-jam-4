@@ -8,10 +8,13 @@ func _ready() -> void:
     #GameData.reset_game_data()
     ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
-    _timer.start()
     #Load existing game data if available
     load_game_data()
 
+func on_timer_waittime_changed(_value :float) ->void:
+    if _value >0:
+        _timer.wait_time = _value
+        print("Persistent_Manager: Save Interval")
 func _on_timer_timeout() -> void:
     if GameData.game_settings["save_game_data"] == 1:
         save_game_data()

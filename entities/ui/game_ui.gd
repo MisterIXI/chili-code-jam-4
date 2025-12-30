@@ -1,9 +1,11 @@
 extends CanvasLayer
+
 const MAX_FOOD_INTERVAL : float = 1.1
 signal game_started()
 signal game_paused()
 signal food_slider_changed(_value : float)
 
+static var instance
 # onready variables
 @onready var _food_slider: HSlider = $HUD/Food_Slider_Margin/PanelContainer/VBoxContainer/MarginContainer/HSlider
 @onready var _menu_panel : Control = $Menu
@@ -17,13 +19,8 @@ func _ready() -> void:
 func _on_food_slider_changed(_value : float) ->void:
 	food_slider_changed.emit(MAX_FOOD_INTERVAL -_value)
 
-func _on_fps_settings_changed(_value : bool) ->void:
-	if _value:
-		#show fps counter
-		print("show fps")
-	else:
-		# hide fps counter
-		print("hide fps")
+func on_fps_settings_changed(_value : bool) ->void:
+	show_debug_panel(_value)
 
 func show_debug_panel(_value : bool) ->void:
 	if _value:

@@ -9,16 +9,18 @@ extends Control
 @onready var _credits_panel : PanelContainer = $HBoxContainer/Credits_Container
 #
 ### Settings Sliders
-@onready var _master_volume_slider : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MasterContainer/VBoxContainer/master_HSlider
-@onready var _music_volume_slider : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MusicContainer/VBoxContainer/music_HSlider
-@onready var _sound_volume_slider :HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer/sound_HSlider
+@onready var _master_volume_slider : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MasterContainer/VBoxContainer/Margin_C/master_HSlider
+@onready var _music_volume_slider : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/MusicContainer/VBoxContainer/Margin_C/music_HSlider
+@onready var _sound_volume_slider :HSlider =$HBoxContainer/Settings_Container/VBoxContainer/AudioContainer/VBoxContainer/SoundContainer/VBoxContainer/Margin_C/sound_HSlider
 ### Video Settins
 @onready var _fullscreen_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FullScreenContainer/Fullscreen_CheckButton
 @onready var _fps_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/FPS_Counter_Container/Fps_CheckButton
-@onready var _max_bacteria_spawn : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HSlider
+@onready var _max_bacteria_spawn : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C/HSlider
+@onready var _max_bacteria_value : Label = $HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer/max_spawn_value
 ### Persistent data
 @onready var _save_data_checkbutton : CheckButton =$HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Save_Data_Container/CheckButton
-@onready var _save_game_interval : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HSlider
+@onready var _save_game_interval : HSlider =$HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C/HSlider
+@onready var _save_game_interval_label : Label = $HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/MaxSpawnsContainer/VBoxContainer/HBoxContainer/save_interval_value
 @onready var _button_clear : Button  =$HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Clear_Data_Container2/Clear_Button
 @onready var _button_delete : Button = $HBoxContainer/Settings_Container/VBoxContainer/PersistentContainer/VBoxContainer/Clear_Data_Container2/Delete_Button
 @onready var _delete_timer : Timer =$delete_Timer
@@ -26,11 +28,8 @@ extends Control
 var _menu_settings_toggle : bool = false
 var _menu_credits_toggle :bool = false
 
-var _game_ui_node : CanvasLayer
 
 func _ready() -> void:
-	_game_ui_node = get_tree().get_first_node_in_group("game_ui")
-
 	_button_start.pressed.connect(_on_button_start)
 	_button_settings.pressed.connect(_on_button_settings)
 	_button_credits.pressed.connect(_on_button_credits)
@@ -43,13 +42,19 @@ func _ready() -> void:
 	_master_volume_slider.value = GameData.game_settings["master_volume"]
 	_music_volume_slider.value= GameData.game_settings ["music_volume"]
 	_sound_volume_slider.value = GameData.game_settings ["sound_volume"]
-	
+
 	_fullscreen_checkbutton.toggled.connect(_on_toggled_fullscreen)
 	_fps_checkbutton.toggled.connect(_on_toggled_fps_counter)
 	_max_bacteria_spawn.value_changed.connect(_on_max_bacteria_slider_changed)
+	_max_bacteria_spawn.value = float(GameData.game_settings["max_bacterias"])
+	_max_bacteria_value.text = str(GameData.game_settings["max_bacterias"])
 	#menu persistent data
 	_save_data_checkbutton.toggled.connect(_on_save_data_changed)
 	_save_game_interval.value_changed.connect(_on_save_game_interval_changed)
+	_save_game_interval.value = float(GameData.game_settings["save_interval"])
+	_save_game_interval_label.text  =str(GameData.game_settings["save_interval"])
+	PersistentManager.on_timer_waittime_changed(float(GameData.game_settings["save_interval"]))
+
 	_button_clear.pressed.connect(_on_button_clear_pressed)
 	_button_delete.pressed.connect(_on_button_delete_pressed)
 	_delete_timer.timeout.connect(_on_delete_timer_reset)
@@ -58,6 +63,7 @@ func _ready() -> void:
 func _on_button_start() ->void:
 	print("Start Game")
 	_button_start.text = "Resume"
+	get_parent().show_hud()
 	get_tree().change_scene_to_file(GameData.GAME_SCENE)
 
 
@@ -96,15 +102,15 @@ func _on_toggled_fullscreen(_value : bool) ->void:
 func _on_toggled_fps_counter(_value :bool) ->void:
 	if _value:
 		GameData.game_settings["fps_counter"]  =1
-		_game_ui_node.on_fps_settings_changed(true)
+		get_parent().on_fps_settings_changed(true)
 	else:
 		GameData.game_settings["fps_counter"]  =0
-		_game_ui_node.on_fps_settings_changed(false)
+		get_parent().on_fps_settings_changed(false)
 
 func _on_max_bacteria_slider_changed(_value :float) ->void:
-
-	print("Menu_Settings: Max Bacterias have changed to:", _value)
 	GameData.game_settings["max_bacterias"] = int(_value)
+	print("Menu_Settings: Max Bacterias have changed to:", GameData.game_settings["max_bacterias"])
+	_max_bacteria_value.text = str(GameData.game_settings["max_bacterias"])
 
 func _on_save_data_changed(_value: bool) ->void:
 	if _value:
@@ -117,6 +123,9 @@ func _on_save_data_changed(_value: bool) ->void:
 
 func _on_save_game_interval_changed(_value : float) ->void:
 	GameData.game_settings["save_interval"] = int (_value)
+	print("Menu_Settings: Max Bacterias have changed to:", GameData.game_settings["max_bacterias"])
+	_save_game_interval_label.text  =str(GameData.game_settings["save_interval"])
+	PersistentManager.on_timer_waittime_changed(float(GameData.game_settings["save_interval"]))
 
 func _on_button_clear_pressed()->void:
 	print("Menu_Settings: Clear button pressed -> delete button show")
