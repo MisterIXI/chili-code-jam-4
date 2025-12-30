@@ -3,7 +3,6 @@
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="1_bjl4v"]
 [ext_resource type="PackedScene" uid="uid://bkyt3dnhvyv6a" path="res://entities/bacteria/spawn_manager.tscn" id="2_h5h23"]
 [ext_resource type="PackedScene" uid="uid://bm2qdu4vgow0m" path="res://autoload/food_manager.tscn" id="3_dfmu6"]
-[ext_resource type="PackedScene" uid="uid://dwvoty2x2wcd4" path="res://entities/ui/game_ui.tscn" id="4_h5h23"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_plbgc"]
 friction = 0.0
@@ -27,7 +26,7 @@ zoom = Vector2(0.61, 0.61)
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1199567011]
 energy = 0.25
 
-[node name="Spawn_Manager" parent="." unique_id=1027638047 instance=ExtResource("2_h5h23")]
+[node name="Spawn_Manager" parent="." unique_id=1027638047 groups=["spawn_manager"] instance=ExtResource("2_h5h23")]
 
 [node name="Food_Manager" parent="." unique_id=683063397 instance=ExtResource("3_dfmu6")]
 
@@ -51,5 +50,3 @@ shape = SubResource("RectangleShape2D_4d0ye")
 position = Vector2(-980, -81)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_4d0ye")
-
-[node name="Game_UI" parent="." unique_id=845483542 instance=ExtResource("4_h5h23")]

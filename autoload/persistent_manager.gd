@@ -5,15 +5,19 @@ extends Node
 ################################## Functions ##################################
 func _ready() -> void:
     ### DEBUG 
-    #reset_game_data()
+    #GameData.reset_game_data()
     ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
-    _timer.start()
     #Load existing game data if available
     load_game_data()
 
+func on_timer_waittime_changed(_value :float) ->void:
+    if _value >0:
+        _timer.wait_time = _value
+        print("Persistent_Manager: Save Interval")
 func _on_timer_timeout() -> void:
-    save_game_data()
+    if GameData.game_settings["save_game_data"] == 1:
+        save_game_data()
 
 ##################### DATA SAVE, LOAD AND RESET METHODS #####################
 func save_game_data() -> void:
@@ -42,6 +46,7 @@ func load_game_data() -> void:
     # If the file didn't load successfully, return
     if err != OK:
         print("No save file found, starting new game.")
+        GameData.reset_game_data()
         return
     # Retrieve the saved data
     var saved_data = config.get_value("game_data", "data", null)
@@ -53,25 +58,7 @@ func load_game_data() -> void:
     else:
         print("No saved data found in the save file.")
 
-func reset_game_data() -> void:
-    GameData.current_upgrades = {
-        "upgrade_food_dense" : 0
-    }
-    GameData.game_settings = {
-        "master_volume" : 0.5,
-        "music_volume" : 0.5,
-        "sound_volume" : 0.5,
-        "fullscreen" : 0,
-        "show_fps" : 1,
-        "max_bacterias" : 1000,
-        "save_game_data" : 1,
-        "save_interval" :60
-    }
-    GameData.player_progress = {
-        "bacterias" : 1,
-        "petri_dishes" : 0, # total distance traveled in kilometers (astronomical units)
-        "player_archived_game_goal" : 0,
-        "upgrades": GameData.current_upgrades
-}
-    # Save Reseted Data
+func delete_game_data() ->void:
+    GameData.reset_game_data()
     save_game_data()
+    print("Persistent_Manager: Delete savegamedata")

@@ -5,17 +5,14 @@ var base_food_spawntime : float = 0.5
 var stat_food_cycles : int  = 0
 var offset : Vector2 = Vector2( 50,50)
 #privates
-var _game_ui_node : Node
+
 @onready var timer : Timer = $Timer
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
-	_game_ui_node = get_tree().get_first_node_in_group("game_ui")
-	print("_game_ui:", _game_ui_node)
-	if _game_ui_node:
-		_game_ui_node.food_slider_changed.connect(_on_food_interval_change)
-	else:
-		print("Food_Manager: Error did not find a Game_UI")
+
+	GameUi.food_slider_changed.connect(_on_food_interval_change)
+	
 
 
 func _on_timer_timeout() ->void:

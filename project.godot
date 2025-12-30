@@ -23,6 +23,8 @@ buses/default_bus_layout="res://data/default_bus_layout.tres"
 GameData="*uid://cfm0lktxn84hs"
 PersistentManager="*uid://cstjq72d8dxvf"
 UpgradeManager="*uid://0mnd48woektt"
+SoundManager="*uid://dmghmagatsqju"
+GameUi="*uid://dwvoty2x2wcd4"
 
 [display]
 
@@ -32,7 +34,7 @@ window/size/viewport_height=720
 [global_group]
 
 food_manager=""
-game_ui=""
+spawn_manager=""
 
 [gui]
 
