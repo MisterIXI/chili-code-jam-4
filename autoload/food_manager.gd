@@ -20,7 +20,7 @@ func _on_timer_timeout() ->void:
 
 func next_cycle() ->void:
 	# get camera
-	spawn(Vector2(randi_range(-960,960), randi_range(-540,540)))
+	spawn((Vector2.RIGHT * randf() * 850).rotated(randf() * PI * 2))
 	# stat up
 	stat_food_cycles += 1
 

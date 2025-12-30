@@ -27,7 +27,7 @@ func _handle_hunger(delta) -> void:
 func _handle_movement(delta: float) -> void:
 	if target_food and not target_food.is_queued_for_deletion():
 		var speed_mult = spawn_mgr.start_speed / 100
-		speed_mult = 2
+		speed_mult = 1
 		# turn towards food
 		var angle = transform.x.angle_to(target_food.global_position - global_position)
 		# monkey lerp the angular velocity towards target with 2Pi per second (PI == 180 deg per second)
@@ -45,7 +45,7 @@ func _handle_splitting(delta: float) -> void:
 	if splitting_cd <= 0 and eaten_food > 0:
 		# print("split: ", splitting_cd, "  food: ", eaten_food)
 		# split into two cells
-		spawn_mgr.spawn(global_position)
+		spawn_mgr.instant_spawn(global_position)
 		splitting_cd = spawn_mgr.cooldown
 		eaten_food -= 1
 
