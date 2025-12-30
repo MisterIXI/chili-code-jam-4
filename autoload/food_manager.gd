@@ -1,3 +1,4 @@
+class_name FoodManager
 extends Node2D
 const FOOD_SCENE = preload("res://entities/food/food.tscn")
 var base_food_value : int = 0
@@ -5,8 +6,11 @@ var base_food_spawntime : float = 0.5
 var stat_food_cycles : int  = 0
 var offset : Vector2 = Vector2( 50,50)
 #privates
-
+const FOOD_MULT: int = 3
 @onready var timer : Timer = $Timer
+
+func get_food_rate() -> float:
+	return timer.wait_time * FOOD_MULT
 
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
@@ -20,7 +24,8 @@ func _on_timer_timeout() ->void:
 
 func next_cycle() ->void:
 	# get camera
-	spawn((Vector2.RIGHT * randf() * 850).rotated(randf() * PI * 2))
+	for x in range(FOOD_MULT):
+		spawn((Vector2.RIGHT * randf() * 850).rotated(randf() * PI * 2))
 	# stat up
 	stat_food_cycles += 1
 

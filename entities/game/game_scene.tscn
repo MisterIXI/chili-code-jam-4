@@ -94,11 +94,13 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_h5h23")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=191204191]
+zoom = Vector2(0.345, 0.345)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1199567011]
 energy = 0.25
 
-[node name="Spawn_Manager" parent="." unique_id=1027638047 groups=["spawn_manager"] instance=ExtResource("2_h5h23")]
+[node name="Spawn_Manager" parent="." unique_id=1027638047 node_paths=PackedStringArray("food_mgr") groups=["spawn_manager"] instance=ExtResource("2_h5h23")]
+food_mgr = NodePath("../Food_Manager")
 
 [node name="Food_Manager" parent="." unique_id=683063397 instance=ExtResource("3_dfmu6")]
 

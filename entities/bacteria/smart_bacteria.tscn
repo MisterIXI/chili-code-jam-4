@@ -7,7 +7,7 @@
 radius = 23.021729
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bn0wc"]
-radius = 700.0
+radius = 200.0
 
 [node name="SmartBacteria" type="RigidBody2D" unique_id=328930080]
 collision_mask = 4
