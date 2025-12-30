@@ -29,6 +29,11 @@ UpgradeManager="*uid://0mnd48woektt"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[global_group]
+
+food_manager=""
+game_ui=""
+
 [gui]
 
 theme/custom="uid://di4cph6tj0ntt"

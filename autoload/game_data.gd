@@ -17,5 +17,9 @@ var player_progress : Dictionary = {
     "bacterias" : 1,
     "petri_dishes" : 0, # total distance traveled in kilometers (astronomical units)
     "player_archived_game_goal" : 0,
+    "epic_stat_01" : 0,
+    "epic_stat_02" : 0,
+    "epic_stat_03" : 0,
+    "epic_stat_04" : 0,
     "upgrades": current_upgrades
 }

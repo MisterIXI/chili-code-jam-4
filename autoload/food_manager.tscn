@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dqt4cnl0am7qw" path="res://autoload/food_manager.gd" id="1_ooj1b"]
 
-[node name="Food_Manager" type="Node2D" unique_id=683063397]
+[node name="Food_Manager" type="Node2D" unique_id=683063397 groups=["food_manager"]]
 script = ExtResource("1_ooj1b")
 
 [node name="Timer" type="Timer" parent="." unique_id=658487537]
