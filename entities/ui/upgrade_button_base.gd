@@ -91,6 +91,7 @@ func _on_gui_input(_event: InputEvent) -> void:
 				_tween_to_scale(PRESSED_SCALE, 0.06)
 				# Trigger upgrade action
 				UpgradeManager.on_upgrade_clicked(upgrade_string)
+				
 		else:
 			if is_enabled:
 				# On release, restore to hover state (mouse_enter will keep it highlighted)
