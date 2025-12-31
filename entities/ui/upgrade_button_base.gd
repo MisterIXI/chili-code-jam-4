@@ -56,7 +56,7 @@ func _on_upgrade_leveled(_upgrade: Upgrade) ->void:
 	if upgrade_string == _upgrade.upgrade_name:
 		_set_data(_upgrade)
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed(hotkey):
 		print("Pressed")
 		# Visual press feedback
@@ -66,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_released(hotkey):
 		print("release")
 		#On release, restore to hover state (mouse_enter will keep it highlighted)
-		_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
+		_tween_to_scale(NORMAL_SCALE, TWEEN_DUR)
 
 func _on_gui_input(_event: InputEvent) -> void:
 	if _event is InputEventMouseButton and (_event.button_index == MOUSE_BUTTON_LEFT or _event.button_index == MOUSE_BUTTON_RIGHT):
