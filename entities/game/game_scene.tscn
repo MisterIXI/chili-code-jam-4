@@ -52,12 +52,12 @@ func update_polygon() -> void:
 	for i in range(points):
 		polygon.append(curr_vec)
 		curr_vec = curr_vec.rotated(angle_step)
-	polygon.append(curr_vec - Vector2.RIGHT * 0.0001)
+	polygon.append(curr_vec - Vector2.RIGHT * 0.001)
 	curr_vec = curr_vec.normalized() * (curr_vec.length() + thickness)
 	for i in range(points):
 		polygon.append(curr_vec)
 		curr_vec = curr_vec.rotated(-angle_step)
-	polygon.append(curr_vec - Vector2.RIGHT * 0.0001)
+	polygon.append(curr_vec - Vector2.RIGHT * 0.001)
 	col_polygon.set(\"polygon\", PackedVector2Array(polygon))
 	
 "
@@ -110,10 +110,10 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_plbgc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cage" unique_id=1594278643]
-polygon = PackedVector2Array(0, -1000, 406.73663, -913.5454, 743.1448, -669.13055, 951.0564, -309.01697, 994.5218, 104.52847, 866.02527, 499.99997, 587.78516, 809.01685, 207.91165, 978.14746, -207.91168, 978.14746, -587.78516, 809.01685, -866.02527, 499.9999, -994.5217, 104.52844, -951.05634, -309.01694, -743.14465, -669.1305, -406.73654, -913.5453, -3.896484e-05, -999.99976, 7.934571e-05, -1299.9998, -528.75745, -1187.6089, -966.088, -869.8696, -1236.3732, -401.72202, -1292.878, 135.88696, -1125.8325, 649.9998, -764.12036, 1051.7217, -270.2849, 1271.5913, 270.28522, 1271.5912, 764.1206, 1051.7214, 1125.8325, 649.99945, 1292.8777, 135.88669, 1236.3727, -401.72205, 966.0876, -869.8694, 528.75714, -1187.6084, -0.00028310547, -1299.9991)
+polygon = PackedVector2Array(0, -1000, 406.73663, -913.5454, 743.1448, -669.13055, 951.0564, -309.01697, 994.5218, 104.52847, 866.02527, 499.99997, 587.78516, 809.01685, 207.91165, 978.14746, -207.91168, 978.14746, -587.78516, 809.01685, -866.02527, 499.9999, -994.5217, 104.52844, -951.05634, -309.01694, -743.14465, -669.1305, -406.73654, -913.5453, -0.0009389649, -999.99976, 8.5449225e-05, -1399.9998, -569.43115, -1278.9634, -1040.4026, -936.7826, -1331.4788, -432.6236, -1392.3302, 146.3399, -1212.435, 699.9999, -822.8989, 1132.6234, -291.0761, 1369.4061, 291.07642, 1369.4061, 822.8992, 1132.6233, 1212.4352, 699.99963, 1392.3301, 146.33963, 1331.4785, -432.62375, 1040.4021, -936.78253, 569.4308, -1278.963, -0.0012441407, -1399.9993)
 
 [node name="Shape_builder" type="Node" parent="Cage/CollisionPolygon2D" unique_id=1862804710]
 script = SubResource("GDScript_bjl4v")
 radius = 1000
-thickness = 300
+thickness = 400
 points = 15

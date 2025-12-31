@@ -8,16 +8,19 @@ var offset : Vector2 = Vector2( 50,50)
 #privates
 const FOOD_MULT: int = 3
 @onready var timer : Timer = $Timer
+var food_cd: float = 0.5
+var food_per_sec: float = 10
 
 func get_food_rate() -> float:
 	return timer.wait_time * FOOD_MULT
 
 func _ready() -> void:
-	timer.timeout.connect(_on_timer_timeout)
+	# timer.timeout.connect(_on_timer_timeout)
 
 	GameUi.food_slider_changed.connect(_on_food_interval_change)
-	
-
+	GameUi._food_slider.min_value = 0
+	GameUi._food_slider.max_value = 100
+	GameUi._food_slider.value = 10
 
 func _on_timer_timeout() ->void:
 	next_cycle()
