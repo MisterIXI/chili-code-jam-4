@@ -8,5 +8,5 @@ func apply_upgrade():
         upgrade_cost = upgrade_cost * upgrade_level  
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="Bacteria Speed Increased: +%d %" % [upgrade_multiplier * upgrade_level]
+    var _temp :String ="Speed: +%d %%" % [upgrade_multiplier * upgrade_level]
     return  _temp

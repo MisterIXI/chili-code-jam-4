@@ -1,7 +1,5 @@
 extends Node
 
-signal dna_changed(_value : float)
-
 const GAME_SCENE : String ="res://entities/game/game_scene.tscn"
 
 var current_upgrades : Dictionary = {
@@ -59,4 +57,3 @@ func reset_game_data() -> void:
 }
 func increase_dna(_value : float) ->void:
     player_progress["dna_currency"] += _value
-    dna_changed.emit(player_progress["dna_currency"])

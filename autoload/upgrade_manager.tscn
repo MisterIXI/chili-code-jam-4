@@ -2,8 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cuvrft81188nj" path="res://autoload/upgrade_manager.gd" id="1_ot2vy"]
 [ext_resource type="Script" uid="uid://c2ifxgiogc70s" path="res://entities/upgrades/upgrade_class.gd" id="2_rxt34"]
+[ext_resource type="Resource" uid="uid://b8st0inlovsyl" path="res://entities/prefabs/upgrades/upgrade_food_drop_max.tres" id="3_gokox"]
 [ext_resource type="Resource" uid="uid://dlrj3s0isl0dh" path="res://entities/prefabs/upgrades/upgrade_basic_graph.tres" id="3_rxt34"]
+[ext_resource type="Resource" uid="uid://hyh2yii48v7x" path="res://entities/prefabs/upgrades/upgrade_bacteria_speed.tres" id="4_6gngw"]
+[ext_resource type="Resource" uid="uid://dwldanps8hefl" path="res://entities/prefabs/upgrades/upgrade_bacteria_division.tres" id="5_cowdu"]
+[ext_resource type="Resource" uid="uid://qrokw012ucad" path="res://entities/prefabs/upgrades/upgrade_petri_dishes.tres" id="6_87hrd"]
+[ext_resource type="Resource" uid="uid://ba12ijwc1qk1n" path="res://entities/prefabs/upgrades/upgrade_advanced_graph.tres" id="8_vpmb5"]
+[ext_resource type="Resource" uid="uid://bveq5bkis0dl5" path="res://entities/prefabs/upgrades/upgrade_auto_upgrader.tres" id="9_g3d3i"]
 
 [node name="Upgrade_Manager" type="Node" unique_id=2047545250]
 script = ExtResource("1_ot2vy")
-upgrade_list = Array[ExtResource("2_rxt34")]([ExtResource("3_rxt34")])
+upgrade_list = Array[ExtResource("2_rxt34")]([ExtResource("3_gokox"), ExtResource("4_6gngw"), ExtResource("5_cowdu"), ExtResource("6_87hrd"), ExtResource("3_rxt34"), ExtResource("8_vpmb5"), ExtResource("9_g3d3i")])

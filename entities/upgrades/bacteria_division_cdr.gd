@@ -10,5 +10,5 @@ func apply_upgrade():
     
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="Bacteria division rate increased:%d" % [upgrade_multiplier * upgrade_level]
+    var _temp :String ="division rate:%d %%" % [upgrade_multiplier * upgrade_level]
     return  _temp

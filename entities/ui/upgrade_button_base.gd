@@ -8,7 +8,7 @@ const STRING_COST : String = "Cost: "
 @onready var upgrade_effect_value : Label = $PanelContainer/HBoxContainer/VBoxContainer/effect_value
 @onready var upgrade_cost : Label = $PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer/upgrade_cost
 ## tooltip
-@onready var upgrade_tooltip : PanelContainer =$PanelContainer
+@onready var upgrade_tooltip_panel : PanelContainer =$PanelContainer
 #### Get data: 
 @export var upgrade_string : String ="Test_Upgrade"
 ## important must be string and contains hotkey_
@@ -21,7 +21,7 @@ const HOVER_SCALE : Vector2 = Vector2(1.05, 1.05)
 const NORMAL_SCALE : Vector2 = Vector2(1, 1)
 const PRESSED_SCALE : Vector2 = Vector2(0.96, 0.96)
 const TWEEN_DUR : float = 0.12
-const HOVER_MODULATE : Color = Color(1.06, 1.06, 1.06, 1)
+const HOVER_MODULATE : Color = Color(1.32, 1.32, 1.32, 1)
 const NORMAL_MODULATE : Color = Color(1, 1, 1, 1)
 
 const DISABLED_MODULATE : Color = Color(1,1,1,0.3)
@@ -30,14 +30,27 @@ const DISABLED_MODULATE : Color = Color(1,1,1,0.3)
 func _ready() -> void:
 	UpgradeManager.update_visual_upgrade.connect(_on_upgrade_leveled)
 	UpgradeManager.upgrade_reached_max.connect(_on_upgrade_reached_max)
+	_initialize_data()
+
 #### UPDATE BUYABLE STATE
 func _physics_process(_delta: float) -> void:
 	if _current_upgrade_costs > GameData.player_progress["dna_currency"] and is_enabled:
 		is_enabled = false
-		modulate = DISABLED_MODULATE
+		upgrade_tooltip_panel.modulate = DISABLED_MODULATE
 	else: 
 		is_enabled =true
-		modulate = NORMAL_MODULATE
+		#upgrade_tooltip_panel.modulate = NORMAL_MODULATE
+
+### initialize Upgrade Visuals
+func _initialize_data() ->void :
+	for x in UpgradeManager.upgrade_list:
+		if upgrade_string == x.upgrade_name:
+			_set_data(x)
+			## One time init
+			upgrade_texture.texture = x.upgrade_texture
+			upgrade_name.text = x.upgrade_name
+			upgrade_tooltip_panel.tooltip_text = x.upgrade_description
+
 
 func _set_data(_upgrade : Upgrade) ->void:
 	upgrade_level.text = str(_upgrade.upgrade_level)
@@ -45,10 +58,6 @@ func _set_data(_upgrade : Upgrade) ->void:
 	upgrade_cost.text = str(_upgrade.upgrade_cost)
 	# SET  current upgrade costs 
 	_current_upgrade_costs = _upgrade.upgrade_cost
-
-	upgrade_texture.texture = _upgrade.upgrade_texture
-	upgrade_name.text = _upgrade.upgrade_name
-	upgrade_tooltip.tooltip_text = _upgrade.upgrade_description
 
 func _on_upgrade_reached_max(_upgrade : Upgrade) ->void:
 	if upgrade_string == _upgrade.upgrade_name:
@@ -62,7 +71,7 @@ func _on_upgrade_reached_max(_upgrade : Upgrade) ->void:
 			upgrade_cost.text = "Sold Out"
 			upgrade_texture.texture = _upgrade.upgrade_texture
 			upgrade_name.text = _upgrade.upgrade_name
-			upgrade_tooltip.tooltip_text = _upgrade.upgrade_description + " You reached max level."
+			upgrade_tooltip_panel.tooltip_text = _upgrade.upgrade_description + " You reached max level."
 			is_enabled = false
 
 func _on_upgrade_leveled(_upgrade: Upgrade) ->void:
@@ -102,7 +111,7 @@ func _on_mouse_exited() -> void:
 	# restore normal visuals
 	if not is_enabled:
 		return
-	modulate = NORMAL_MODULATE
+	upgrade_tooltip_panel.modulate = NORMAL_MODULATE
 	_tween_to_scale(NORMAL_SCALE, TWEEN_DUR)
 
 func _on_mouse_entered() -> void:
@@ -110,7 +119,7 @@ func _on_mouse_entered() -> void:
 	if not is_enabled:
 		return
 	# slight brighten + grow
-	modulate = HOVER_MODULATE
+	upgrade_tooltip_panel.modulate = HOVER_MODULATE
 	_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
 
 

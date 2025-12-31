@@ -8,6 +8,7 @@ script = ExtResource("1_m3eyj")
 upgrade_name = "Petri Dishes"
 upgrade_description = "Multiplier your work with increasing petri dishes.This Upgrade works autonom beside your work, it will simulate your work on other petri dishes."
 upgrade_texture = ExtResource("2_jyk30")
+upgrade_max_level = 99
 upgrade_cost = 55
 upgrade_multiplier = 2.0
 metadata/_custom_type_script = "uid://dfanfxisp2jyx"
