@@ -1,9 +1,9 @@
 extends Upgrade
-class_name Upgrade_Advanced_Graph
+class_name Upgrade_Auto_updater
 
 func apply_upgrade():
-    
-    GameData.current_upgrades["advanced_graphs"] += 1
+
+    GameData.current_upgrades["auto_upgrader"] += 1
     upgrade_level +=1
     upgrade_cost = upgrade_cost * upgrade_level
     upgrade_multiplier *=2
@@ -11,5 +11,5 @@ func apply_upgrade():
     
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="Advanced Graph shows more Details in the graph"
+    var _temp :String ="Auto-Upgrader will upgrade, when the cheapest upgrade is available"
     return  _temp

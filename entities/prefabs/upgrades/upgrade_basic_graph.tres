@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Upgrade_Basic_Graphs" format=3 uid="uid://dlrj3s0isl0dh"]
 
 [ext_resource type="Script" uid="uid://b4kjfuf4psr7u" path="res://entities/upgrades/basic_graphs.gd" id="1_hij6m"]
-[ext_resource type="Texture2D" uid="uid://btswvq88q7h1e" path="res://textures/ui/panel.png" id="2_tptjt"]
+[ext_resource type="Texture2D" uid="uid://kejujdbivrf2" path="res://textures/ui/upgrade_base_graph.png" id="2_tptjt"]
 
 [resource]
 script = ExtResource("1_hij6m")
-upgrade_name = "Unlock Graph for your bacteria division rate."
-upgrade_description = "This Upgrade looks really nice and is important for your next step."
+upgrade_name = "Unlock Graph"
+upgrade_description = "Graph for your bacteria division rate."
 upgrade_texture = ExtResource("2_tptjt")
 upgrade_max_level = 1
 upgrade_cost = 9999

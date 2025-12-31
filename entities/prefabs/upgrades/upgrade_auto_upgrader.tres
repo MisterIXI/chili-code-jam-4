@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Auto_updater" format=3 uid="uid://bveq5bkis0dl5"]
+
+[ext_resource type="Script" uid="uid://buypbu3vfuijk" path="res://entities/upgrades/auto_upgrader.gd" id="1_qr2xi"]
+[ext_resource type="Texture2D" uid="uid://6moow3pns1rb" path="res://textures/ui/upgrade_auto_upgrader.png" id="2_5n67n"]
+
+[resource]
+script = ExtResource("1_qr2xi")
+upgrade_name = "Auto Upgrader"
+upgrade_description = "Auto-Upgrader will upgrade, when the cheapest upgrade is available"
+upgrade_texture = ExtResource("2_5n67n")
+upgrade_max_level = 1
+upgrade_cost = 9999999999
+upgrade_multiplier = 2.0
+metadata/_custom_type_script = "uid://buypbu3vfuijk"
