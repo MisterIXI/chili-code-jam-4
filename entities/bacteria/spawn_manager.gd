@@ -41,7 +41,7 @@ func _physics_process(delta):
 			rate_acc += spawn_stat_arr[i + 1] - spawn_stat_arr[i]
 		avg_spawn_rate = rate_acc / (spawn_stat_arr.size() - 1)
 		var real_bac_count = get_child_count()
-		var fake_mult = real_spawn_curve.sample((real_bac_count + fake_bacteria_count) / fake_bacteria_count)
+		var fake_mult = real_spawn_curve.sample((real_bac_count + fake_bacteria_count) / max_bacteria)
 		var fake_kill: float = ((1 - fake_mult) * food_mgr.get_food_rate() * 10)
 		fake_bacteria_count = max(0, fake_bacteria_count - fake_kill)
 		print("Bacteria (r/f): (", real_bac_count, "/", fake_bacteria_count,")\nAvg rate: ", avg_spawn_rate, "\nFake Mult: ", fake_mult , "\nFake Kill: ", fake_kill)
