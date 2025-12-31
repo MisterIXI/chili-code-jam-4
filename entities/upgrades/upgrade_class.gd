@@ -18,3 +18,15 @@ func apply_upgrade()
 
 @abstract
 func get_effect_value_text()
+
+func upgrade_loaded_data(_level : int)->void:
+    for x in _level:
+        apply_upgrade()
+
+func upgrade_level_valid() ->bool:
+    if upgrade_level >= upgrade_max_level:
+        print("Upgrade: Error Max level reached, initial Sold out")
+        UpgradeManager.on_upgrade_reached_max(self)
+        return false
+    else:
+        return true

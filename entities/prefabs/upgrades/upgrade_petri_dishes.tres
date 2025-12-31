@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Petri_Dishes" format=3 uid="uid://qrokw012ucad"]
+
+[ext_resource type="Script" uid="uid://dfanfxisp2jyx" path="res://entities/upgrades/petri_dishes.gd" id="1_m3eyj"]
+[ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="2_jyk30"]
+
+[resource]
+script = ExtResource("1_m3eyj")
+upgrade_name = "Multiplier your work with increasing petri dishes."
+upgrade_description = "This Upgrade works autonom beside your work, it will simulate your work on other petri dishes"
+upgrade_texture = ExtResource("2_jyk30")
+upgrade_max_level = 99
+upgrade_cost = 1000
+upgrade_multiplier = 2.0
+metadata/_custom_type_script = "uid://dfanfxisp2jyx"

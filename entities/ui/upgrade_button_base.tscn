@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="1_qy2tv"]
 [ext_resource type="Script" uid="uid://22lv5gwe3c7l" path="res://entities/ui/upgrade_button_base.gd" id="1_s3ktl"]
-[ext_resource type="Resource" uid="uid://b10ql57ckeft1" path="res://entities/prefabs/upgrades/upgrade_food_dense.tres" id="2_qxtno"]
 [ext_resource type="Texture2D" uid="uid://bhnradq6o4yp5" path="res://textures/ui/currency_dna_small.png" id="2_s3ktl"]
 
 [node name="Button_01" type="MarginContainer" unique_id=748105293]
@@ -12,7 +11,6 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("1_s3ktl")
-upgrade = ExtResource("2_qxtno")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=174293824]
 layout_mode = 2
@@ -55,3 +53,7 @@ text = "Cost: 31243"
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1827186651]
 layout_mode = 2
 texture = ExtResource("2_s3ktl")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
