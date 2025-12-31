@@ -666,15 +666,19 @@ layout_mode = 2
 
 [node name="Button_02" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=487711594 instance=ExtResource("8_6wbph")]
 layout_mode = 2
+hotkey = "hotkey_2"
 
 [node name="Button_03" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1271748014 instance=ExtResource("8_6wbph")]
 layout_mode = 2
+hotkey = "hotkey_3"
 
 [node name="Button_04" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1405241935 instance=ExtResource("8_6wbph")]
 layout_mode = 2
+hotkey = "hotkey_4"
 
 [node name="Button_05" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1865164897 instance=ExtResource("8_6wbph")]
 layout_mode = 2
+hotkey = "hotkey_5"
 
 [node name="HSeparator2" type="HSeparator" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=753344662]
 layout_mode = 2
@@ -690,14 +694,20 @@ layout_mode = 2
 
 [node name="Button_06" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1249277910 instance=ExtResource("8_6wbph")]
 layout_mode = 2
+hotkey = "hotkey_6"
+is_one_time_upgrade = true
 
 [node name="Button_07" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=258510811 instance=ExtResource("8_6wbph")]
 visible = false
 layout_mode = 2
+hotkey = "hotkey_6"
+is_one_time_upgrade = true
 
 [node name="Button_08" parent="HUD/Button_Margin/Upgrade_Panel/VBoxContainer" unique_id=1754269694 instance=ExtResource("8_6wbph")]
 visible = false
 layout_mode = 2
+hotkey = "hotkey_6"
+is_one_time_upgrade = true
 
 [node name="Food_Slider_Margin" type="MarginContainer" parent="HUD" unique_id=85516309]
 layout_mode = 1

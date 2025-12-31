@@ -31,6 +31,7 @@ func on_upgrade_game_data_loaded(_level : int,_upgrade : Upgrade) ->void:
                 x.apply_upgrade()
     ## update visuals
     update_visual_upgrade.emit(_upgrade)
+    
 ### ON BUTTON PRESSED
 func on_upgrade_clicked(upgrade_string :String) ->void:
     for x in upgrade_list:
