@@ -12,7 +12,7 @@ class_name Upgrade
 @export var upgrade_cost : int = 0
 ## multiplier on next level
 @export var upgrade_multiplier : float = 0.05
-
+@export var upgrade_cost_multiplier : float = 1.5
 @abstract
 func apply_upgrade()
 

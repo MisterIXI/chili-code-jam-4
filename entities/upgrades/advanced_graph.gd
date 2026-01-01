@@ -3,13 +3,9 @@ class_name Upgrade_Advanced_Graph
 
 func apply_upgrade():
     
-    GameData.current_upgrades["advanced_graphs"] += 1
-    upgrade_level +=1
-    upgrade_cost = upgrade_cost * upgrade_level
-    upgrade_multiplier *=2
+    GameData.current_upgrades["advanced_graphs"] = 1
     print(upgrade_level_valid())
     
-
 func get_effect_value_text()  ->String:
-    var _temp :String ="Advanced Graph shows more Details in the graph"
+    var _temp :String ="more Details"
     return  _temp

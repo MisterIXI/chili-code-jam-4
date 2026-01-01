@@ -49,7 +49,7 @@ func reset_game_data() -> void:
         "save_interval" :60
     }
     player_progress = {
-        "dna_currency" : 0.0,
+        "dna_currency" : 999999999999999,
         "total_bacterias_spawned" : 1,
         "bacterias" : 1,
         "food_slider" : 0.5,

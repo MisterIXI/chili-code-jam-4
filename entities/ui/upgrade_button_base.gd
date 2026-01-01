@@ -34,12 +34,14 @@ func _ready() -> void:
 
 #### UPDATE BUYABLE STATE
 func _physics_process(_delta: float) -> void:
-	if _current_upgrade_costs > GameData.player_progress["dna_currency"] and is_enabled:
-		is_enabled = false
-		upgrade_tooltip_panel.modulate = DISABLED_MODULATE
-	else: 
-		is_enabled =true
-		#upgrade_tooltip_panel.modulate = NORMAL_MODULATE
+	if _current_upgrade_costs > GameData.player_progress["dna_currency"]:
+		if is_enabled:
+			is_enabled = false
+			upgrade_tooltip_panel.modulate = DISABLED_MODULATE
+	else:
+		if !is_enabled:
+			is_enabled =true
+			upgrade_tooltip_panel.modulate = NORMAL_MODULATE
 
 ### initialize Upgrade Visuals
 func _initialize_data() ->void :
@@ -93,21 +95,19 @@ func _process(_delta: float) -> void:
 
 func _on_gui_input(_event: InputEvent) -> void:
 	if _event is InputEventMouseButton and (_event.button_index == MOUSE_BUTTON_LEFT or _event.button_index == MOUSE_BUTTON_RIGHT):
-		if _event.is_pressed():
+		if is_enabled:
+			if _event.is_pressed():
 
-			# Visual press feedback
-			if is_enabled:
-				_tween_to_scale(PRESSED_SCALE, 0.06)
-				# Trigger upgrade action
-				UpgradeManager.on_upgrade_clicked(upgrade_string)
-				
-		else:
-			if is_enabled:
-				# On release, restore to hover state (mouse_enter will keep it highlighted)
-				_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
+				# Visual press feedback
+					_tween_to_scale(PRESSED_SCALE, 0.06)
+					# Trigger upgrade action
+					UpgradeManager.on_upgrade_clicked(upgrade_string)
+					
+			else:
+					# On release, restore to hover state (mouse_enter will keep it highlighted)
+					_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
 
 func _on_mouse_exited() -> void:
-
 	# restore normal visuals
 	if not is_enabled:
 		return
@@ -115,13 +115,11 @@ func _on_mouse_exited() -> void:
 	_tween_to_scale(NORMAL_SCALE, TWEEN_DUR)
 
 func _on_mouse_entered() -> void:
-
 	if not is_enabled:
 		return
 	# slight brighten + grow
 	upgrade_tooltip_panel.modulate = HOVER_MODULATE
 	_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
-
 
 func _tween_to_scale(target: Vector2, duration: float = TWEEN_DUR) -> void:
 	var tw = create_tween()
