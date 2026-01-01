@@ -3,7 +3,7 @@ class_name Upgrade_Auto_updater
 
 func apply_upgrade():
 
-    GameData.current_upgrades["auto_upgrader"] = 1
+    GameData.u_auto_upgrader = 1
     print(upgrade_level_valid())
     
 

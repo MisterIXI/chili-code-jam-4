@@ -1,62 +1,52 @@
 extends Node
-
 const GAME_SCENE : String ="res://entities/game/game_scene.tscn"
+### Current Upgrade level
+var u_food_drop_max :int = 0 # Food drop/s max increase level 
+var u_petri_dishes : int = 0 # increase Global multiplier level 
+var u_bacteria_speed : int = 0 # Increase Speed of Bacteria level 
+var u_bacteria_division_cdr : int = 0# Bacterias will division faster level 
+var u_basic_graphs : int  =0 # Line2D  level 
+var u_advanced_graphs : int = 0 # Detail with numbers level 
+var u_auto_upgrader : int =0 # IF upgrade is possible, auto upgrade  level 
 
-var current_upgrades : Dictionary = {
-    "food_drop_max" : 0, # Food drop/s max increase
-    "petri_dishes" : 0, # increase Global multiplier
-    "bacteria_speed" : 0, # Increase Speed of Bacteria
-    "bacteria_division_cdr" : 0,# Bacterias will division faster
-    "basic_graphs" : 0, # Line2D
-    "advanced_graphs" : 0, # Detail with numbers
-    "auto_upgrader" :0 # IF upgrade is possible, auto upgrade
-}
-var game_settings : Dictionary = {
-    "master_volume" : 0.5,
-    "music_volume" : 0.5,
-    "sound_volume" : 0.5,
-    "fullscreen" : 0,
-    "fps_counter" : 1,
-    "max_bacterias" : 1000,
-    "save_game_data" : 1,
-    "save_interval" :60
-}
-var player_progress : Dictionary = {
-    "dna_currency" : 0,
-    "total_bacterias_spawned" : 1,
-    "bacterias" : 1,
-    "food_slider" : 0.5,
-    "player_archived_game_goal" : 0
-}
+### Current Game Settings
+var s_master_volume  : float =0.5
+var s_music_volume : float =0.5
+var s_sound_volume : float =0.5
+var s_fullscreen: int =0
+var s_fps_counter : int =1
+var s_max_bacterias : int =1000
+var s_save_game_data : int =1
+var s_save_interval: int =60
+
+### Current Player Progress
+var p_dna_currency : float = 0.0
+var p_total_bacterias_spawned : float = 1.0
+var p_bacterias : float = 1.0
+var p_food_slider : float = 0.5
+var p_player_archived_game_goal : int =0
+
 func reset_game_data() -> void:
-    current_upgrades = {
-        "food_drop_max" : 0, # Food drop/s max increase
-        "petri_dishes" : 0, # increase Global multiplier
-        "bacteria_speed" : 0, # Increase Speed of Bacteria
-        "bacteria_division_cdr" : 0,# Bacterias will division faster
-        "basic_graphs" : 0, # Line2D
-        "advanced_graphs" : 0, # Detail with numbers
-        "auto_upgrader" :0 # IF upgrade is possible, auto upgrade   
-    }
-    game_settings = {
-        "master_volume" : 0.5,
-        "music_volume" : 0.5,
-        "sound_volume" : 0.5,
-        "fullscreen" : 0,
-        "fps_counter" : 1,
-        "max_bacterias" : 1000,
-        "save_game_data" : 1,
-        "save_interval" :60
-    }
-    player_progress = {
-        "dna_currency" : 999999999999999,
-        "total_bacterias_spawned" : 1,
-        "bacterias" : 1,
-        "food_slider" : 0.5,
-        "player_archived_game_goal" : 0
-}
-func increase_dna(_value : float) ->void:
-    player_progress["dna_currency"] += _value
+    u_food_drop_max = 0
+    u_petri_dishes  = 0
+    u_bacteria_speed  = 0
+    u_bacteria_division_cdr = 0
+    u_basic_graphs  =0
+    u_advanced_graphs = 0
+    u_auto_upgrader =0
+    s_master_volume   =0.5
+    s_music_volume  =0.5
+    s_sound_volume =0.5
+    s_fullscreen =0
+    s_fps_counter  =1
+    s_max_bacterias  =1000
+    s_save_game_data  =1
+    s_save_interval=60
+    p_dna_currency  = 99999999.0
+    p_total_bacterias_spawned  = 1.0
+    p_bacterias  = 1.0
+    p_food_slider  = 0.5
+    p_player_archived_game_goal =0
 
 static func num_to_scientific(value: float, decimal_count: int = 3) -> String:
     var is_negative = false

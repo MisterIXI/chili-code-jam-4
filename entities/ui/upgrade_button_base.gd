@@ -34,7 +34,7 @@ func _ready() -> void:
 
 #### UPDATE BUYABLE STATE
 func _physics_process(_delta: float) -> void:
-	if _current_upgrade_costs > GameData.player_progress["dna_currency"]:
+	if _current_upgrade_costs > GameData.p_dna_currency:
 		if is_enabled:
 			is_enabled = false
 			upgrade_tooltip_panel.modulate = DISABLED_MODULATE

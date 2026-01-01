@@ -15,7 +15,7 @@ static var instance
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_food_slider.value_changed.connect(_on_food_slider_changed)
-	_food_slider.value = GameData.player_progress["food_slider"]
+	_food_slider.value = GameData.p_food_slider
 
 func _on_food_slider_changed(_value : float) ->void:
 	food_slider_changed.emit(MAX_FOOD_INTERVAL -_value)

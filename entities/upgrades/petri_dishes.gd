@@ -3,7 +3,7 @@ class_name Upgrade_Petri_Dishes
 
 func apply_upgrade():
     if upgrade_level_valid():
-        GameData.current_upgrades["petri_dishes"] += 1
+        GameData.u_petri_dishes += 1
         upgrade_level +=1
         upgrade_cost = int(upgrade_cost_multiplier * upgrade_cost)
         upgrade_multiplier *= upgrade_level

@@ -39,21 +39,21 @@ func _ready() -> void:
 	_music_volume_slider.value_changed.connect(_on_music_volume_slider_changed)
 	_sound_volume_slider.value_changed.connect(_on_sound_volume_slider_changed)
 	## SET VOLUME SLIDER TO SAVE DATA
-	_master_volume_slider.value = GameData.game_settings["master_volume"]
-	_music_volume_slider.value= GameData.game_settings ["music_volume"]
-	_sound_volume_slider.value = GameData.game_settings ["sound_volume"]
+	_master_volume_slider.value = GameData.s_master_volume
+	_music_volume_slider.value= GameData.s_music_volume
+	_sound_volume_slider.value = GameData.s_sound_volume
 
 	_fullscreen_checkbutton.toggled.connect(_on_toggled_fullscreen)
 	_fps_checkbutton.toggled.connect(_on_toggled_fps_counter)
 	_max_bacteria_spawn.value_changed.connect(_on_max_bacteria_slider_changed)
-	_max_bacteria_spawn.value = float(GameData.game_settings["max_bacterias"])
-	_max_bacteria_value.text = str(GameData.game_settings["max_bacterias"])
+	_max_bacteria_spawn.value = float(GameData.s_max_bacterias)
+	_max_bacteria_value.text = str(GameData.s_max_bacterias)
 	#menu persistent data
 	_save_data_checkbutton.toggled.connect(_on_save_data_changed)
 	_save_game_interval.value_changed.connect(_on_save_game_interval_changed)
-	_save_game_interval.value = float(GameData.game_settings["save_interval"])
-	_save_game_interval_label.text  =str(GameData.game_settings["save_interval"])
-	PersistentManager.on_timer_waittime_changed(float(GameData.game_settings["save_interval"]))
+	_save_game_interval.value = float(GameData.s_save_interval)
+	_save_game_interval_label.text  =str(GameData.s_save_interval)
+	PersistentManager.on_timer_waittime_changed(float(GameData.s_save_interval))
 
 	_button_clear.pressed.connect(_on_button_clear_pressed)
 	_button_delete.pressed.connect(_on_button_delete_pressed)
@@ -93,39 +93,39 @@ func _on_button_quit() ->void:
 #### MENU SETTINGS FUNCTIONS ####
 func _on_toggled_fullscreen(_value : bool) ->void:
 	if _value:
-		GameData.game_settings["fullscreen"] =  1
+		GameData.s_fullscreen =  1
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
-		GameData.game_settings["fullscreen"] =  0
+		GameData.s_fullscreen =  0
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED) 
 
 func _on_toggled_fps_counter(_value :bool) ->void:
 	if _value:
-		GameData.game_settings["fps_counter"]  =1
+		GameData.s_fps_counter =1
 		get_parent().on_fps_settings_changed(true)
 	else:
-		GameData.game_settings["fps_counter"]  =0
+		GameData.s_fps_counter =0
 		get_parent().on_fps_settings_changed(false)
 
 func _on_max_bacteria_slider_changed(_value :float) ->void:
-	GameData.game_settings["max_bacterias"] = int(_value)
-	print("Menu_Settings: Max Bacterias have changed to:", GameData.game_settings["max_bacterias"])
-	_max_bacteria_value.text = str(GameData.game_settings["max_bacterias"])
+	GameData.s_max_bacterias = int(_value)
+	print("Menu_Settings: Max Bacterias have changed to:", GameData.s_max_bacterias)
+	_max_bacteria_value.text = str(GameData.s_max_bacterias)
 
 func _on_save_data_changed(_value: bool) ->void:
 	if _value:
 
-		GameData.game_settings["save_game_data"] = 1
+		GameData.s_save_game_data = 1
 	else:
-		GameData.game_settings["save_game_data"] = 0
+		GameData.s_save_game_data = 0
 
 	print("Menu_Settings: Game data saves: ", _value)
 
 func _on_save_game_interval_changed(_value : float) ->void:
-	GameData.game_settings["save_interval"] = int (_value)
-	print("Menu_Settings: Max Bacterias have changed to:", GameData.game_settings["max_bacterias"])
-	_save_game_interval_label.text  =str(GameData.game_settings["save_interval"])
-	PersistentManager.on_timer_waittime_changed(float(GameData.game_settings["save_interval"]))
+	GameData.s_save_interval = int (_value)
+	print("Menu_Settings: Max Bacterias have changed to:", GameData.s_max_bacterias)
+	_save_game_interval_label.text = str(GameData.s_save_interval)
+	PersistentManager.on_timer_waittime_changed(float(GameData.s_save_interval))
 
 func _on_button_clear_pressed()->void:
 	print("Menu_Settings: Clear button pressed -> delete button show")

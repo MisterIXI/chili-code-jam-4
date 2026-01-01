@@ -45,4 +45,4 @@ func _on_food_interval_change(_value : float) ->void:
 	if _value > 0:
 		timer.wait_time = _value
 		print("Food_Manager: feed interval changed to: ", _value)
-		GameData.player_progress["food_slider"] = _value
+		GameData.p_food_slider = _value

@@ -24,8 +24,7 @@ func _init():
 func _ready() -> void:
 	# _new_bacteria(start_health * 10,start_speed*2,  global_position)
 	_new_smart_bacteria(Vector2(0,0))
-	# max_bacteria = GameData.game_settings.get("max_bacterias")
-	pass
+	max_bacteria = GameData.s_max_bacterias
 
 func _physics_process(delta):
 	spawn_tracker_cd -= delta
