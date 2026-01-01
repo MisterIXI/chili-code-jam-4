@@ -65,9 +65,11 @@ func _on_button_start() ->void:
 	_button_start.text = "Resume"
 	get_parent().show_hud()
 	get_tree().change_scene_to_file(GameData.GAME_SCENE)
+	SoundManager.play_click()
 
 
 func _on_button_settings() ->void:
+	SoundManager.play_click()
 	_menu_settings_toggle = ! _menu_settings_toggle
 	if _menu_settings_toggle:
 		_menu_credits_toggle = false
@@ -77,6 +79,7 @@ func _on_button_settings() ->void:
 		_settings_panel.hide()
 
 func _on_button_credits() ->void:
+	SoundManager.play_click()
 	_menu_credits_toggle = ! _menu_credits_toggle
 	if _menu_credits_toggle:
 		_menu_settings_toggle =false
@@ -92,6 +95,7 @@ func _on_button_quit() ->void:
 
 #### MENU SETTINGS FUNCTIONS ####
 func _on_toggled_fullscreen(_value : bool) ->void:
+	SoundManager.play_click()
 	if _value:
 		GameData.s_fullscreen =  1
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
@@ -100,6 +104,7 @@ func _on_toggled_fullscreen(_value : bool) ->void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED) 
 
 func _on_toggled_fps_counter(_value :bool) ->void:
+	SoundManager.play_click()
 	if _value:
 		GameData.s_fps_counter =1
 		get_parent().on_fps_settings_changed(true)
@@ -113,6 +118,7 @@ func _on_max_bacteria_slider_changed(_value :float) ->void:
 	_max_bacteria_value.text = str(GameData.s_max_bacterias)
 
 func _on_save_data_changed(_value: bool) ->void:
+	SoundManager.play_click()
 	if _value:
 
 		GameData.s_save_game_data = 1
@@ -128,12 +134,14 @@ func _on_save_game_interval_changed(_value : float) ->void:
 	PersistentManager.on_timer_waittime_changed(float(GameData.s_save_interval))
 
 func _on_button_clear_pressed()->void:
+	SoundManager.play_click()
 	print("Menu_Settings: Clear button pressed -> delete button show")
 	_button_clear.hide()
 	_button_delete.show()
 	_delete_timer.start()
 
 func _on_button_delete_pressed() ->void:
+	SoundManager.play_click()
 	print("Menu_Settings: Game_Data deleted")
 	PersistentManager.delete_game_data()
 
@@ -141,6 +149,7 @@ func _on_button_delete_pressed() ->void:
 	_button_clear.show()
 
 func _on_delete_timer_reset() ->void:
+	SoundManager.play_error()
 	_button_delete.hide()
 	_button_clear.show()
 

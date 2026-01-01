@@ -97,15 +97,14 @@ func _on_gui_input(_event: InputEvent) -> void:
 	if _event is InputEventMouseButton and (_event.button_index == MOUSE_BUTTON_LEFT or _event.button_index == MOUSE_BUTTON_RIGHT):
 		if is_enabled:
 			if _event.is_pressed():
-
 				# Visual press feedback
-					_tween_to_scale(PRESSED_SCALE, 0.06)
-					# Trigger upgrade action
-					UpgradeManager.on_upgrade_clicked(upgrade_string)
+				_tween_to_scale(PRESSED_SCALE, 0.06)
+				# Trigger upgrade action
+				UpgradeManager.on_upgrade_clicked(upgrade_string)
 					
 			else:
-					# On release, restore to hover state (mouse_enter will keep it highlighted)
-					_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
+				# On release, restore to hover state (mouse_enter will keep it highlighted)
+				_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
 
 func _on_mouse_exited() -> void:
 	# restore normal visuals

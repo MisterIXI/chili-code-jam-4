@@ -1,8 +1,56 @@
 [gd_scene format=3 uid="uid://dmghmagatsqju"]
 
 [ext_resource type="Script" uid="uid://nc0upsdxrxv5" path="res://autoload/sound_manager.gd" id="1_i3yra"]
+[ext_resource type="AudioStream" uid="uid://dg7of2tgw68mu" path="res://sounds/bacteria_division_01.ogg" id="2_5qmgl"]
+[ext_resource type="AudioStream" uid="uid://bektgnrlovukd" path="res://sounds/108287__buginthesys__computer_lab.mp3" id="2_rjaah"]
+[ext_resource type="AudioStream" uid="uid://dr0tfvervmosf" path="res://sounds/bacteria_division_02.ogg" id="3_clwvi"]
+[ext_resource type="AudioStream" uid="uid://kyrxwbpkaaxj" path="res://sounds/264295__foolboymedia__sky-loop.wav" id="3_rx1ey"]
+[ext_resource type="AudioStream" uid="uid://df8wnostbkckv" path="res://sounds/724217__newlocknew.wav" id="4_culwi"]
+[ext_resource type="AudioStream" uid="uid://m3p13rk7lu2n" path="res://sounds/click_01.ogg" id="7_r8tf1"]
+[ext_resource type="AudioStream" uid="uid://bjcqk138lks83" path="res://sounds/click_02.ogg" id="8_ekme8"]
+[ext_resource type="AudioStream" uid="uid://c3g5c5t4thged" path="res://sounds/click_03.ogg" id="9_tfrwk"]
+[ext_resource type="AudioStream" uid="uid://ct88nraouiyhb" path="res://sounds/hitHurt.wav" id="10_ekme8"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r8tf1"]
+streams_count = 2
+stream_0/stream = ExtResource("3_rx1ey")
+stream_1/stream = ExtResource("4_culwi")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v161e"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("2_5qmgl")
+stream_1/stream = ExtResource("3_clwvi")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ekme8"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("7_r8tf1")
+stream_1/stream = ExtResource("8_ekme8")
+stream_2/stream = ExtResource("9_tfrwk")
 
 [node name="Sound_Manager" type="Node" unique_id=1034494613]
 script = ExtResource("1_i3yra")
 
 [node name="music_player" type="AudioStreamPlayer" parent="." unique_id=1807199143]
+stream = SubResource("AudioStreamRandomizer_r8tf1")
+volume_db = -7.591
+bus = &"Music"
+
+[node name="music_menu" type="AudioStreamPlayer" parent="." unique_id=1100867764]
+stream = ExtResource("2_rjaah")
+bus = &"Music"
+parameters/looping = false
+
+[node name="Bacteria_division" type="AudioStreamPlayer" parent="." unique_id=1016651587]
+stream = SubResource("AudioStreamRandomizer_v161e")
+volume_db = -7.591
+bus = &"Sound"
+
+[node name="UI_Click" type="AudioStreamPlayer" parent="." unique_id=1991532889]
+stream = SubResource("AudioStreamRandomizer_ekme8")
+bus = &"Sound"
+
+[node name="UI_Error" type="AudioStreamPlayer" parent="." unique_id=1927018571]
+stream = ExtResource("10_ekme8")
+bus = &"Sound"

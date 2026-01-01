@@ -92,3 +92,4 @@ func _new_smart_bacteria(pos: Vector2) -> void:
 	add_child(bacteria)
 	bacteria.global_position = pos
 	bacteria.health = start_health
+	SoundManager.play_division_sound()

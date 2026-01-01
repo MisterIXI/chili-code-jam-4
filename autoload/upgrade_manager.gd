@@ -11,11 +11,21 @@ signal update_visual_upgrade(_upgrade : Upgrade)
 
 ## functions for buttons 
 func _level_upgrade(_upgrade:Upgrade) ->void:
-    # upgrade level up
-    _upgrade.apply_upgrade()
-    ## update visuals
-    update_visual_upgrade.emit(_upgrade)
-
+    #if payable
+    if _upgrade.upgrade_cost <= GameData.p_dna_currency:
+        # PAY UPGRADE
+        _pay_upgrade(_upgrade.upgrade_cost)
+        # upgrade level up
+        _upgrade.apply_upgrade()
+        ## update visuals
+        update_visual_upgrade.emit(_upgrade)
+        print("Upgrade_Manager: Upgraded %s to level %d" %[_upgrade.upgrade_name, _upgrade.upgrade_level])
+        SoundManager.play_click()
+    else:
+        print("Upgrade_Manager: Error you dont have enough Dna")
+        SoundManager.play_error()
+func _pay_upgrade(_upgrade_cost : int) ->void:
+    GameData.p_dna_currency -= _upgrade_cost
 
 ## functions for apply_upgrade if upgraded reached max level
 func on_upgrade_reached_max(_upgrade : Upgrade) ->void:

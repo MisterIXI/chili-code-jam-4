@@ -30,11 +30,13 @@ func show_debug_panel(_value : bool) ->void:
 		_debug_panel.hide()
 
 func show_menu() ->void:
+	SoundManager.play_menu_music()
 	_hud_panel.hide()
 	_menu_panel.show()
 	print("GAME_UI: Switch to Menu")
 
 func show_hud() ->void:
+	SoundManager.play_game_music()
 	_menu_panel.hide()
 	_hud_panel.show()
 	print("GAME_UI: Switch to HUD")
