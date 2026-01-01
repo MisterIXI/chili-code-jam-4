@@ -35,6 +35,7 @@ script = ExtResource("1_i3yra")
 [node name="music_player" type="AudioStreamPlayer" parent="." unique_id=1807199143]
 stream = SubResource("AudioStreamRandomizer_r8tf1")
 volume_db = -7.591
+autoplay = true
 bus = &"Music"
 
 [node name="music_menu" type="AudioStreamPlayer" parent="." unique_id=1100867764]
@@ -45,6 +46,7 @@ parameters/looping = false
 [node name="Bacteria_division" type="AudioStreamPlayer" parent="." unique_id=1016651587]
 stream = SubResource("AudioStreamRandomizer_v161e")
 volume_db = -7.591
+max_polyphony = 30
 bus = &"Sound"
 
 [node name="UI_Click" type="AudioStreamPlayer" parent="." unique_id=1991532889]

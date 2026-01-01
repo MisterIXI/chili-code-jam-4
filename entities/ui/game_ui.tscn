@@ -35,6 +35,7 @@ process_mode = 3
 script = ExtResource("1_7g2dv")
 
 [node name="Menu" type="Control" parent="." unique_id=1287745693]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -486,7 +487,6 @@ wait_time = 5.0
 one_shot = true
 
 [node name="HUD" type="Control" parent="." unique_id=35774597]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
