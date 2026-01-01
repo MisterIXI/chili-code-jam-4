@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Upgrade_Bacteria_Division_CDR" format=3 uid="uid://dwldanps8hefl"]
+
+[ext_resource type="Script" uid="uid://bmqcephhu3btl" path="res://entities/upgrades/bacteria_division_cdr.gd" id="1_n0oo5"]
+[ext_resource type="Texture2D" uid="uid://boaafhxkaw1qn" path="res://textures/ui/upgrade_bacteria_division.png" id="2_lnq66"]
+
+[resource]
+script = ExtResource("1_n0oo5")
+upgrade_name = "Division CDR"
+upgrade_description = "This Upgrade will increase the bacteria division rate."
+upgrade_texture = ExtResource("2_lnq66")
+upgrade_max_level = 99
+upgrade_cost = 15
+upgrade_multiplier = 2.0
+metadata/_custom_type_script = "uid://bmqcephhu3btl"

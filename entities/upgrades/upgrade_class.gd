@@ -12,7 +12,7 @@ class_name Upgrade
 @export var upgrade_cost : int = 0
 ## multiplier on next level
 @export var upgrade_multiplier : float = 0.05
-
+@export var upgrade_cost_multiplier : float = 1.5
 @abstract
 func apply_upgrade()
 
@@ -24,6 +24,7 @@ func upgrade_loaded_data(_level : int)->void:
         apply_upgrade()
 
 func upgrade_level_valid() ->bool:
+
     if upgrade_level >= upgrade_max_level:
         print("Upgrade: Error Max level reached, initial Sold out")
         UpgradeManager.on_upgrade_reached_max(self)
