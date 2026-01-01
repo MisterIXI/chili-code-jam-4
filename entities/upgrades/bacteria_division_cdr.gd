@@ -10,5 +10,5 @@ func apply_upgrade():
     
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="division rate:%d %%" % [upgrade_multiplier]
+    var _temp :String ="division rate:%d %%" % [int(upgrade_multiplier)]
     return _temp

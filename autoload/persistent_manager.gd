@@ -1,4 +1,5 @@
 extends Node
+signal game_data_loaded()
 
 @onready var _timer : Timer = $Timer
 
@@ -44,7 +45,8 @@ func save_game_data() -> void:
         "total_bacterias_spawned" : GameData.p_total_bacterias_spawned,
         "bacterias" : GameData.p_bacterias,
         "food_slider" : GameData.p_food_slider,
-        "player_archived_game_goal" : GameData.p_player_archived_game_goal
+        "player_archived_game_goal" : GameData.p_player_archived_game_goal,
+        "bacteria_name" : GameData.p_bacteria_name
     }
 
     # Create a ConfigFile to save the data
@@ -99,7 +101,8 @@ func load_game_data() -> void:
         GameData.p_bacterias = saved_data.get("bacterias", 0.0)
         GameData.p_food_slider  = saved_data.get("food_slider", 0.0)
         GameData.p_player_archived_game_goal =saved_data.get("player_archived_game_goal", 0)
-
+        GameData.p_bacteria_name = saved_data.get("bacteria_name", "")
+        game_data_loaded.emit()
         print("Game data loaded successfully.")
     else:
         print("No saved data found in the save file.")

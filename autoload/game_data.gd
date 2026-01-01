@@ -25,6 +25,7 @@ var p_total_bacterias_spawned : float = 1.0
 var p_bacterias : float = 1.0
 var p_food_slider : float = 0.5
 var p_player_archived_game_goal : int =0
+var p_bacteria_name : String =""
 
 func reset_game_data() -> void:
     u_food_drop_max = 0
@@ -47,6 +48,7 @@ func reset_game_data() -> void:
     p_bacterias  = 1.0
     p_food_slider  = 0.5
     p_player_archived_game_goal =0
+    p_bacteria_name =""
 
 static func num_to_scientific(value: float, decimal_count: int = 3) -> String:
     var is_negative = false
