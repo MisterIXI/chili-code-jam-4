@@ -57,34 +57,33 @@ func reset_game_data() -> void:
 }
 func increase_dna(_value : float) ->void:
     player_progress["dna_currency"] += _value
-    dna_changed.emit(player_progress["dna_currency"])
 
 static func num_to_scientific(value: float, decimal_count: int = 3) -> String:
-	var is_negative = false
+    var is_negative = false
 	# handle negative values
-	if value < 0:
-		value *= -1
-		is_negative = true
+    if value < 0:
+        value *= -1
+        is_negative = true
 	
-	var exponent: float= 0.0
-	var mantissa: float= value
+    var exponent: float= 0.0
+    var mantissa: float= value
 
-	if value == 0.0:
-		return " 0." + "0".repeat(decimal_count) + "e+0  "
+    if value == 0.0:
+        return " 0." + "0".repeat(decimal_count) + "e+0  "
 
-	while mantissa < 1.0:
-		mantissa *= 10.0
-		exponent -= 1
+    while mantissa < 1.0:
+        mantissa *= 10.0
+        exponent -= 1
 	
-	while mantissa > 10.0:
-		mantissa /= 10.0
-		exponent += 1
+    while mantissa > 10.0:
+        mantissa /= 10.0
+        exponent += 1
 	
 	# format text
-	var mantissa_str = "%.*f" % [decimal_count, mantissa]
-	var result = mantissa_str + "e" + "%+-4d" % exponent
-	if is_negative:
-		result = "-" + result
-	else:
-		result = " " + result
-	return result
+    var mantissa_str = "%.*f" % [decimal_count, mantissa]
+    var result = mantissa_str + "e" + "%+-4d" % exponent
+    if is_negative:
+        result = "-" + result
+    else:
+        result = " " + result
+    return result
