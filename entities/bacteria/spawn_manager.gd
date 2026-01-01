@@ -43,7 +43,7 @@ func _physics_process(delta):
 		var fake_mult = real_spawn_curve.sample((real_bac_count + fake_bacteria_count) / max_bacteria)
 		var fake_kill: float = ((1 - fake_mult) * food_mgr.get_food_rate() * 10)
 		fake_bacteria_count = max(0, fake_bacteria_count - fake_kill)
-		print("Bacteria (r/f): (", real_bac_count, "/", fake_bacteria_count,")\nAvg rate: ", avg_spawn_rate, "\nFake Mult: ", fake_mult , "\nFake Kill: ", fake_kill)
+		#print("Bacteria (r/f): (", real_bac_count, "/", fake_bacteria_count,")\nAvg rate: ", avg_spawn_rate, "\nFake Mult: ", fake_mult , "\nFake Kill: ", fake_kill)
 		fake_spawn(avg_spawn_rate * delta * 2 / real_bac_count * fake_bacteria_count)
 		
 
@@ -59,8 +59,7 @@ func fake_spawn(count: float) -> void:
 	for i in range(real_spawn_count):
 		_new_smart_bacteria((Vector2.RIGHT * randf() * 700).rotated(randf() * PI * 2))
 	spawn_accum += real_spawn_count
-	#TODO: Count spawn for stats
-
+	_add_player_progress(count)
 
 func instant_spawn(_pos : Vector2) ->void:
 	var real_bac_count = get_child_count()
@@ -73,11 +72,12 @@ func instant_spawn(_pos : Vector2) ->void:
 		spawn_accum += 1
 	else:
 		fake_bacteria_count += 1.0
+	_add_player_progress(1)	
 	# Use range(value) to iterate the requested number of times
 	#for n in range(1):
 	# _new_bacteria(start_health,start_speed, _pos)
 	# print("Bacteria#: ", get_child_count())
-	#TODO: Count spawn for stats
+	
 
 func _new_bacteria(_start_health : int, _start_speed : float, _pos : Vector2) ->void:
 
@@ -93,3 +93,10 @@ func _new_smart_bacteria(pos: Vector2) -> void:
 	bacteria.global_position = pos
 	bacteria.health = start_health
 	SoundManager.play_division_sound()
+
+func _add_player_progress(_count :int) ->void:
+	## add bacterias to stats
+	for x in range(_count):
+		GameData.p_bacterias +=1
+		GameData.p_total_bacterias_spawned +=1
+		GameData.p_dna_currency += GameData.get_all_upgrade_levels()

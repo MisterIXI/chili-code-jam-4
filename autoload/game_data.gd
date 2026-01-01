@@ -49,8 +49,17 @@ func reset_game_data() -> void:
     p_food_slider  = 0.5
     p_player_archived_game_goal =0
     p_bacteria_name =""
-
-static func num_to_scientific(value: float, decimal_count: int = 3) -> String:
+func get_all_upgrade_levels() ->int:
+    var _temp :int = 1
+    _temp += u_food_drop_max
+    _temp += u_petri_dishes
+    _temp += u_bacteria_speed
+    _temp += u_bacteria_division_cdr
+    _temp += u_basic_graphs
+    _temp += u_advanced_graphs
+    _temp += u_auto_upgrader
+    return _temp
+func num_to_scientific(value: float, decimal_count: int = 3) -> String:
     var is_negative = false
 	# handle negative values
     if value < 0:
@@ -67,7 +76,7 @@ static func num_to_scientific(value: float, decimal_count: int = 3) -> String:
         mantissa *= 10.0
         exponent -= 1
 	
-    while mantissa > 10.0:
+    while mantissa >= 10.0:
         mantissa /= 10.0
         exponent += 1
 	
