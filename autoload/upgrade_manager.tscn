@@ -13,3 +13,5 @@
 [node name="Upgrade_Manager" type="Node" unique_id=2047545250]
 script = ExtResource("1_ot2vy")
 upgrade_list = Array[ExtResource("2_rxt34")]([ExtResource("3_gokox"), ExtResource("4_6gngw"), ExtResource("5_cowdu"), ExtResource("6_87hrd"), ExtResource("3_rxt34"), ExtResource("8_vpmb5"), ExtResource("9_g3d3i")])
+
+[node name="Timer" type="Timer" parent="." unique_id=1181629891]

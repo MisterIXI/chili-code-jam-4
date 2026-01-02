@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://bi10p48krxa57" path="res://entities/ui/fps_counter.gd" id="8_3kqnw"]
 [ext_resource type="PackedScene" uid="uid://d1c8cg8ilnlx3" path="res://entities/ui/upgrade_button_base.tscn" id="8_6wbph"]
 [ext_resource type="Script" uid="uid://dfbw6jtgcsjif" path="res://entities/ui/button_one_time_switch.gd" id="8_w31hu"]
+[ext_resource type="Script" uid="uid://bkdrwa624xqbd" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
+[ext_resource type="Script" uid="uid://dn5r5d60h7b35" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
+[ext_resource type="Texture2D" uid="uid://dmad4olaj7da1" path="res://textures/asesprites/bacteria_01_small.png" id="10_0yrf3"]
+[ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="10_8ai8l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
 shader = ExtResource("4_t6hpy")
@@ -35,6 +39,7 @@ process_mode = 3
 script = ExtResource("1_7g2dv")
 
 [node name="Menu" type="Control" parent="." unique_id=1287745693]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,11 +97,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Bacteria Name : "
 
-[node name="TextEdit" type="TextEdit" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=2116596665]
-custom_minimum_size = Vector2(130, 32)
+[node name="TextEdit" type="LineEdit" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1470177116]
+custom_minimum_size = Vector2(130, 20)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 placeholder_text = "myBacteria"
+context_menu_enabled = false
 script = ExtResource("6_ci0l4")
 
 [node name="HSeparator2" type="HSeparator" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1378679493]
@@ -486,7 +492,6 @@ wait_time = 5.0
 one_shot = true
 
 [node name="HUD" type="Control" parent="." unique_id=35774597]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -499,10 +504,11 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -327.0
-offset_right = 327.0
-offset_bottom = 100.0
+offset_left = -356.00018
+offset_right = 356.00018
+offset_bottom = 110.0
 grow_horizontal = 2
+scale = Vector2(0.7, 0.7)
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
@@ -530,8 +536,11 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="dna_value" type="RichTextLabel" parent="HUD/Dna_Margin/HBoxContainer/DNA_Panel" unique_id=1838924900]
-custom_minimum_size = Vector2(350, 0)
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Dna_Margin/HBoxContainer/DNA_Panel" unique_id=969123811]
+layout_mode = 2
+
+[node name="dna_value" type="RichTextLabel" parent="HUD/Dna_Margin/HBoxContainer/DNA_Panel/HBoxContainer" unique_id=1838924900]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 29
@@ -540,87 +549,228 @@ fit_content = true
 horizontal_alignment = 1
 script = ExtResource("7_6wbph")
 
+[node name="bacteria_value" type="RichTextLabel" parent="HUD/Dna_Margin/HBoxContainer/DNA_Panel/HBoxContainer" unique_id=158739548]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 29
+text = "35"
+fit_content = true
+horizontal_alignment = 1
+script = ExtResource("9_qsif6")
+
+[node name="TextureRect2" type="TextureRect" parent="HUD/Dna_Margin/HBoxContainer" unique_id=403553264]
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("10_8ai8l")
+expand_mode = 2
+stretch_mode = 3
+
 [node name="Stats_Margin" type="MarginContainer" parent="HUD" unique_id=583007973]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -77.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -408.0
 offset_right = 958.0
-offset_bottom = 77.0
-grow_vertical = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
+script = ExtResource("9_qko4k")
 
 [node name="Stat_Panel" type="PanelContainer" parent="HUD/Stats_Margin" unique_id=438189905]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_08gs2")
 
-[node name="GridContainer" type="GridContainer" parent="HUD/Stats_Margin/Stat_Panel" unique_id=681321474]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel" unique_id=1957779222]
+layout_mode = 2
+
+[node name="Basic_Graph" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer" unique_id=415950968]
+custom_minimum_size = Vector2(240, 190)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph" unique_id=1533959206]
+layout_mode = 2
+
+[node name="epic_stat_01" type="RichTextLabel" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer" unique_id=494110380]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Population"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer" unique_id=1483087503]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+
+[node name="Line2D_bactera" type="Line2D" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1265016761]
+position = Vector2(5.9790564, 6.0283036)
+scale = Vector2(0.97905767, 1.0283022)
+points = PackedVector2Array(0, 0, 15, 96, 24, 42, 43, 88, 40, 0, 71, 99, 70, 45, 88, 96, 99, 62, 117, 84, 126, 59, 133, 104, 139, 51, 140, 25, 140, 0, 154, 25, 160, 0, 172, 16, 180, 0, 215, 21)
+width = 1.0
+default_color = Color(0, 0.43137255, 0.5647059, 1)
+
+[node name="Line2D_food" type="Line2D" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1248069116]
+position = Vector2(5.9790564, 6.0283036)
+scale = Vector2(0.97905767, 1.0283022)
+points = PackedVector2Array(0, 5, 15, 44, 24, 33, 43, 55, 40, 55, 71, 75, 70, 53, 88, 32, 99, 59, 117, 8, 126, 77, 133, 4, 139, 55, 140, 77, 140, 88, 154, 3, 160, 45, 172, 22, 180, 55, 215, 21)
+width = 1.0
+default_color = Color(0.6, 0.7607843, 0.3019608, 1)
+
+[node name="max_Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1652978863]
+layout_mode = 0
+offset_top = -15.0
+offset_right = 40.0
+offset_bottom = 8.0
+theme_override_font_sizes/font_size = 10
+text = "Max : "
+
+[node name="food" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=965200088]
+layout_mode = 0
+offset_left = 195.0
+offset_top = -32.0
+offset_right = 235.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0.6, 0.7607843, 0.3019608, 1)
+theme_override_font_sizes/font_size = 10
+text = "Food"
+
+[node name="bacteria" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1601919825]
+layout_mode = 0
+offset_left = 179.0
+offset_top = -20.0
+offset_right = 219.0
+offset_bottom = 3.0
+theme_override_colors/font_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_font_sizes/font_size = 10
+text = "Bacteria"
+
+[node name="time_Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1879507901]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 124.0
+offset_right = 220.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 10
+text = "Time : 25m13s"
+
+[node name="GridContainer" type="GridContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer" unique_id=676837710]
 layout_mode = 2
 columns = 2
 
-[node name="DNA_Panel5" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/GridContainer" unique_id=415950968]
-visible = false
+[node name="Adv_stat_01" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=391298848]
+custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="epic_stat_01" type="RichTextLabel" parent="HUD/Stats_Margin/Stat_Panel/GridContainer/DNA_Panel5" unique_id=494110380]
-custom_minimum_size = Vector2(120, 30)
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01" unique_id=620332194]
 layout_mode = 2
-size_flags_vertical = 4
-text = "EPIC STAT"
-fit_content = true
+
+[node name="Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=402447309]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Average Bacterias"
 horizontal_alignment = 1
 
-[node name="DNA_Panel6" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/GridContainer" unique_id=391298848]
-visible = false
+[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=837399063]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Ø 40.5"
+horizontal_alignment = 1
+
+[node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=1254526878]
+layout_mode = 2
+theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
+editable = false
+scrollable = false
+
+[node name="Adv_stat_02" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1373995150]
+custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="epic_stat_02" type="RichTextLabel" parent="HUD/Stats_Margin/Stat_Panel/GridContainer/DNA_Panel6" unique_id=369452133]
-custom_minimum_size = Vector2(120, 30)
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02" unique_id=994463170]
 layout_mode = 2
-size_flags_vertical = 4
-text = "EPIC STAT"
-fit_content = true
+
+[node name="Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02/VBoxContainer" unique_id=35610660]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Average Division"
 horizontal_alignment = 1
 
-[node name="DNA_Panel3" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/GridContainer" unique_id=1044816079]
-visible = false
+[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02/VBoxContainer" unique_id=1736222282]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Ø 40.5"
+horizontal_alignment = 1
+
+[node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02/VBoxContainer" unique_id=1779986612]
+layout_mode = 2
+theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
+editable = false
+scrollable = false
+
+[node name="Adv_stat_03" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1044816079]
+custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="epic_stat_03" type="RichTextLabel" parent="HUD/Stats_Margin/Stat_Panel/GridContainer/DNA_Panel3" unique_id=838124827]
-custom_minimum_size = Vector2(120, 30)
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03" unique_id=1996716815]
 layout_mode = 2
-size_flags_vertical = 4
-text = "EPIC STAT"
-fit_content = true
+
+[node name="Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=680284993]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Starved Bacterias"
 horizontal_alignment = 1
 
-[node name="DNA_Panel4" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/GridContainer" unique_id=66092907]
-visible = false
+[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=519868425]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Ø 40.5"
+horizontal_alignment = 1
+
+[node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=2109024042]
+layout_mode = 2
+theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
+editable = false
+scrollable = false
+
+[node name="Adv_stat_04" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1885513984]
+custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="epic_stat_04" type="RichTextLabel" parent="HUD/Stats_Margin/Stat_Panel/GridContainer/DNA_Panel4" unique_id=795227367]
-custom_minimum_size = Vector2(120, 30)
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04" unique_id=194916041]
 layout_mode = 2
-size_flags_vertical = 4
-text = "EPIC STAT"
-fit_content = true
+
+[node name="Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=637518760]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Rotted Food"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Stats_Margin/Stat_Panel" unique_id=1287557712]
+[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=2143846481]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Ø 40.5"
+horizontal_alignment = 1
+
+[node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=343469009]
+layout_mode = 2
+theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
+editable = false
+scrollable = false
 
 [node name="Button_Margin" type="MarginContainer" parent="HUD" unique_id=2010309721]
 layout_mode = 1
@@ -803,3 +953,4 @@ script = ExtResource("8_3kqnw")
 debug_control = NodePath("../../../../..")
 
 [connection signal="text_changed" from="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" to="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" method="_on_text_changed"]
+[connection signal="text_submitted" from="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" to="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" method="_on_text_submitted"]

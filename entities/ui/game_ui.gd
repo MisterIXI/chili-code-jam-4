@@ -16,9 +16,11 @@ static var instance
 func _ready() -> void:
 	_food_slider.value_changed.connect(_on_food_slider_changed)
 	_food_slider.value = GameData.p_food_slider
+	SoundManager.play_menu_music()
 
 func _on_food_slider_changed(_value : float) ->void:
 	food_slider_changed.emit(MAX_FOOD_INTERVAL -_value)
+	
 
 func on_fps_settings_changed(_value : bool) ->void:
 	show_debug_panel(_value)
@@ -44,3 +46,4 @@ func show_hud() ->void:
 func pause_game() ->void:
 	get_tree().paused = true
 	show_menu()
+

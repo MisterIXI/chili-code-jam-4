@@ -3,11 +3,27 @@ extends Node
 signal upgrade_reached_max(_upgrade : Upgrade)
 ## signal for buttons if upgrade.apply_upgrade
 signal update_visual_upgrade(_upgrade : Upgrade)
-
+### Signal upgrade one time
+signal upgrade_purchased_basic_graph()
+signal upgrade_purchased_adv_graph()
+signal upgrade_purchased_auto_upgrader()
+@onready var _auto_upgrade_timer: Timer = $Timer
 ########################################
 ## Current Upgrade_list
 @export var upgrade_list : Array[Upgrade]
 #########################################
+func _ready() -> void:
+    _auto_upgrade_timer.timeout.connect(_auto_ugprade)
+    upgrade_purchased_auto_upgrader.connect(_on_auto_upgrader_purchased)
+
+func _on_auto_upgrader_purchased() ->void:
+    #Start Auto Upgrader
+    _auto_upgrade_timer.start()
+
+func _auto_ugprade() ->void:
+    ## Auto_Upgrade Loop
+    for x in upgrade_list:
+        _level_upgrade(x)
 
 ## functions for buttons 
 func _level_upgrade(_upgrade:Upgrade) ->void:

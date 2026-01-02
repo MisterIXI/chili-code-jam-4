@@ -35,9 +35,9 @@ func reset_game_data() -> void:
     u_basic_graphs  =0
     u_advanced_graphs = 0
     u_auto_upgrader =0
-    s_master_volume   =0.1
-    s_music_volume  =0.1
-    s_sound_volume =0.1
+    s_master_volume   =0.5
+    s_music_volume  =0.5
+    s_sound_volume =0.5
     s_fullscreen =0
     s_fps_counter  =1
     s_max_bacterias  =1000
