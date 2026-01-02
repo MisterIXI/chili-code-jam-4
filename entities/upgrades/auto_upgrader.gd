@@ -8,5 +8,5 @@ func apply_upgrade():
     UpgradeManager.upgrade_purchased_auto_upgrader.emit()
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="The cheapest will buy automatically"
+    var _temp :String ="automatically"
     return  _temp

@@ -9,6 +9,6 @@ upgrade_name = "Advanced Graph"
 upgrade_description = "This Upgrade will enhance your Basic Graph, now you see the real power of Graphs"
 upgrade_texture = ExtResource("2_774r0")
 upgrade_max_level = 1
-upgrade_cost = 99999
+upgrade_cost = 9999
 upgrade_multiplier = 1.0
 metadata/_custom_type_script = "uid://c8cjabgifpdg0"

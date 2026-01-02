@@ -151,3 +151,6 @@ func _add_player_progress(_count :int) ->void:
 
 func calc_food_rate() -> float:
 	return GameData.p_food_slider * (exp(0.35 * (GameData.u_food_drop_max + 1)))
+
+func get_current_foods() -> float:
+	return fake_food_count + food_root.get_child_count()

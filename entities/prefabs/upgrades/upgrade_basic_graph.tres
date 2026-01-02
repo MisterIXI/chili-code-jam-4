@@ -9,5 +9,5 @@ upgrade_name = "Unlock Graph"
 upgrade_description = "Graph for your bacteria division rate."
 upgrade_texture = ExtResource("2_tptjt")
 upgrade_max_level = 1
-upgrade_cost = 9999
+upgrade_cost = 30
 metadata/_custom_type_script = "uid://b4kjfuf4psr7u"

@@ -32,6 +32,14 @@ shader_parameter/wave_scale = 1.655
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7g2dv"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cmml"]
+shader = ExtResource("4_t6hpy")
+shader_parameter/color_a = Color(6.3773246e-07, 0.21652123, 0.2909556, 1)
+shader_parameter/color_b = Color(0, 0.43137255, 0.5647059, 1)
+shader_parameter/speed = 0.25
+shader_parameter/distortion_strength = 0.08
+shader_parameter/wave_scale = 3.0
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w31hu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08gs2"]
@@ -506,7 +514,7 @@ grow_horizontal = 0
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Menu/Controls_Container" unique_id=1295686353]
-material = ExtResource("2_7g2dv")
+material = SubResource("ShaderMaterial_4cmml")
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Menu/Controls_Container" unique_id=874994217]
@@ -684,12 +692,20 @@ width = 1.0
 default_color = Color(0, 0.43137255, 0.5647059, 1)
 script = ExtResource("12_4cmml")
 
+[node name="Timer" type="Timer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel/Line2D_bactera" unique_id=369119046]
+wait_time = 0.5
+autostart = true
+
 [node name="Line2D_food" type="Line2D" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1248069116]
 position = Vector2(5.9790564, 6.0283036)
 scale = Vector2(0.97905767, 1.0283022)
 width = 1.0
 default_color = Color(0.6, 0.7607843, 0.3019608, 1)
 script = ExtResource("13_n3qi7")
+
+[node name="Timer" type="Timer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel/Line2D_food" unique_id=303216756]
+wait_time = 0.5
+autostart = true
 
 [node name="max_Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1652978863]
 layout_mode = 0
