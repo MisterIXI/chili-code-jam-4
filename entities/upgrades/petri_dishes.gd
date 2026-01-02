@@ -6,9 +6,8 @@ func apply_upgrade():
         GameData.u_petri_dishes += 1
         upgrade_level +=1
         upgrade_cost = int(upgrade_cost_multiplier * upgrade_cost)
-        upgrade_multiplier *= upgrade_level
     
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="Petri dishes:%d" % [upgrade_multiplier * upgrade_level]
+    var _temp :String ="Petri dishes:%d" % [int(upgrade_multiplier* upgrade_level)]
     return  _temp

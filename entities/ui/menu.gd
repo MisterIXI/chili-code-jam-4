@@ -71,7 +71,7 @@ func _on_game_data_loaded()->void:
 func _on_button_start() ->void:
 	print("Start Game")
 	_button_start.text = "Resume"
-	get_parent().show_hud()
+	get_parent().start_game()
 	get_tree().change_scene_to_file(GameData.GAME_SCENE)
 	SoundManager.play_click()
 

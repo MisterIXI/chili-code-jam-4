@@ -7,9 +7,8 @@ func apply_upgrade():
         GameData.u_food_drop_max += 1
         upgrade_level +=1
         upgrade_cost = int(upgrade_cost_multiplier * upgrade_cost)
-        upgrade_multiplier *= upgrade_level
     
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="Food per second:%d" % [upgrade_multiplier * GameData.p_food_slider]
+    var _temp :String ="Food per second:%d" % [int(upgrade_multiplier* upgrade_level* GameData.p_food_slider)]
     return  _temp

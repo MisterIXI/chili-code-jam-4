@@ -55,9 +55,9 @@ func _initialize_data() ->void :
 
 
 func _set_data(_upgrade : Upgrade) ->void:
-	upgrade_level.text = str(_upgrade.upgrade_level)
-	upgrade_effect_value.text = str(_upgrade.get_effect_value_text())
-	upgrade_cost.text = str(_upgrade.upgrade_cost)
+	upgrade_level.text = "Level: " + str(_upgrade.upgrade_level)
+	upgrade_effect_value.text = _upgrade.get_effect_value_text()
+	upgrade_cost.text = "Costs: " + str(_upgrade.upgrade_cost)
 	# SET  current upgrade costs 
 	_current_upgrade_costs = _upgrade.upgrade_cost
 

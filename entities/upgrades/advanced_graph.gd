@@ -5,6 +5,7 @@ func apply_upgrade():
     
     GameData.u_advanced_graphs = 1
     print(upgrade_level_valid())
+    UpgradeManager.upgrade_purchased_adv_graph.emit()
     
 func get_effect_value_text()  ->String:
     var _temp :String ="more Details"
