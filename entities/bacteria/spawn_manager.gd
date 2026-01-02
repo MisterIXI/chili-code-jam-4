@@ -1,7 +1,6 @@
 extends Node2D
 class_name Spawn_Manager
 
-const BACTERIA_SCENE = preload("res://entities/test/bubble.tscn")
 const SMART_BACTERIA_SCENE = preload("res://entities/bacteria/smart_bacteria.tscn")
 @export var real_spawn_curve: Curve
 @export var food_mgr: FoodManager
@@ -73,19 +72,8 @@ func instant_spawn(_pos : Vector2) ->void:
 	else:
 		fake_bacteria_count += 1.0
 	_add_player_progress(1)	
-	# Use range(value) to iterate the requested number of times
-	#for n in range(1):
-	# _new_bacteria(start_health,start_speed, _pos)
-	# print("Bacteria#: ", get_child_count())
+
 	
-
-func _new_bacteria(_start_health : int, _start_speed : float, _pos : Vector2) ->void:
-
-	var _bacteria_scene : Bacteria= BACTERIA_SCENE.instantiate() as Bacteria
-	add_child(_bacteria_scene)
-	_bacteria_scene.global_position = _pos
-	_bacteria_scene.setup(_start_health, _start_speed)
-		# Defer add_child
 
 func _new_smart_bacteria(pos: Vector2) -> void:
 	var bacteria: SmartBacteria = SMART_BACTERIA_SCENE.instantiate()

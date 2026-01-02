@@ -7,7 +7,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(_body: Node2D) ->void:
-	if _body is Bacteria or _body is SmartBacteria:
+	if _body is SmartBacteria:
 		if !_is_allready_eaten:
 			_is_allready_eaten = true
 			# monitorable = false

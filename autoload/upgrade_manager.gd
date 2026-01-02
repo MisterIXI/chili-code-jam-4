@@ -33,14 +33,14 @@ func on_upgrade_reached_max(_upgrade : Upgrade) ->void:
 
 
 ## this function will store game data after restarts
-func on_upgrade_game_data_loaded(_level : int,_upgrade : Upgrade) ->void:
+func on_upgrade_game_data_loaded(_upgrade_string : String,_level : int) ->void:
     ## upgradelevel to database
     for x in upgrade_list:
-        if x.upgrade_name == _upgrade.upgrade_name:
+        if x.upgrade_name == _upgrade_string:
             for y in _level:
                 x.apply_upgrade()
-    ## update visuals
-    update_visual_upgrade.emit(_upgrade)
+            update_visual_upgrade.emit(x)
+            ## update visuals
     
 ### ON BUTTON PRESSED
 func on_upgrade_clicked(upgrade_string :String) ->void:

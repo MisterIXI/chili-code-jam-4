@@ -61,6 +61,9 @@ func _ready() -> void:
     _audio_bus_master = AudioServer.get_bus_index("Master")
     _audio_bus_music = AudioServer.get_bus_index("Music")
     _audio_bus_sound = AudioServer.get_bus_index("Sound")
+    PersistentManager.game_data_loaded.connect(_on_game_data_loaded)
+
+func _on_game_data_loaded()->void:    
     _initiale_volume()
 
 ####################### / BASED FUNCTIONS

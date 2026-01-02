@@ -59,6 +59,14 @@ func _ready() -> void:
 	_button_delete.pressed.connect(_on_button_delete_pressed)
 	_delete_timer.timeout.connect(_on_delete_timer_reset)
 
+	##persistent on gamedata loaded
+	PersistentManager.game_data_loaded.connect(_on_game_data_loaded)
+
+func _on_game_data_loaded()->void:
+	_master_volume_slider.value = GameData.s_master_volume
+	_music_volume_slider.value= GameData.s_music_volume
+	_sound_volume_slider.value = GameData.s_sound_volume
+
 #### MENU BUTTON FUNCTIONS ####
 func _on_button_start() ->void:
 	print("Start Game")
