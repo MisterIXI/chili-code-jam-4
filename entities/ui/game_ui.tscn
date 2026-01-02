@@ -10,13 +10,13 @@
 [ext_resource type="Script" uid="uid://cxl1p3v14n1lf" path="res://entities/ui/dna_value.gd" id="7_6wbph"]
 [ext_resource type="Script" uid="uid://bi10p48krxa57" path="res://entities/ui/fps_counter.gd" id="8_3kqnw"]
 [ext_resource type="PackedScene" uid="uid://d1c8cg8ilnlx3" path="res://entities/ui/upgrade_button_base.tscn" id="8_6wbph"]
-[ext_resource type="Script" uid="uid://dfbw6jtgcsjif" path="res://entities/ui/button_one_time_switch.gd" id="8_w31hu"]
-[ext_resource type="Script" uid="uid://bkdrwa624xqbd" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
-[ext_resource type="Script" uid="uid://dn5r5d60h7b35" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
+[ext_resource type="Script" path="res://entities/ui/button_one_time_switch.gd" id="8_w31hu"]
+[ext_resource type="Script" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
+[ext_resource type="Script" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
 [ext_resource type="Texture2D" uid="uid://dmad4olaj7da1" path="res://textures/asesprites/bacteria_01_small.png" id="10_0yrf3"]
 [ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="10_8ai8l"]
-[ext_resource type="Script" uid="uid://cqxrsppf7tlj4" path="res://entities/ui/line_2d_bactera.gd" id="12_4cmml"]
-[ext_resource type="Script" uid="uid://dd1w5g1xw2es8" path="res://entities/ui/line_2d_food.gd" id="13_n3qi7"]
+[ext_resource type="Script" path="res://entities/ui/line_2d_bactera.gd" id="12_4cmml"]
+[ext_resource type="Script" path="res://entities/ui/line_2d_food.gd" id="13_n3qi7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
 shader = ExtResource("4_t6hpy")
@@ -51,7 +51,6 @@ script = ExtResource("1_7wnj1")
 
 [node name="ColorRect" type="ColorRect" parent="Menu" unique_id=942755489]
 visible = false
-
 material = ExtResource("2_7g2dv")
 layout_mode = 1
 anchors_preset = 15
@@ -311,9 +310,9 @@ theme_override_constants/margin_bottom = 11
 [node name="HSlider" type="HSlider" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer/VideoContainer/VBoxContainer/HBoxContainer/MaxSpawnsContainer/VBoxContainer/Margin_C" unique_id=1214656080]
 layout_mode = 2
 min_value = 100.0
-max_value = 5000.0
-step = 5.0
-value = 1000.0
+max_value = 1000.0
+step = 100.0
+value = 500.0
 
 [node name="PersistentContainer" type="PanelContainer" parent="Menu/HBoxContainer/Settings_Container/VBoxContainer" unique_id=948492001]
 layout_mode = 2

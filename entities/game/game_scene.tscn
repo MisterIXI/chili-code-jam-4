@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dflk0lvknsnft"]
+[gd_scene format=3 uid="uid://dflk0lvknsnft"]
 
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="1_bjl4v"]
 [ext_resource type="PackedScene" uid="uid://bkyt3dnhvyv6a" path="res://entities/bacteria/spawn_manager.tscn" id="2_h5h23"]
@@ -61,9 +61,9 @@ func update_polygon() -> void:
 	
 "
 
-[node name="game_scene" type="Node2D"]
+[node name="game_scene" type="Node2D" unique_id=1858061262]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=571563860]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -75,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1656481054]
 material = ExtResource("1_bjl4v")
 anchors_preset = 8
 anchor_left = 0.5
@@ -89,7 +89,7 @@ offset_bottom = 1500.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Background"]
+[node name="TextureRect" type="TextureRect" parent="Background" unique_id=890979591]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,24 +104,23 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_h5h23")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=7263727]
 zoom = Vector2(0.345, 0.345)
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=581378378]
 energy = 0.25
 
-[node name="Spawn_Manager" parent="." node_paths=PackedStringArray("food_mgr") groups=["spawn_manager"] instance=ExtResource("2_h5h23")]
-food_mgr = NodePath("")
+[node name="Spawn_Manager" parent="." unique_id=1547975577 groups=["spawn_manager"] instance=ExtResource("2_h5h23")]
 
-[node name="Cage" type="StaticBody2D" parent="."]
+[node name="Cage" type="StaticBody2D" parent="." unique_id=1141501267]
 collision_layer = 4
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_plbgc")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cage"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cage" unique_id=308980721]
 polygon = PackedVector2Array(0, -1000, 406.73663, -913.5454, 743.1448, -669.13055, 951.0564, -309.01697, 994.5218, 104.52847, 866.02527, 499.99997, 587.78516, 809.01685, 207.91165, 978.14746, -207.91168, 978.14746, -587.78516, 809.01685, -866.02527, 499.9999, -994.5217, 104.52844, -951.05634, -309.01694, -743.14465, -669.1305, -406.73654, -913.5453, -0.0009389649, -999.99976, 8.5449225e-05, -1399.9998, -569.43115, -1278.9634, -1040.4026, -936.7826, -1331.4788, -432.6236, -1392.3302, 146.3399, -1212.435, 699.9999, -822.8989, 1132.6234, -291.0761, 1369.4061, 291.07642, 1369.4061, 822.8992, 1132.6233, 1212.4352, 699.99963, 1392.3301, 146.33963, 1331.4785, -432.62375, 1040.4021, -936.78253, 569.4308, -1278.963, -0.0012441407, -1399.9993)
 
-[node name="Shape_builder" type="Node" parent="Cage/CollisionPolygon2D"]
+[node name="Shape_builder" type="Node" parent="Cage/CollisionPolygon2D" unique_id=126599890]
 script = SubResource("GDScript_bjl4v")
 radius = 1000
 thickness = 400

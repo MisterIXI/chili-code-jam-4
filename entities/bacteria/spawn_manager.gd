@@ -8,7 +8,7 @@ const SPAWN_RADIUS = 700
 @export var real_spawn_curve: Curve
 @export var food_mgr: FoodManager
 var start_health : int = 10
-var start_speed  : float = 100
+var bacteria_speed  : float = 100
 var cooldown : float = 2.0
 var max_food_eaten: int = 5
 var fake_bacteria_count: float
@@ -30,7 +30,8 @@ func _ready() -> void:
 	food_root = Node2D.new()
 	food_root.name = "FoodRoot"
 	add_sibling.call_deferred(food_root)
-	# _new_bacteria(start_health * 10,start_speed*2,  global_position)
+	# _new_bacteria(start_health * 10,bacteria_speed*2,  global_position)
+	UpgradeManager.update_visual_upgrade.connect(_on_update_visual_upgrade)
 	_spawn_bacteria(Vector2(0,0))
 
 func _physics_process(delta):
@@ -41,6 +42,8 @@ func _physics_process(delta):
 		var real_mult = real_spawn_curve.sample(real_bac_count / float(GameData.s_max_bacterias))
 		handle_bacteria_spawn(real_bac_count, real_mult)
 		handle_food_spawn()
+		GameData.p_bacterias = real_bac_count + fake_bacteria_count
+		print("Bact_real: ", real_bac_count, " Bact_fake: ", fake_bacteria_count, " real_food: ", food_root.get_child_count(), " fake_food: ", fake_food_count)
 		spawn_tick.emit()
 
 func handle_food_spawn() -> void:
@@ -49,16 +52,13 @@ func handle_food_spawn() -> void:
 		print("No food to spawn")
 		return
 	# count = max(1.0, count)
-	print("current count: ", count)
 	var real_food_count = food_root.get_child_count()
-	var real_mult = real_spawn_curve.sample(real_food_count / float(GameData.s_max_bacterias))
+	var real_mult = real_spawn_curve.sample(real_food_count / float(GameData.s_max_bacterias) / cooldown)
 	var real_spawns = count * real_mult
 	var overflow = real_spawns - clampf(real_spawns, 0, GameData.s_max_bacterias - real_food_count)
-	print("rerereals: ", real_spawns)
 	real_spawns = max(real_spawns - overflow, 0)
 	var fake_spawns = count - real_spawns
 	fake_food_count += fake_spawns
-	print("reals: ", real_spawns, "  overflow: ", overflow, "  fakes: ", fake_spawns)
 	if real_spawns < 1.0 and real_spawns > 0.0:
 		if randf() < real_spawns:
 			real_spawns = 1.0
@@ -107,7 +107,7 @@ func get_current_bacterias_count() -> float:
 func fake_spawn(count: float, real_mult: float) -> void:
 	assert(not is_nan(count))
 	var bac_count = get_current_bacterias_count()
-	count = min(current_spawn_cap - bac_count, count)
+	count = min(calc_spawn_cap() - bac_count, count)
 	var real_spawn_count: int = floor(count * real_mult)
 	fake_bacteria_count += count * (1.0 - real_mult)
 	for i in range(real_spawn_count):
@@ -117,7 +117,7 @@ func fake_spawn(count: float, real_mult: float) -> void:
 
 func instant_spawn(source_bacteria: SmartBacteria) ->void:
 	var real_bac_count = get_child_count()
-	if real_bac_count + fake_bacteria_count + 1 >= current_spawn_cap:
+	if real_bac_count + fake_bacteria_count + 1 >= calc_spawn_cap() :
 		# cancel spawn when this would exceed spawn cap
 		return
 	var is_real_spawn: bool = randf() < real_spawn_curve.sample(float(real_bac_count) / GameData.s_max_bacterias)
@@ -145,9 +145,22 @@ func _spawn_food() -> void:
 func _add_player_progress(_count :int) ->void:
 	## add bacterias to stats
 	for x in range(_count):
-		GameData.p_bacterias +=1
 		GameData.p_total_bacterias_spawned +=1
 		GameData.p_dna_currency += GameData.get_all_upgrade_levels()
 
 func calc_food_rate() -> float:
 	return GameData.p_food_slider * (exp(0.35 * (GameData.u_food_drop_max + 1)))
+
+func calc_spawn_cap() -> float:
+	return exp(0.35 * (GameData.u_petri_dishes + 1)) * 1000
+
+func _on_update_visual_upgrade(_upgrade) -> void:
+	bacteria_speed = 100 + 20 * (GameData.u_bacteria_speed) 
+	cooldown = -0.075 * GameData.u_bacteria_division_cdr + 2
+
+# func spread_spawns(fun: Callable, count: int, max_frames = 10):
+# 	@warning_ignore("INTEGER_DIVISION")
+# 	var calls_per_frame = count / (max_frames - 1)
+# 	var remaining = count % (max_frames - 1)
+# 	for i in range(max_frames - 1):
+# 		fun.call()

@@ -26,7 +26,7 @@ func _handle_hunger(delta) -> void:
 
 func _handle_movement(delta: float) -> void:
 	if target_food and not target_food.is_queued_for_deletion():
-		var speed_mult = spawn_mgr.start_speed / 100
+		var speed_mult = spawn_mgr.bacteria_speed / 100
 		speed_mult = 1
 		# turn towards food
 		var angle = transform.x.angle_to(target_food.global_position - global_position)

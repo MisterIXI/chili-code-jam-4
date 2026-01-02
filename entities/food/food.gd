@@ -3,11 +3,14 @@ extends Area2D
 const TWEEN_DURATION : float = 0.35
 var food_amount : int = 1
 var _is_already_eaten : bool = false
+var lifetime: float = 5.0
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta):
-	pass
+	lifetime -= delta
+	if lifetime <= 0:
+		_died()
 
 func _on_body_entered(_body: Node2D) ->void:
 	if _body is SmartBacteria:
