@@ -2,11 +2,12 @@ extends Line2D
 
 var max_width : float = 0.0
 var max_height : float = 0.0
-
+var _is_visible : bool = false
 ## old bacteria
-var _old_bacteria_data : Array[float] = []
+var stored_values : Array[float] = []
 @export var dense : float = 60.0
 @onready var _timer : Timer = $Timer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	max_width = get_parent().size.x
@@ -15,6 +16,10 @@ func _ready() -> void:
 	_initialize_points()
 	#connect at spawn_manager tick bacteria
 	_timer.timeout.connect(_on_timer_timeout)
+	visibility_changed.connect(_on_visible_changed)
+
+func _on_visible_changed() ->void:
+	_is_visible = true
 
 func _initialize_points() ->void:
 	
@@ -22,27 +27,27 @@ func _initialize_points() ->void:
 	for x in range(dense):
 		var _new_vector : Vector2 = Vector2(x * max_width/dense, randf_range(0.0,max_height))
 		_temp_array.append(_new_vector)
-		_old_bacteria_data.append(0)
+		stored_values.append(0)
 	points = _temp_array
 
 func _on_timer_timeout() ->void:
-	if visible:
+	if is_visible_in_tree():
 		_on_tick_bacteria(GameData.p_bacterias)
 
 func _on_tick_bacteria(_value : float) ->void:
 	#set old data
-	_old_bacteria_data.pop_front()
-	_old_bacteria_data.push_back(_value)
+	stored_values.pop_front()
+	stored_values.push_back(_value)
 
-	var _max : float = _old_bacteria_data.max()
+	var _max : float = stored_values.max()
 	#create array
 	var _array : Array[Vector2] =[]
-	for x in range(_old_bacteria_data.size()):
+	for x in range(stored_values.size()):
 
 		_array.push_back(
 			Vector2(
 			x * (max_width / dense),
-			max_height -(max(1,_old_bacteria_data[x]) / _max * max_height)
+			max_height -(max(1,stored_values[x]) / _max * max_height)
 		))
 	
 	points = PackedVector2Array(_array)

@@ -84,6 +84,8 @@ func _process(_delta: float) -> void:
 			_tween_to_scale(PRESSED_SCALE, 0.06)
 			# Trigger upgrade action
 			UpgradeManager.on_upgrade_clicked(upgrade_string)
+		else:
+			SoundManager.play_error()
 	if Input.is_action_just_released(hotkey):
 		if is_enabled:
 			#On release, restore to hover state (mouse_enter will keep it highlighted)
@@ -101,6 +103,8 @@ func _on_gui_input(_event: InputEvent) -> void:
 			else:
 				# On release, restore to hover state (mouse_enter will keep it highlighted)
 				_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
+		else:
+			SoundManager.play_error()
 
 func _on_mouse_exited() -> void:
 	# restore normal visuals
