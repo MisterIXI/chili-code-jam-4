@@ -11,14 +11,17 @@ var food_in_range: Array[Food]
 var target_food: Food
 var is_dead: bool = false
 var shiny_tween: Tween = null
+var is_shiny: bool = false
 
 func _ready():
 	health = spawn_mgr.start_health
 	splitting_cd = spawn_mgr.cooldown
 	shiny_tween = create_tween()
-	if randf() < 0.001: 
+	if randf() < 0.001:
 		shiny_tween.tween_method(shiny_shimmer, 0.0, 1.0, 2.0)
 		shiny_tween.set_loops()
+		is_shiny = true
+		health *= 3
 	else:
 		shiny_tween.kill()
 	anim_sprite.play("spawn")
@@ -35,7 +38,7 @@ func _physics_process(delta):
 func _handle_hunger(delta) -> void:
 	if eaten_food <= 0 and splitting_cd <= 0:
 		health -= delta
-		var col_val = (health / spawn_mgr.start_health * 200 + 50)/ 250.0
+		var col_val = (health / spawn_mgr.start_health * 200 + 50) / 250.0
 		modulate = Color(col_val, col_val, col_val, 1)
 		if health <= 0:
 			die_with_anim()
@@ -60,11 +63,14 @@ func _handle_movement(delta: float) -> void:
 		if move_cd <= 0:
 			move_cd = 1.0 / speed_mult
 			linear_velocity -= transform.y.dot(linear_velocity) / 2.0 * transform.y
-			apply_impulse(transform.x * (25* speed_mult))
+			apply_impulse(transform.x * (25 * speed_mult))
 			
 
 func _handle_splitting(delta: float) -> void:
-	splitting_cd = max(splitting_cd - delta, 0)
+	if is_shiny:
+		splitting_cd = max(splitting_cd - delta * 3, 0)
+	else:
+		splitting_cd = max(splitting_cd - delta, 0)
 	if splitting_cd <= 0 and eaten_food > 0:
 		# print("split: ", splitting_cd, "  food: ", eaten_food)
 		# split into two cells
@@ -107,4 +113,4 @@ func ate_food() -> void:
 	target_food = null
 
 func shiny_shimmer(value: float):
-	modulate = Color.from_hsv(value, 70/100.0, (health / spawn_mgr.start_health * 70 + 30)/ 100 )
+	modulate = Color.from_hsv(value, 70 / 100.0, (health / spawn_mgr.start_health * 70 + 30) / 100)
