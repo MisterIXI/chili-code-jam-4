@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dp7g88r0g5nme" path="res://entities/ui/game_ui.gd" id="1_7g2dv"]
 [ext_resource type="Script" uid="uid://443ttvxwvpsk" path="res://entities/ui/menu.gd" id="1_7wnj1"]
-[ext_resource type="Texture2D" uid="uid://04dxp6hclosk" path="res://icon.svg" id="1_uvj7p"]
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="2_7g2dv"]
 [ext_resource type="Shader" uid="uid://cibke4huika2y" path="res://shaders/background_color_wave.gdshader" id="4_t6hpy"]
 [ext_resource type="Texture2D" uid="uid://b6aioio1nq4k8" path="res://textures/ui/currency_dna.png" id="6_6wbph"]
@@ -104,7 +103,8 @@ layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1517888432]
 layout_mode = 2
-texture = ExtResource("1_uvj7p")
+texture = ExtResource("10_8ai8l")
+expand_mode = 4
 
 [node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=511826757]
 layout_mode = 2
