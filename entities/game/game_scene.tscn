@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dflk0lvknsnft"]
 
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="1_bjl4v"]
+[ext_resource type="Script" uid="uid://3wwa7ejnfe0a" path="res://entities/game/follow_cam.gd" id="2_bjl4v"]
 [ext_resource type="PackedScene" uid="uid://bkyt3dnhvyv6a" path="res://entities/bacteria/spawn_manager.tscn" id="2_h5h23"]
 
 [sub_resource type="Gradient" id="Gradient_bjl4v"]
@@ -13,6 +14,9 @@ width = 1024
 height = 1024
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h5h23"]
+radius = 250.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_plbgc"]
 friction = 0.0
@@ -105,7 +109,16 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_h5h23")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=7263727]
-zoom = Vector2(0.345, 0.345)
+zoom = Vector2(0.8, 0.8)
+script = ExtResource("2_bjl4v")
+
+[node name="Area2D" type="Area2D" parent="Camera2D" unique_id=1692959176]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D" unique_id=564075104]
+shape = SubResource("CircleShape2D_h5h23")
+debug_color = Color(0.9, 0, 0.76499987, 0.09411765)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=581378378]
 energy = 0.25
