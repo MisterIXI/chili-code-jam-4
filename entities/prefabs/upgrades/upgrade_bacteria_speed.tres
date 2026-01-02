@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_25d4e")
 upgrade_name = "Bacteria Speed"
-upgrade_description = "Increase Speed of Bacteria"
+upgrade_description = "Increase swimming speed of all bacterias."
 upgrade_texture = ExtResource("2_jfd2o")
 upgrade_max_level = 20
 upgrade_cost = 50

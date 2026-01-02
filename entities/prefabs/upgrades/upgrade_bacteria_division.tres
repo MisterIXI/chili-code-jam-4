@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_n0oo5")
 upgrade_name = "Division CDR"
-upgrade_description = "This Upgrade will increase the bacteria division rate."
+upgrade_description = "This upgrade will increase the bacteria division rate."
 upgrade_texture = ExtResource("2_lnq66")
 upgrade_max_level = 99
 upgrade_cost = 15

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_lwjxi")
 upgrade_name = "Food drop"
-upgrade_description = "Feed your Bacterias with more food, becareful to much food with toxicity your Bacterias and let them die."
+upgrade_description = "Increase the food drop rate. Be careful, too much food will kill them as well."
 upgrade_texture = ExtResource("2_vouhc")
 upgrade_max_level = 99
 upgrade_cost = 10
