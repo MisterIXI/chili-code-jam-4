@@ -61,7 +61,8 @@ func update_polygon() -> void:
 		polygon.append(curr_vec)
 		curr_vec = curr_vec.rotated(-angle_step)
 	polygon.append(curr_vec - Vector2.RIGHT * 0.001)
-	col_polygon.set(\"polygon\", PackedVector2Array(polygon))
+	if col_polygon:
+		col_polygon.set(\"polygon\", PackedVector2Array(polygon))
 	
 "
 
