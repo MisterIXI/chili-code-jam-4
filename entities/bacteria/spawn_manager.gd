@@ -23,6 +23,8 @@ static var singleton
 var fake_food_count: float = 0
 var food_root: Node2D
 
+var no_bacteria_countdown: float = 0.0
+
 func _init():
 	singleton = self
 # Called when the node enters the scene tree for the first time.
@@ -32,7 +34,7 @@ func _ready() -> void:
 	add_sibling.call_deferred(food_root)
 	# _new_bacteria(start_health * 10,bacteria_speed*2,  global_position)
 	UpgradeManager.update_visual_upgrade.connect(_on_update_visual_upgrade)
-	_spawn_bacteria(Vector2(0,0))
+	_spawn_bacteria(Vector2(randf() * 50, randf() * 50), randf() * 2 * PI, Vector2(randf() * 30, randf() * 30))
 
 func _physics_process(delta):
 	spawn_tracker_cd -= delta
@@ -45,6 +47,11 @@ func _physics_process(delta):
 		GameData.p_bacterias = real_bac_count + fake_bacteria_count
 		print("Bact_real: ", real_bac_count, " Bact_fake: ", fake_bacteria_count, " real_food: ", food_root.get_child_count(), " fake_food: ", fake_food_count)
 		spawn_tick.emit()
+		if real_bac_count + fake_bacteria_count == 0.0 and no_bacteria_countdown < 0.0:
+			no_bacteria_countdown = 3.0
+		no_bacteria_countdown = max(0.0, no_bacteria_countdown - SPAWN_TICK_CD)
+		if real_bac_count + fake_bacteria_count == 0.0 and no_bacteria_countdown == 0.0:
+			_spawn_bacteria(Vector2(randf() * 50, randf() * 50), randf() * 2 * PI, Vector2(randf() * 30, randf() * 30))
 
 func handle_food_spawn() -> void:
 	var count = calc_food_rate() * SPAWN_TICK_CD
@@ -65,8 +72,9 @@ func handle_food_spawn() -> void:
 		else:
 			real_spawns = 0.0
 			return
-	for i in range(real_spawns):
-		_spawn_food()
+	spread_calls(_spawn_food,real_spawns)
+	# for i in range(real_spawns):
+	# 	_spawn_food()
 
 func handle_bacteria_spawn(real_bac_count: float, real_mult: float) -> void:
 	spawn_stat_arr.append(spawn_accum)
@@ -110,8 +118,7 @@ func fake_spawn(count: float, real_mult: float) -> void:
 	count = min(calc_spawn_cap() - bac_count, count)
 	var real_spawn_count: int = floor(count * real_mult)
 	fake_bacteria_count += count * (1.0 - real_mult)
-	for i in range(real_spawn_count):
-		_spawn_bacteria((Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2), randf() * 2 * PI)
+	spread_calls(func():_spawn_bacteria((Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2), randf() * 2 * PI), real_spawn_count)
 	spawn_accum += real_spawn_count
 	_add_player_progress(floor(count))
 
@@ -178,9 +185,14 @@ func _on_update_visual_upgrade(_upgrade) -> void:
 	bacteria_speed = 100 + 20 * (GameData.u_bacteria_speed) 
 	cooldown = -0.075 * GameData.u_bacteria_division_cdr + 2
 
-# func spread_spawns(fun: Callable, count: int, max_frames = 10):
-# 	@warning_ignore("INTEGER_DIVISION")
-# 	var calls_per_frame = count / (max_frames - 1)
-# 	var remaining = count % (max_frames - 1)
-# 	for i in range(max_frames - 1):
-# 		fun.call()
+func spread_calls(fun: Callable, count: int, max_frames = 10):
+	@warning_ignore("INTEGER_DIVISION")
+	var calls_per_frame = count / (max_frames - 1)
+	var remaining = count % (max_frames - 1)
+	print("count: ", count, " per_frame: ", calls_per_frame, " remaining: ", remaining)
+	for i in range(max_frames - 1):
+		for j in range(calls_per_frame):
+			fun.call()
+		await get_tree().process_frame
+	for j in range(remaining):
+		fun.call()
