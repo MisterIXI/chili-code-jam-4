@@ -76,7 +76,7 @@ func handle_food_spawn() -> void:
 	# for i in range(real_spawns):
 	# 	_spawn_food()
 
-func handle_bacteria_spawn(real_bac_count: float, real_mult: float) -> void:
+func handle_bacteria_spawn(_real_bac_count: float, real_mult: float) -> void:
 	spawn_stat_arr.append(spawn_accum)
 	spawn_accum = 0.0
 	if spawn_stat_arr.size() == 1:
@@ -137,12 +137,12 @@ func instant_spawn(source_bacteria: SmartBacteria) ->void:
 		fake_bacteria_count += 1.0
 	_add_player_progress(1)	
 
-func _spawn_bacteria(pos: Vector2, rotation: float = 0.0, velocity: Vector2 = Vector2.ZERO) -> void:
+func _spawn_bacteria(pos: Vector2, spawn_rotation: float = 0.0, velocity: Vector2 = Vector2.ZERO) -> void:
 	var bacteria: SmartBacteria = SMART_BACTERIA_SCENE.instantiate()
 	add_child(bacteria)
 	bacteria.global_position = pos
 	bacteria.linear_velocity = velocity
-	bacteria.rotation = rotation
+	bacteria.rotation = spawn_rotation
 	bacteria.health = start_health
 	# SoundManager.play_division_sound()
 
