@@ -3,18 +3,17 @@ extends VBoxContainer
 @onready var graph_button : MarginContainer = $Button_06
 @onready var adv_graph_button : MarginContainer =$Button_07
 @onready var auto_upgrader :MarginContainer  =$Button_08
+func _ready() -> void:
+	UpgradeManager.upgrade_purchased_basic_graph.connect(_on_basic_graph_purchased)
+	UpgradeManager.upgrade_purchased_adv_graph.connect(_on_adv_graph_purchased)
+	UpgradeManager.upgrade_purchased_auto_upgrader.connect(_on_adv_graph_purchased)
 
-func switch_one_time_buttons(upgrade_string :String)->void:
+func _on_auto_upgrader_purchased() ->void:
+	auto_upgrader.queue_free()
+func _on_adv_graph_purchased() ->void:
+	adv_graph_button.queue_free()
+	auto_upgrader.show()
 
-	match upgrade_string:
-		"Unlock Graph":
-			graph_button.queue_free()
-			adv_graph_button.show()
-		"Advanced Graph":
-			adv_graph_button.queue_free()
-			auto_upgrader.show()
-		"Auto Upgrader":
-			auto_upgrader.queue_free()
-			
-		_:
-			print("One time button switch error : ", upgrade_string)
+func _on_basic_graph_purchased() ->void:
+	graph_button.queue_free()
+	adv_graph_button.show()

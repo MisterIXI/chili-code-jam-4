@@ -51,7 +51,6 @@ script = ExtResource("1_7wnj1")
 
 [node name="ColorRect" type="ColorRect" parent="Menu" unique_id=942755489]
 visible = false
-
 material = ExtResource("2_7g2dv")
 layout_mode = 1
 anchors_preset = 15
@@ -495,13 +494,14 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Controls_Container" type="PanelContainer" parent="Menu" unique_id=2072536683]
-custom_minimum_size = Vector2(260, 720)
+custom_minimum_size = Vector2(260, 260)
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
+offset_left = -260.0
+offset_bottom = -460.0
 grow_horizontal = 0
 grow_vertical = 2
 

@@ -63,18 +63,14 @@ func _set_data(_upgrade : Upgrade) ->void:
 
 func _on_upgrade_reached_max(_upgrade : Upgrade) ->void:
 	if upgrade_string == _upgrade.upgrade_name:
-		### HIDE ONE TIME UPGRADES
-		if is_one_time_upgrade:
-			get_parent().switch_one_time_buttons(upgrade_string)
-		else:
-			## SOLD OUT EFFECT AND NO HOVER HIGHLIGHT
-			upgrade_level.text = "MAX"
-			upgrade_effect_value.text = str(_upgrade.get_effect_value_text())
-			upgrade_cost.text = "Sold Out"
-			upgrade_texture.texture = _upgrade.upgrade_texture
-			upgrade_name.text = _upgrade.upgrade_name
-			upgrade_tooltip_panel.tooltip_text = _upgrade.upgrade_description + " You reached max level."
-			is_enabled = false
+		## SOLD OUT EFFECT AND NO HOVER HIGHLIGHT
+		upgrade_level.text = "MAX"
+		upgrade_effect_value.text = str(_upgrade.get_effect_value_text())
+		upgrade_cost.text = "Sold Out"
+		upgrade_texture.texture = _upgrade.upgrade_texture
+		upgrade_name.text = _upgrade.upgrade_name
+		upgrade_tooltip_panel.tooltip_text = _upgrade.upgrade_description + " You reached max level."
+		is_enabled = false
 
 func _on_upgrade_leveled(_upgrade: Upgrade) ->void:
 	if upgrade_string == _upgrade.upgrade_name:
