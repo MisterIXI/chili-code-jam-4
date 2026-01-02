@@ -679,7 +679,7 @@ theme_override_font_sizes/font_size = 10
 text = "Average Bacterias"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=837399063]
+[node name="average_label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=837399063]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Ø 40.5"
