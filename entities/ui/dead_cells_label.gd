@@ -12,8 +12,8 @@ func _ready() -> void:
 	visibility_changed.connect(_on_visible_changed)
 
 func _on_visible_changed() ->void:
-	_is_visible = true
 	if !_is_visible:
+		_is_visible = true
 		Spawn_Manager.singleton.food_rotted.connect(_add_rotten_foods)
 
 func _add_rotten_foods(_value: int) ->void:
@@ -26,7 +26,7 @@ func _physics_process(delta: float) -> void:
 		_set_dead_cells_text()
 		_temptimer = 0.0
 func _set_dead_cells_text() ->void:
-	var _new_text : String = str(int(_food_rotted))
+	var _new_text : String = str(_food_rotted)
 	if _new_text != text:
 		_slider.effect_start()
 		text = str(_new_text)

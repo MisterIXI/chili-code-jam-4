@@ -79,26 +79,26 @@ func load_game_data() -> void:
         
         ## Load data from saved_data with get value
         ## Upgrades
-        GameData.u_food_drop_max = saved_data.get("food_drop_max", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("food_drop_max",saved_data.get("food_drop_max", 0))
+        #GameData.u_food_drop_max = saved_data.get("food_drop_max", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("food_drop_max",saved_data.get("food_drop_max", 0))
 
-        GameData.u_petri_dishes  = saved_data.get("petri_dishes", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("petri_dishes",saved_data.get("petri_dishes", 0))
+        #GameData.u_petri_dishes  = saved_data.get("petri_dishes", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("petri_dishes",saved_data.get("petri_dishes", 0))
 
-        GameData.u_bacteria_speed  = saved_data.get("bacteria_speed", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("petri_dishes", saved_data.get("bacteria_speed", 0))
+        #GameData.u_bacteria_speed  = saved_data.get("bacteria_speed", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("petri_dishes", saved_data.get("bacteria_speed", 0))
 
-        GameData.u_bacteria_division_cdr = saved_data.get("bacteria_division_cdr", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("bacteria_division_cdr", saved_data.get("bacteria_division_cdr", 0))
+        #GameData.u_bacteria_division_cdr = saved_data.get("bacteria_division_cdr", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("bacteria_division_cdr", saved_data.get("bacteria_division_cdr", 0))
 
-        GameData.u_basic_graphs  =saved_data.get("basic_graphs", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("basic_graphs", saved_data.get("basic_graphs", 0))
+        #GameData.u_basic_graphs  =saved_data.get("basic_graphs", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("basic_graphs", saved_data.get("basic_graphs", 0))
 
-        GameData.u_advanced_graphs = saved_data.get("advanced_graphs", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("advanced_graphs", saved_data.get("advanced_graphs", 0))
+        #GameData.u_advanced_graphs = saved_data.get("advanced_graphs", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("advanced_graphs", saved_data.get("advanced_graphs", 0))
 
-        GameData.u_auto_upgrader =saved_data.get("auto_upgrader", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("auto_upgrader",saved_data.get("auto_upgrader", 0))
+        #GameData.u_auto_upgrader =saved_data.get("auto_upgrader", 0)
+        #UpgradeManager.on_upgrade_game_data_loaded("auto_upgrader",saved_data.get("auto_upgrader", 0))
         ### Settings
         GameData.s_master_volume = saved_data.get("master_volume", 0.0)
         GameData.s_music_volume = saved_data.get("music_volume", 0.0)
@@ -109,11 +109,11 @@ func load_game_data() -> void:
         GameData.s_save_game_data =saved_data.get("save_game_data", 0)
         GameData.s_save_interval = saved_data.get("save_interval", 0)
         ### Progress
-        GameData.p_dna_currency  = saved_data.get("dna_currency", 0.0)
-        GameData.p_total_bacterias_spawned  = saved_data.get("total_bacterias_spawned", 0.0)
-        GameData.p_bacterias = saved_data.get("bacterias", 0.0)
+        #GameData.p_dna_currency  = saved_data.get("dna_currency", 0.0)
+        #GameData.p_total_bacterias_spawned  = saved_data.get("total_bacterias_spawned", 0.0)
+        #GameData.p_bacterias = saved_data.get("bacterias", 0.0)
         GameData.p_food_slider  = saved_data.get("food_slider", 0.0)
-        GameData.p_player_archived_game_goal =saved_data.get("player_archived_game_goal", 0)
+        #GameData.p_player_archived_game_goal =saved_data.get("player_archived_game_goal", 0)
         GameData.p_bacteria_name = saved_data.get("bacteria_name", "")
         game_data_loaded.emit()
         print("Game data loaded successfully.")
