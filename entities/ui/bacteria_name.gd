@@ -1,4 +1,4 @@
-extends TextEdit
+extends LineEdit
 
 func _init() -> void:
 	PersistentManager.game_data_loaded.connect(_on_set_bacteria_name)
