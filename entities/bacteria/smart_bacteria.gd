@@ -44,6 +44,8 @@ func _handle_hunger(delta) -> void:
 			die_with_anim()
 
 func die_with_anim():
+	if is_dead:
+		return
 	is_dead = true
 	if shiny_tween:
 		shiny_tween.kill()
