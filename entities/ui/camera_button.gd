@@ -12,7 +12,7 @@ func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	gui_input.connect(_on_gui_input)
 func _on_button_clicked() ->void: 
-	print("pressed")
+	get_viewport().get_camera_2d().toggle_follow()
 
 func _on_mouse_entered() -> void:
 	_tween_to_scale(HOVER_SCALE, TWEEN_DUR)

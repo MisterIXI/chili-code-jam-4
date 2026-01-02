@@ -109,7 +109,9 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_h5h23")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=7263727]
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.325, 0.325)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.5
 script = ExtResource("2_bjl4v")
 
 [node name="Area2D" type="Area2D" parent="Camera2D" unique_id=1692959176]
@@ -138,3 +140,6 @@ script = SubResource("GDScript_bjl4v")
 radius = 1000
 thickness = 400
 points = 15
+
+[connection signal="body_entered" from="Camera2D/Area2D" to="Camera2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Camera2D/Area2D" to="Camera2D" method="_on_area_2d_body_exited"]

@@ -27,7 +27,8 @@ func _process(_delta):
 					return x
 				else:
 					return accum)
-
+		if not target and spawn_mgr.get_child_count() > 0:
+			target = spawn_mgr.get_child(0)
 func zoom_to_tweener(target_zoom: Vector2) -> void:
 	if zoom_tweener:
 		zoom_tweener.kill()
