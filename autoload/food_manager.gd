@@ -16,8 +16,8 @@ func get_food_rate() -> float:
 
 func _ready() -> void:
 	# timer.timeout.connect(_on_timer_timeout)
-
-	GameUi.food_slider_changed.connect(_on_food_interval_change)
+	pass
+	# GameUi.food_slider_changed.connect(_on_food_interval_change)
 	# GameUi._food_slider.min_value = 1
 	# GameUi._food_slider.max_value = 10
 	# GameUi._food_slider.value = 5

@@ -38,24 +38,39 @@ func _physics_process(delta):
 	if spawn_tracker_cd <= 0:
 		spawn_tracker_cd = SPAWN_TICK_CD
 		var real_bac_count = get_child_count()
-		var real_mult = real_spawn_curve.sample((real_bac_count + fake_bacteria_count) / GameData.s_max_bacterias)
+		var real_mult = real_spawn_curve.sample(real_bac_count / float(GameData.s_max_bacterias))
 		handle_bacteria_spawn(real_bac_count, real_mult)
-		handle_food_spawn(real_mult)
+		handle_food_spawn()
 		spawn_tick.emit()
 
-func handle_food_spawn(real_mult: float) -> void:
-	var count = calc_food_rate()
+func handle_food_spawn() -> void:
+	var count = calc_food_rate() * SPAWN_TICK_CD
+	if count == 0.0:
+		print("No food to spawn")
+		return
+	# count = max(1.0, count)
+	print("current count: ", count)
 	var real_food_count = food_root.get_child_count()
-	var real_spawns = count * (1 - real_mult)
+	var real_mult = real_spawn_curve.sample(real_food_count / float(GameData.s_max_bacterias))
+	var real_spawns = count * real_mult
 	var overflow = real_spawns - clampf(real_spawns, 0, GameData.s_max_bacterias - real_food_count)
+	print("rerereals: ", real_spawns)
 	real_spawns = max(real_spawns - overflow, 0)
 	var fake_spawns = count - real_spawns
 	fake_food_count += fake_spawns
+	print("reals: ", real_spawns, "  overflow: ", overflow, "  fakes: ", fake_spawns)
+	if real_spawns < 1.0 and real_spawns > 0.0:
+		if randf() < real_spawns:
+			real_spawns = 1.0
+		else:
+			real_spawns = 0.0
+			return
 	for i in range(real_spawns):
 		_spawn_food()
 
 func handle_bacteria_spawn(real_bac_count: float, real_mult: float) -> void:
 	spawn_stat_arr.append(spawn_accum)
+	spawn_accum = 0.0
 	if spawn_stat_arr.size() == 1:
 		return
 	if spawn_stat_arr.size() > 10:
@@ -65,15 +80,32 @@ func handle_bacteria_spawn(real_bac_count: float, real_mult: float) -> void:
 		rate_acc += spawn_stat_arr[i + 1] - spawn_stat_arr[i]
 	avg_spawn_rate = rate_acc / (spawn_stat_arr.size() - 1)
 
-	var fake_kill: float = ((1 - real_mult) * food_mgr.get_food_rate() * 10)
-	fake_bacteria_count = max(0, fake_bacteria_count - fake_kill)
+	var needed_food = fake_bacteria_count / cooldown
+	# handle hunger of fake bacterias
+	var hungry_fakes = max(needed_food - fake_food_count, 0.0)
+	if hungry_fakes > 0.0:
+		# round up to 1
+		hungry_fakes = max(hungry_fakes, 1.0)
+	fake_bacteria_count = max(0.0, fake_bacteria_count - hungry_fakes)
+	#TODO: Track death
+	fake_food_count = max(0.0, fake_bacteria_count - needed_food)
+	if fake_food_count >= 1.0:
+		var rotten_food = fake_food_count * 0.1
+		fake_food_count =- rotten_food
+		fake_bacteria_count = max(0.0, fake_bacteria_count - rotten_food)
+		#TODO: Track death
+
+	# handle too much
 	#print("Bacteria (r/f): (", real_bac_count, "/", fake_bacteria_count,")\nAvg rate: ", avg_spawn_rate, "\nFake Mult: ", fake_mult , "\nFake Kill: ", fake_kill)
-	fake_spawn(avg_spawn_rate * SPAWN_TICK_CD * 2 / real_bac_count * fake_bacteria_count, real_mult)
+	var bacterias_to_spawn: float = (fake_bacteria_count - needed_food) / cooldown
+	if bacterias_to_spawn >= 1.0:
+		fake_spawn(bacterias_to_spawn, real_mult)
 
 func get_current_bacterias_count() -> float:
 	return get_child_count() + fake_bacteria_count
 
 func fake_spawn(count: float, real_mult: float) -> void:
+	assert(not is_nan(count))
 	var bac_count = get_current_bacterias_count()
 	count = min(current_spawn_cap - bac_count, count)
 	var real_spawn_count: int = floor(count * real_mult)
@@ -103,7 +135,7 @@ func _spawn_bacteria(pos: Vector2, rotation: float = 0.0, velocity: Vector2 = Ve
 	bacteria.linear_velocity = velocity
 	bacteria.rotation = rotation
 	bacteria.health = start_health
-	SoundManager.play_division_sound()
+	# SoundManager.play_division_sound()
 
 func _spawn_food() -> void:
 	var food: Food = FOOD_SCENE.instantiate()
@@ -118,4 +150,4 @@ func _add_player_progress(_count :int) ->void:
 		GameData.p_dna_currency += GameData.get_all_upgrade_levels()
 
 func calc_food_rate() -> float:
-	return GameData.p_food_slider * GameData.u_food_drop_max
+	return GameData.p_food_slider * (exp(0.35 * (GameData.u_food_drop_max + 1)))
