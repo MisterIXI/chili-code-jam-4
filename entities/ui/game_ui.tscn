@@ -41,7 +41,6 @@ process_mode = 3
 script = ExtResource("1_7g2dv")
 
 [node name="Menu" type="Control" parent="." unique_id=1287745693]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -494,6 +493,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="HUD" type="Control" parent="." unique_id=35774597]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -591,6 +591,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_08gs2")
 layout_mode = 2
 
 [node name="Basic_Graph" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer" unique_id=415950968]
+visible = false
 custom_minimum_size = Vector2(240, 190)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -617,7 +618,6 @@ scale = Vector2(0.97905767, 1.0283022)
 width = 1.0
 default_color = Color(0, 0.43137255, 0.5647059, 1)
 script = ExtResource("12_4cmml")
-dense = 60
 
 [node name="Line2D_food" type="Line2D" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1248069116]
 position = Vector2(5.9790564, 6.0283036)
@@ -625,7 +625,6 @@ scale = Vector2(0.97905767, 1.0283022)
 width = 1.0
 default_color = Color(0.6, 0.7607843, 0.3019608, 1)
 script = ExtResource("13_n3qi7")
-dense = 60
 
 [node name="max_Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/Basic_Graph/VBoxContainer/Panel" unique_id=1652978863]
 layout_mode = 0
@@ -669,6 +668,7 @@ layout_mode = 2
 columns = 2
 
 [node name="Adv_stat_01" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=391298848]
+visible = false
 custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -696,6 +696,7 @@ editable = false
 scrollable = false
 
 [node name="Adv_stat_02" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1373995150]
+visible = false
 custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -723,6 +724,7 @@ editable = false
 scrollable = false
 
 [node name="Adv_stat_03" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1044816079]
+visible = false
 custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -750,6 +752,7 @@ editable = false
 scrollable = false
 
 [node name="Adv_stat_04" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1885513984]
+visible = false
 custom_minimum_size = Vector2(120, 80)
 layout_mode = 2
 size_flags_horizontal = 4

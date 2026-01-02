@@ -1,22 +1,29 @@
 extends CanvasLayer
 
 const MAX_FOOD_INTERVAL : float = 1.1
-signal game_started()
-signal game_paused()
+
 signal food_slider_changed(_value : float)
 
-static var instance
 # onready variables
 @onready var _food_slider: HSlider = $HUD/Food_Slider_Margin/PanelContainer/VBoxContainer/MarginContainer/HSlider
 @onready var _menu_panel : Control = $Menu
 @onready var _hud_panel : Control = $HUD
 @onready var _debug_panel :Control = $Debug
+var _is_menu_enabled : bool = true
+var _is_game_started :bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_food_slider.value_changed.connect(_on_food_slider_changed)
 	_food_slider.value = GameData.p_food_slider
 	SoundManager.play_menu_music()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("menu") and!_is_menu_enabled:
+		pause_game()
+	elif event.is_action_pressed("menu") and _is_menu_enabled:
+		resume_game()
+
 
 func _on_food_slider_changed(_value : float) ->void:
 	food_slider_changed.emit(MAX_FOOD_INTERVAL -_value)
@@ -36,14 +43,21 @@ func show_menu() ->void:
 	_hud_panel.hide()
 	_menu_panel.show()
 	print("GAME_UI: Switch to Menu")
+	_is_menu_enabled = true
 
 func show_hud() ->void:
 	SoundManager.play_game_music()
 	_menu_panel.hide()
 	_hud_panel.show()
 	print("GAME_UI: Switch to HUD")
+	_is_menu_enabled = false
 
 func pause_game() ->void:
-	get_tree().paused = true
 	show_menu()
 
+func resume_game() ->void:
+	show_hud()
+func start_game() ->void:
+	_is_game_started =true
+	_is_menu_enabled = false
+	show_hud()
