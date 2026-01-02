@@ -27,7 +27,6 @@ func _ready():
 
 func _physics_process(delta):
 	if is_dead:
-		print("x.x")
 		return
 	_handle_splitting(delta)
 	_handle_movement(delta)
