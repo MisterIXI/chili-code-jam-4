@@ -1,3 +1,344 @@
 [gd_scene format=3 uid="uid://b0hnfk0ot2lkj"]
 
+[ext_resource type="SpriteFrames" uid="uid://dxy2w32qiii0b" path="res://entities/food/food_sprite_frames.tres" id="1_4y436"]
+[ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="1_rxu6o"]
+[ext_resource type="SpriteFrames" uid="uid://dkrccksyltqt4" path="res://entities/bacteria/Sprite_Frame_Bacteria_01.tres" id="2_3eab5"]
+[ext_resource type="Script" uid="uid://dhtomqt76td6o" path="res://entities/game/intro/food.gd" id="2_41u3v"]
+[ext_resource type="Script" uid="uid://b3s8j6oyfqrtj" path="res://entities/game/intro/animation_player_02.gd" id="3_3eab5"]
+
+[sub_resource type="Animation" id="Animation_4y436"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bacteria_05:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9.999998, -148)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bacteria_05:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5097307]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bacteria_05:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rxu6o"]
+resource_name = "bacteria_04"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bacteria_04:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1, 2.9, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(903, 998.00006), Vector2(636.875, 488.625), Vector2(636.875, 488.625), Vector2(608.045, 442.525), Vector2(903, 998.00006)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bacteria_04:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1, 3.6333334, 4.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.7256868, -1.4643312424232422, -1.4643312424232422, 1.4179345, 1.4179345]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bacteria_04:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.1, 3.1666667, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.1954768762233647, 0.1954768762233647, 0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ukdk7"]
+resource_name = "bacteria_05"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bacteria_05:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.9, 11.9, 13.9, 24.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 7.464262),
+"update": 0,
+"values": [Vector2(-9.999998, -148), Vector2(612.04724, 284.0516), Vector2(612.04724, 284.0516), Vector2(612.04724, 284.0516), Vector2(-9.999998, -148)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bacteria_05:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7.9333334, 11.933332, 13.9, 24.933332),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.5097307, 0.8557192, 0.8557192, -2.2863813201125716, -2.2863813201125716]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bacteria_05:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 7.8333335, 11.833333, 15.3, 19.766666, 24.966667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.18964279, 0.18964279, 0.17453292519943295, -0.19722220547535943, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3eab5"]
+resource_name = "bacteria_intro3"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bacteria_03:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9666667, 7.233333, 7.633333, 8.766666, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1573, 386.00003), Vector2(752.295, 406.45), Vector2(752.295, 406.45), Vector2(752.295, 409.125), Vector2(1045.646, 382.419), Vector2(1573, 386.00003)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bacteria_03:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.9666667, 7.233333, 7.633333, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-3.0445719, -3.262020371977402, -2.7820548276789614, -2.7820548276789614, 0.010471975511966373, 0.2722713633111158]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bacteria_03:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.9666667, 7.233333, 7.633333, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.15184364492350672, -0.15184364492350672, 0.1099557428756427, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_41u3v"]
+resource_name = "intro_anim"
+length = 15.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bacteria_02:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6.866667, 11.733334, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(695.99994, -398), Vector2(659.92, 267.11), Vector2(659.92, 267.11), Vector2(695.99994, -398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bacteria_02:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6.8333335, 11.7, 13.1, 14.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.4932017, 1.3194689145077136, 1.3194689145077136, 4.623377188532978, 4.623377188532978]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bacteria_02:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.8333335, 11.7, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.08726646259971647, 0.08726646259971647, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxu6o"]
+_data = {
+&"RESET": SubResource("Animation_4y436"),
+&"bacteria_04": SubResource("Animation_rxu6o"),
+&"bacteria_05": SubResource("Animation_ukdk7"),
+&"bacteria_intro3": SubResource("Animation_3eab5"),
+&"intro_anim": SubResource("Animation_41u3v")
+}
+
 [node name="intro_scene" type="Node2D" unique_id=1792973364]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1589317925]
+material = ExtResource("1_rxu6o")
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bacteria_01" type="AnimatedSprite2D" parent="." unique_id=897037154]
+modulate = Color(0.6, 0.7607843, 0.3019608, 1)
+z_index = 10
+y_sort_enabled = true
+position = Vector2(555, 351)
+scale = Vector2(2.785, 2.785)
+sprite_frames = ExtResource("2_3eab5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer_02" type="AnimationPlayer" parent="." unique_id=856079898]
+libraries/ = SubResource("AnimationLibrary_rxu6o")
+speed_scale = 2.35
+script = ExtResource("3_3eab5")
+animation_string = "intro_anim"
+
+[node name="Timer" type="Timer" parent="AnimationPlayer_02" unique_id=781768892]
+wait_time = 14.0
+one_shot = true
+autostart = true
+
+[node name="Bacteria_02" type="AnimatedSprite2D" parent="." unique_id=1206760333]
+modulate = Color(0.94509804, 0.56078434, 0.003921569, 1)
+z_index = 10
+y_sort_enabled = true
+position = Vector2(695.99994, -398)
+rotation = 1.4932017
+scale = Vector2(2.785, 2.785)
+sprite_frames = ExtResource("2_3eab5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer_03" type="AnimationPlayer" parent="." unique_id=1075293071]
+libraries/ = SubResource("AnimationLibrary_rxu6o")
+speed_scale = 2.35
+script = ExtResource("3_3eab5")
+animation_string = "bacteria_intro3"
+
+[node name="Timer" type="Timer" parent="AnimationPlayer_03" unique_id=1234580036]
+wait_time = 32.0
+one_shot = true
+autostart = true
+
+[node name="Bacteria_03" type="AnimatedSprite2D" parent="." unique_id=787251654]
+modulate = Color(0, 0.43137255, 0.5647059, 1)
+z_index = 10
+y_sort_enabled = true
+position = Vector2(1573, 386.00003)
+rotation = -3.0445719
+scale = Vector2(2.785, 2.785)
+sprite_frames = ExtResource("2_3eab5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer_04" type="AnimationPlayer" parent="." unique_id=1648972195]
+libraries/ = SubResource("AnimationLibrary_rxu6o")
+speed_scale = 2.35
+script = ExtResource("3_3eab5")
+animation_string = "bacteria_04"
+
+[node name="Timer" type="Timer" parent="AnimationPlayer_04" unique_id=989999819]
+wait_time = 32.0
+one_shot = true
+autostart = true
+
+[node name="Bacteria_04" type="AnimatedSprite2D" parent="." unique_id=303410683]
+modulate = Color(0.25490198, 0.73333335, 0.8509804, 1)
+z_index = 10
+y_sort_enabled = true
+position = Vector2(903, 998.00006)
+rotation = -1.7256868
+scale = Vector2(2.785, 2.785)
+sprite_frames = ExtResource("2_3eab5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer_05" type="AnimationPlayer" parent="." unique_id=1611616084]
+libraries/ = SubResource("AnimationLibrary_rxu6o")
+speed_scale = 2.35
+script = ExtResource("3_3eab5")
+animation_string = "bacteria_05"
+
+[node name="Timer" type="Timer" parent="AnimationPlayer_05" unique_id=278144545]
+wait_time = 32.0
+one_shot = true
+autostart = true
+
+[node name="Bacteria_05" type="AnimatedSprite2D" parent="." unique_id=1776943141]
+modulate = Color(0.6784314, 0.7921569, 0.8392157, 1)
+z_index = 10
+y_sort_enabled = true
+position = Vector2(-9.999998, -148)
+rotation = 0.5097307
+scale = Vector2(2.785, 2.785)
+sprite_frames = ExtResource("2_3eab5")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="food" type="AnimatedSprite2D" parent="." unique_id=2060039633]
+z_index = 10
+y_sort_enabled = true
+position = Vector2(657, 370)
+sprite_frames = ExtResource("1_4y436")
+autoplay = "default"
+script = ExtResource("2_41u3v")
+
+[node name="Timer" type="Timer" parent="food" unique_id=176174515]
+wait_time = 15.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimationPlayer_02" to="AnimationPlayer_02" method="_on_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer_03" to="AnimationPlayer_03" method="_on_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer_04" to="AnimationPlayer_04" method="_on_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer_05" to="AnimationPlayer_05" method="_on_animation_finished"]

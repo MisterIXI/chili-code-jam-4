@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2w6q3"]
 bg_color = Color(0, 0.43137255, 0.5647059, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ryiu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7v2m8"]
 content_margin_left = 10.0
 content_margin_top = 10.0
 content_margin_right = 10.0
@@ -34,4 +34,4 @@ HSlider/icons/grabber_highlight = ExtResource("4_7v2m8")
 HSlider/icons/tick = ExtResource("5_x5k43")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_2w6q3")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_2w6q3")
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_0ryiu")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_7v2m8")

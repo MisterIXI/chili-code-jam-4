@@ -9,6 +9,9 @@ signal food_slider_changed(_value : float)
 @onready var _menu_panel : Control = $Menu
 @onready var _hud_panel : Control = $HUD
 @onready var _debug_panel :Control = $Debug
+
+## Color rect
+@onready var _color_rect_menu : ColorRect = $Menu/ColorRect
 var _is_menu_enabled : bool = true
 var _is_game_started :bool = false
 
@@ -58,6 +61,7 @@ func pause_game() ->void:
 func resume_game() ->void:
 	show_hud()
 func start_game() ->void:
+	_color_rect_menu.show()
 	_is_game_started =true
 	_is_menu_enabled = false
 	show_hud()

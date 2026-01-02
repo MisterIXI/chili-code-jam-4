@@ -80,25 +80,25 @@ func load_game_data() -> void:
         ## Load data from saved_data with get value
         ## Upgrades
         GameData.u_food_drop_max = saved_data.get("food_drop_max", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("food_drop_max",GameData.u_food_drop_max)
+        UpgradeManager.on_upgrade_game_data_loaded("food_drop_max",saved_data.get("food_drop_max", 0))
 
         GameData.u_petri_dishes  = saved_data.get("petri_dishes", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("petri_dishes",GameData.u_petri_dishes)
+        UpgradeManager.on_upgrade_game_data_loaded("petri_dishes",saved_data.get("petri_dishes", 0))
 
         GameData.u_bacteria_speed  = saved_data.get("bacteria_speed", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("petri_dishes", GameData.u_bacteria_speed)
+        UpgradeManager.on_upgrade_game_data_loaded("petri_dishes", saved_data.get("bacteria_speed", 0))
 
         GameData.u_bacteria_division_cdr = saved_data.get("bacteria_division_cdr", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("bacteria_division_cdr", GameData.u_bacteria_division_cdr)
+        UpgradeManager.on_upgrade_game_data_loaded("bacteria_division_cdr", saved_data.get("bacteria_division_cdr", 0))
 
         GameData.u_basic_graphs  =saved_data.get("basic_graphs", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("basic_graphs", GameData.u_basic_graphs)
+        UpgradeManager.on_upgrade_game_data_loaded("basic_graphs", saved_data.get("basic_graphs", 0))
 
         GameData.u_advanced_graphs = saved_data.get("advanced_graphs", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("advanced_graphs", GameData.u_advanced_graphs)
+        UpgradeManager.on_upgrade_game_data_loaded("advanced_graphs", saved_data.get("advanced_graphs", 0))
 
         GameData.u_auto_upgrader =saved_data.get("auto_upgrader", 0)
-        UpgradeManager.on_upgrade_game_data_loaded("auto_upgrader", GameData.u_auto_upgrader)
+        UpgradeManager.on_upgrade_game_data_loaded("auto_upgrader",saved_data.get("auto_upgrader", 0))
         ### Settings
         GameData.s_master_volume = saved_data.get("master_volume", 0.0)
         GameData.s_music_volume = saved_data.get("music_volume", 0.0)
