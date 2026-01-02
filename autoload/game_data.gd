@@ -72,7 +72,7 @@ func num_to_scientific(value: float, decimal_count: int = 3) -> String:
     var mantissa: float= value
 
     if value == 0.0:
-        return " 0." + "0".repeat(decimal_count) + "e+0  "
+        return "0"
 
     while mantissa < 1.0:
         mantissa *= 10.0
