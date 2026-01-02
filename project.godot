@@ -13,7 +13,7 @@ config_version=5
 config/name="Pili"
 run/main_scene="uid://b0hnfk0ot2lkj"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://qkcjp17hx1vl"
 
 [audio]
 
