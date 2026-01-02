@@ -26,6 +26,6 @@ func _set_average_text_value() ->void:
 	for x in graph_data.stored_values:
 		_temp_value += x
 	_temp_value = _temp_value / graph_data.stored_values.size()
-	if text != AVERAGE_SYMBOL + str(_temp_value):
+	if text != AVERAGE_SYMBOL + str(int(_temp_value)):
 		_slider.effect_start()
-		text = AVERAGE_SYMBOL + str(_temp_value)
+		text = AVERAGE_SYMBOL + str(int(_temp_value))

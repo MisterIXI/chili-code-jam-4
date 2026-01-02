@@ -32,7 +32,7 @@ func _set_average_text_value() ->void:
 	
 	_temp_value = _temp_value /_saved_avg_spawn_rates.size()
 
-	if text != AVERAGE_SYMBOL + str(_temp_value):
+	if text != AVERAGE_SYMBOL + str(int(_temp_value)):
 		_slider.effect_start()
-	text = AVERAGE_SYMBOL + str(_temp_value)
+	text = AVERAGE_SYMBOL + str(int(_temp_value))
 
