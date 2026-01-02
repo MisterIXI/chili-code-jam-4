@@ -26,6 +26,8 @@ const NORMAL_MODULATE : Color = Color(1, 1, 1, 1)
 
 const DISABLED_MODULATE : Color = Color(1,1,1,0.3)
 
+var reached_max: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	UpgradeManager.update_visual_upgrade.connect(_on_upgrade_leveled)
@@ -34,12 +36,12 @@ func _ready() -> void:
 
 #### UPDATE BUYABLE STATE
 func _physics_process(_delta: float) -> void:
-	if _current_upgrade_costs > GameData.p_dna_currency:
+	if _current_upgrade_costs > GameData.p_dna_currency or (is_enabled and reached_max):
 		if is_enabled:
 			is_enabled = false
 			upgrade_tooltip_panel.modulate = DISABLED_MODULATE
 	else:
-		if !is_enabled:
+		if !is_enabled and not reached_max:
 			is_enabled =true
 			upgrade_tooltip_panel.modulate = NORMAL_MODULATE
 
@@ -57,7 +59,11 @@ func _initialize_data() ->void :
 func _set_data(_upgrade : Upgrade) ->void:
 	upgrade_level.text = "Level: " + str(_upgrade.upgrade_level)
 	upgrade_effect_value.text = _upgrade.get_effect_value_text()
-	upgrade_cost.text = "Costs: " + str(_upgrade.upgrade_cost)
+	if _upgrade.upgrade_level == _upgrade.upgrade_max_level:
+		upgrade_cost.text = "SOLD OUT!"
+		reached_max = true
+	else:
+		upgrade_cost.text = "Costs: " + str(_upgrade.upgrade_cost)
 	# SET  current upgrade costs 
 	_current_upgrade_costs = _upgrade.upgrade_cost
 
