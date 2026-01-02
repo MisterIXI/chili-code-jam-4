@@ -15,6 +15,7 @@ func _on_visible_changed() ->void:
 	_is_enabled = true
 	for x in range(60):
 		_saved_avg_spawn_rates.append(Spawn_Manager.singleton.avg_spawn_rate)
+
 func _physics_process(delta: float) -> void:
 	if !_is_enabled:
 		return
@@ -22,17 +23,21 @@ func _physics_process(delta: float) -> void:
 	_temptimer += delta
 
 	if _temptimer >= BASE_TIME:
+		_get_average_new_value()
 		_set_average_text_value()
 		_temptimer = 0.0
-
+func _get_average_new_value() ->void:
+	_saved_avg_spawn_rates.pop_front()
+	_saved_avg_spawn_rates.push_back(Spawn_Manager.singleton.avg_spawn_rate)
+	
 func _set_average_text_value() ->void:
 	var _temp_value : float = 0
 	for x in _saved_avg_spawn_rates:
 		_temp_value += x
 	
 	_temp_value = _temp_value /_saved_avg_spawn_rates.size()
-
-	if text != AVERAGE_SYMBOL + str(int(_temp_value)):
+	var _text :String = AVERAGE_SYMBOL + str("%.3f" % (_temp_value))
+	if text != _text:
 		_slider.effect_start()
-	text = AVERAGE_SYMBOL + str(int(_temp_value))
+		text = _text #  float 0.200232124123124123
 
