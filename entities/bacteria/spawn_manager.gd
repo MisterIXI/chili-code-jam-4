@@ -79,29 +79,29 @@ func fake_spawn(count: float, real_mult: float) -> void:
 	var real_spawn_count: int = floor(count * real_mult)
 	fake_bacteria_count += count * (1.0 - real_mult)
 	for i in range(real_spawn_count):
-		_spawn_bacteria((Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2))
+		_spawn_bacteria((Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2), randf() * 2 * PI)
 	spawn_accum += real_spawn_count
 	_add_player_progress(floor(count))
 
-func instant_spawn(_pos : Vector2) ->void:
+func instant_spawn(source_bacteria: SmartBacteria) ->void:
 	var real_bac_count = get_child_count()
 	if real_bac_count + fake_bacteria_count + 1 >= current_spawn_cap:
 		# cancel spawn when this would exceed spawn cap
 		return
 	var is_real_spawn: bool = randf() < real_spawn_curve.sample(float(real_bac_count) / GameData.s_max_bacterias)
 	if is_real_spawn:
-		_spawn_bacteria(_pos)
+		_spawn_bacteria(source_bacteria.global_position, -source_bacteria.rotation, -source_bacteria.linear_velocity / 2.0)
 		spawn_accum += 1
 	else:
 		fake_bacteria_count += 1.0
 	_add_player_progress(1)	
 
-	
-
-func _spawn_bacteria(pos: Vector2) -> void:
+func _spawn_bacteria(pos: Vector2, rotation: float = 0.0, velocity: Vector2 = Vector2.ZERO) -> void:
 	var bacteria: SmartBacteria = SMART_BACTERIA_SCENE.instantiate()
 	add_child(bacteria)
 	bacteria.global_position = pos
+	bacteria.linear_velocity = velocity
+	bacteria.rotation = rotation
 	bacteria.health = start_health
 	SoundManager.play_division_sound()
 
@@ -109,8 +109,6 @@ func _spawn_food() -> void:
 	var food: Food = FOOD_SCENE.instantiate()
 	food_root.add_child(food)
 	food.global_position = (Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2)
-	var tween = food.create_tween()
-	# tween.tween_interval()
 
 func _add_player_progress(_count :int) ->void:
 	## add bacterias to stats

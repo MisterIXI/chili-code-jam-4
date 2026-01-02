@@ -45,7 +45,7 @@ func _handle_splitting(delta: float) -> void:
 	if splitting_cd <= 0 and eaten_food > 0:
 		# print("split: ", splitting_cd, "  food: ", eaten_food)
 		# split into two cells
-		spawn_mgr.instant_spawn(global_position)
+		spawn_mgr.instant_spawn(self)
 		splitting_cd = spawn_mgr.cooldown
 		eaten_food -= 1
 
