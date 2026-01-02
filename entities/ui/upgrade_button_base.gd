@@ -104,7 +104,8 @@ func _on_gui_input(_event: InputEvent) -> void:
 				# On release, restore to hover state (mouse_enter will keep it highlighted)
 				_tween_to_scale(HOVER_SCALE, TWEEN_DUR)
 		else:
-			SoundManager.play_error()
+			if _event.is_pressed():
+				SoundManager.play_error()
 
 func _on_mouse_exited() -> void:
 	# restore normal visuals
