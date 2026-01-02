@@ -15,7 +15,7 @@ var s_music_volume : float =0.5
 var s_sound_volume : float =0.5
 var s_fullscreen: int =0
 var s_fps_counter : int =1
-var s_max_bacterias : int =1000
+var s_max_bacterias : int =500
 var s_save_game_data : int =1
 var s_save_interval: int =60
 
@@ -40,7 +40,7 @@ func reset_game_data() -> void:
     s_sound_volume =0.5
     s_fullscreen =0
     s_fps_counter  =1
-    s_max_bacterias  =1000
+    s_max_bacterias  =500
     s_save_game_data  =1
     s_save_interval=60
     p_dna_currency  = 0.0
@@ -59,6 +59,8 @@ func get_all_upgrade_levels() ->int:
     _temp += u_advanced_graphs
     _temp += u_auto_upgrader
     return _temp
+
+
 func num_to_scientific(value: float, decimal_count: int = 3) -> String:
     var is_negative = false
 	# handle negative values
@@ -70,7 +72,7 @@ func num_to_scientific(value: float, decimal_count: int = 3) -> String:
     var mantissa: float= value
 
     if value == 0.0:
-        return " 0." + "0".repeat(decimal_count) + "e+0  "
+        return "0"
 
     while mantissa < 1.0:
         mantissa *= 10.0
@@ -87,4 +89,8 @@ func num_to_scientific(value: float, decimal_count: int = 3) -> String:
         result = "-" + result
     else:
         result = " " + result
+    var max_chars = decimal_count + 7
+    var num_in_txt: String = str(int(value))
+    if (exponent < max_chars and not is_negative) or (exponent > -(max_chars-1) and is_negative):
+        result = num_in_txt
     return result
