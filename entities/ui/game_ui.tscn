@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dp7g88r0g5nme" path="res://entities/ui/game_ui.gd" id="1_7g2dv"]
 [ext_resource type="Script" uid="uid://443ttvxwvpsk" path="res://entities/ui/menu.gd" id="1_7wnj1"]
-[ext_resource type="Texture2D" uid="uid://04dxp6hclosk" path="res://icon.svg" id="1_uvj7p"]
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="2_7g2dv"]
 [ext_resource type="Shader" uid="uid://cibke4huika2y" path="res://shaders/background_color_wave.gdshader" id="4_t6hpy"]
 [ext_resource type="Texture2D" uid="uid://b6aioio1nq4k8" path="res://textures/ui/currency_dna.png" id="6_6wbph"]
@@ -13,16 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://d1c8cg8ilnlx3" path="res://entities/ui/upgrade_button_base.tscn" id="8_6wbph"]
 [ext_resource type="Script" uid="uid://duwgfctq7t5r8" path="res://entities/ui/camera_button.gd" id="8_sg1uj"]
 [ext_resource type="Script" uid="uid://dfbw6jtgcsjif" path="res://entities/ui/button_one_time_switch.gd" id="8_w31hu"]
-[ext_resource type="Script" uid="uid://bkdrwa624xqbd" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
-[ext_resource type="Script" uid="uid://dn5r5d60h7b35" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
+[ext_resource type="Script" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
+[ext_resource type="Script" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
 [ext_resource type="Texture2D" uid="uid://dmad4olaj7da1" path="res://textures/asesprites/bacteria_01_small.png" id="10_0yrf3"]
 [ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="10_8ai8l"]
 [ext_resource type="Script" uid="uid://cqxrsppf7tlj4" path="res://entities/ui/line_2d_bactera.gd" id="12_4cmml"]
 [ext_resource type="Script" uid="uid://dd1w5g1xw2es8" path="res://entities/ui/line_2d_food.gd" id="13_n3qi7"]
 [ext_resource type="Script" uid="uid://cq8hj0vg8kyqf" path="res://entities/ui/time_label.gd" id="14_fqcpr"]
-[ext_resource type="Script" uid="uid://dq3yk7ykincyv" path="res://entities/ui/average_bac_value.gd" id="14_n3qi7"]
-[ext_resource type="Script" uid="uid://byh0ukjpvygu7" path="res://entities/ui/average_slider_effect.gd" id="16_mtfkm"]
-[ext_resource type="Script" uid="uid://d4l62ghjnbmbc" path="res://entities/ui/average_division_label.gd" id="17_3k6rq"]
+[ext_resource type="Script" path="res://entities/ui/average_bac_value.gd" id="14_n3qi7"]
+[ext_resource type="Script" path="res://entities/ui/average_slider_effect.gd" id="16_mtfkm"]
+[ext_resource type="Script" path="res://entities/ui/average_division_label.gd" id="17_3k6rq"]
 [ext_resource type="Script" uid="uid://d2rk73kfp5jrh" path="res://entities/ui/dead_cells_label.gd" id="19_a4idq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
@@ -104,7 +103,8 @@ layout_mode = 2
 
 [node name="Logo" type="TextureRect" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=1517888432]
 layout_mode = 2
-texture = ExtResource("1_uvj7p")
+texture = ExtResource("10_8ai8l")
+expand_mode = 4
 
 [node name="HSeparator" type="HSeparator" parent="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer" unique_id=511826757]
 layout_mode = 2
@@ -118,7 +118,7 @@ text = "Bacteria Name : "
 custom_minimum_size = Vector2(130, 20)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-placeholder_text = "myBacteria"
+placeholder_text = "Pili"
 context_menu_enabled = false
 script = ExtResource("6_ci0l4")
 
@@ -582,9 +582,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Camera_Margin" type="MarginContainer" parent="HUD" unique_id=1307271885]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+offset_right = 84.0
+offset_bottom = 84.0
 
 [node name="PanelContainer" type="PanelContainer" parent="HUD/Camera_Margin" unique_id=174801138]
 layout_mode = 2

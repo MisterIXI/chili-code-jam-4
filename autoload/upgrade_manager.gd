@@ -4,7 +4,9 @@ signal upgrade_reached_max(_upgrade : Upgrade)
 ## signal for buttons if upgrade.apply_upgrade
 signal update_visual_upgrade(_upgrade : Upgrade)
 ### Signal upgrade one time
+@warning_ignore("unused_signal")
 signal upgrade_purchased_basic_graph()
+@warning_ignore("unused_signal")
 signal upgrade_purchased_adv_graph()
 signal upgrade_purchased_auto_upgrader()
 @onready var _auto_upgrade_timer: Timer = $Timer
