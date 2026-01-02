@@ -19,6 +19,8 @@ func _ready():
 	if randf() < 0.001: 
 		shiny_tween.tween_method(shiny_shimmer, 0.0, 1.0, 2.0)
 		shiny_tween.set_loops()
+	else:
+		shiny_tween.kill()
 	anim_sprite.play("spawn")
 	await anim_sprite.animation_finished
 	anim_sprite.play("idle")
