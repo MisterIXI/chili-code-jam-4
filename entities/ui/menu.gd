@@ -27,7 +27,7 @@ extends Control
 #private variables
 var _menu_settings_toggle : bool = false
 var _menu_credits_toggle :bool = false
-
+var _is_game_started :bool = false
 
 func _ready() -> void:
 	_button_start.pressed.connect(_on_button_start)
@@ -69,10 +69,12 @@ func _on_game_data_loaded()->void:
 
 #### MENU BUTTON FUNCTIONS ####
 func _on_button_start() ->void:
-	print("Start Game")
-	_button_start.text = "Resume"
+	if !_is_game_started:
+		get_tree().change_scene_to_file(GameData.GAME_SCENE)
+		_is_game_started = true
+		print("Start Game")
+		_button_start.text = "Resume"
 	get_parent().start_game()
-	get_tree().change_scene_to_file(GameData.GAME_SCENE)
 	SoundManager.play_click()
 
 

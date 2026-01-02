@@ -62,6 +62,7 @@ func pause_game() ->void:
 
 func resume_game() ->void:
 	show_hud()
+	
 func start_game() ->void:
 	_color_rect_menu.show()
 	_is_game_started =true

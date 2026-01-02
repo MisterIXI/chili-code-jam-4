@@ -13,8 +13,9 @@ func _ready() -> void:
 
 func _on_visible_changed() ->void:
 	_is_visible = true
-	Spawn_Manager.singleton.food_rotted.connect(_add_rotten_foods)
-	
+	if !_is_visible:
+		Spawn_Manager.singleton.food_rotted.connect(_add_rotten_foods)
+
 func _add_rotten_foods(_value: int) ->void:
 	_food_rotted += _value
 
