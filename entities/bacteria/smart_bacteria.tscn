@@ -9,9 +9,10 @@ radius = 23.021729
 [sub_resource type="CircleShape2D" id="CircleShape2D_bn0wc"]
 radius = 200.0
 
-[node name="SmartBacteria" type="RigidBody2D" unique_id=328930080]
+[node name="SmartBacteria" type="RigidBody2D" unique_id=328930080 node_paths=PackedStringArray("anim_sprite")]
 collision_mask = 4
 script = ExtResource("1_f6lps")
+anim_sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=905439117]
 modulate = Color(0.94509804, 0.56078434, 0.003921569, 1)
@@ -19,8 +20,6 @@ position = Vector2(0, -5)
 sprite_frames = ExtResource("1_084lk")
 animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.35123092
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=275460738]
 shape = SubResource("CircleShape2D_f6lps")
@@ -32,6 +31,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sensing" unique_id=1783610032]
 shape = SubResource("CircleShape2D_bn0wc")
 debug_color = Color(0, 0.6509804, 0.16862746, 0.14509805)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2008698096]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="Sensing" to="." method="_on_sensing_area_entered"]

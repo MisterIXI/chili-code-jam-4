@@ -2,18 +2,31 @@ class_name SmartBacteria
 extends RigidBody2D
 @onready var sensing: Area2D = $Sensing
 @onready var spawn_mgr: Spawn_Manager = Spawn_Manager.singleton
+@export var anim_sprite: AnimatedSprite2D
 var splitting_cd: float = 0
 var move_cd: float = 0
 var eaten_food: int = 0
 var health: float = 0
 var food_in_range: Array[Food]
 var target_food: Food
+var is_dead: bool = false
+var shiny_tween: Tween = null
 
 func _ready():
 	health = spawn_mgr.start_health
 	splitting_cd = spawn_mgr.cooldown
+	shiny_tween = create_tween()
+	if randf() < 0.001: 
+		shiny_tween.tween_method(shiny_shimmer, 0.0, 1.0, 2.0)
+		shiny_tween.set_loops()
+	anim_sprite.play("spawn")
+	await anim_sprite.animation_finished
+	anim_sprite.play("idle")
 
 func _physics_process(delta):
+	if is_dead:
+		print("x.x")
+		return
 	_handle_splitting(delta)
 	_handle_movement(delta)
 	_handle_hunger(delta)
@@ -21,8 +34,14 @@ func _physics_process(delta):
 func _handle_hunger(delta) -> void:
 	if eaten_food <= 0 and splitting_cd <= 0:
 		health -= delta
+		var col_val = (health / spawn_mgr.start_health * 200 + 50)/ 250.0
+		modulate = Color(col_val, col_val, col_val, 1)
 		if health <= 0:
-			queue_free()
+			is_dead = true
+			if shiny_tween:
+				shiny_tween.kill()
+			anim_sprite.play("dying")
+			anim_sprite.animation_finished.connect(queue_free)
 
 func _handle_movement(delta: float) -> void:
 	if target_food and not target_food.is_queued_for_deletion():
@@ -82,3 +101,6 @@ func ate_food() -> void:
 		# initiate death
 		queue_free()
 	target_food = null
+
+func shiny_shimmer(value: float):
+	modulate = Color.from_hsv(value, 70/100.0, (health / spawn_mgr.start_health * 70 + 30)/ 100 )
