@@ -138,9 +138,29 @@ func _spawn_bacteria(pos: Vector2, rotation: float = 0.0, velocity: Vector2 = Ve
 	# SoundManager.play_division_sound()
 
 func _spawn_food() -> void:
-	var food: Food = FOOD_SCENE.instantiate()
-	food_root.add_child(food)
-	food.global_position = (Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2)
+	var food_pos: Vector2 = (Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2)
+	# instant query to avoid actual spawning on top of bacteria
+	var circle_shape = CircleShape2D.new()
+	circle_shape.radius = 30
+	var  query = PhysicsShapeQueryParameters2D.new()
+	query.shape_rid = circle_shape.get_rid()
+	query.transform = Transform2D(0, food_pos)
+	query.collision_mask = 1
+
+	var space = get_world_2d().direct_space_state
+	var results = space.intersect_shape(query)
+	var bacts = []
+	for result in results:
+		var collider = result["collider"]
+		if collider is SmartBacteria:
+			bacts.append(collider)
+	if bacts.size() > 0:
+		bacts.pick_random().ate_food()
+	else:
+		# actually spawn
+		var food: Food = FOOD_SCENE.instantiate()
+		food_root.add_child(food)
+		food.global_position = food_pos
 
 func _add_player_progress(_count :int) ->void:
 	## add bacterias to stats
