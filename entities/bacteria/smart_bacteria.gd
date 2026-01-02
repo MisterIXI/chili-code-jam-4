@@ -38,11 +38,14 @@ func _handle_hunger(delta) -> void:
 		var col_val = (health / spawn_mgr.start_health * 200 + 50)/ 250.0
 		modulate = Color(col_val, col_val, col_val, 1)
 		if health <= 0:
-			is_dead = true
-			if shiny_tween:
-				shiny_tween.kill()
-			anim_sprite.play("dying")
-			anim_sprite.animation_finished.connect(queue_free)
+			die_with_anim()
+
+func die_with_anim():
+	is_dead = true
+	if shiny_tween:
+		shiny_tween.kill()
+	anim_sprite.play("dying")
+	anim_sprite.animation_finished.connect(queue_free)
 
 func _handle_movement(delta: float) -> void:
 	if target_food and not target_food.is_queued_for_deletion():
@@ -100,7 +103,7 @@ func ate_food() -> void:
 	eaten_food += 1
 	if eaten_food > spawn_mgr.max_food_eaten:
 		# initiate death
-		queue_free()
+		die_with_anim()
 	target_food = null
 
 func shiny_shimmer(value: float):
