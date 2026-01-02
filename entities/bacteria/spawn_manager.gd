@@ -1,10 +1,12 @@
 extends Node2D
 class_name Spawn_Manager
 
+signal spawn_tick
+const FOOD_SCENE = preload("res://entities/food/food.tscn")
 const SMART_BACTERIA_SCENE = preload("res://entities/bacteria/smart_bacteria.tscn")
+const SPAWN_RADIUS = 700
 @export var real_spawn_curve: Curve
 @export var food_mgr: FoodManager
-var max_bacteria : float = 500
 var start_health : int = 10
 var start_speed  : float = 100
 var cooldown : float = 2.0
@@ -12,62 +14,83 @@ var max_food_eaten: int = 5
 var fake_bacteria_count: float
 var current_spawn_cap: float = 10_000
 var spawn_tracker_cd: float = 0.5
+const SPAWN_TICK_CD: float = 0.5
 var spawn_stat_arr: Array[float] = []
 var avg_spawn_rate: float = 0
 var spawn_accum: float = 0
 static var singleton
 
+var fake_food_count: float = 0
+var food_root: Node2D
+
 func _init():
 	singleton = self
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	food_root = Node2D.new()
+	food_root.name = "FoodRoot"
+	add_sibling.call_deferred(food_root)
 	# _new_bacteria(start_health * 10,start_speed*2,  global_position)
-	_new_smart_bacteria(Vector2(0,0))
-	max_bacteria = GameData.s_max_bacterias
+	_spawn_bacteria(Vector2(0,0))
 
 func _physics_process(delta):
 	spawn_tracker_cd -= delta
 	if spawn_tracker_cd <= 0:
-		spawn_tracker_cd = 0.5
-		spawn_stat_arr.append(spawn_accum)
-		if spawn_stat_arr.size() == 1:
-			return
-		if spawn_stat_arr.size() > 10:
-			spawn_stat_arr.pop_front()
-		var rate_acc: float = 0
-		for i in range(spawn_stat_arr.size() - 1):
-			rate_acc += spawn_stat_arr[i + 1] - spawn_stat_arr[i]
-		avg_spawn_rate = rate_acc / (spawn_stat_arr.size() - 1)
+		spawn_tracker_cd = SPAWN_TICK_CD
 		var real_bac_count = get_child_count()
-		var fake_mult = real_spawn_curve.sample((real_bac_count + fake_bacteria_count) / max_bacteria)
-		var fake_kill: float = ((1 - fake_mult) * food_mgr.get_food_rate() * 10)
-		fake_bacteria_count = max(0, fake_bacteria_count - fake_kill)
-		#print("Bacteria (r/f): (", real_bac_count, "/", fake_bacteria_count,")\nAvg rate: ", avg_spawn_rate, "\nFake Mult: ", fake_mult , "\nFake Kill: ", fake_kill)
-		fake_spawn(avg_spawn_rate * delta * 2 / real_bac_count * fake_bacteria_count)
-		
+		var real_mult = real_spawn_curve.sample((real_bac_count + fake_bacteria_count) / GameData.s_max_bacterias)
+		handle_bacteria_spawn(real_bac_count, real_mult)
+		handle_food_spawn(real_mult)
+		spawn_tick.emit()
+
+func handle_food_spawn(real_mult: float) -> void:
+	var count = calc_food_rate()
+	var real_food_count = food_root.get_child_count()
+	var real_spawns = count * (1 - real_mult)
+	var overflow = real_spawns - clampf(real_spawns, 0, GameData.s_max_bacterias - real_food_count)
+	real_spawns = max(real_spawns - overflow, 0)
+	var fake_spawns = count - real_spawns
+	fake_food_count += fake_spawns
+	for i in range(real_spawns):
+		_spawn_food()
+
+func handle_bacteria_spawn(real_bac_count: float, real_mult: float) -> void:
+	spawn_stat_arr.append(spawn_accum)
+	if spawn_stat_arr.size() == 1:
+		return
+	if spawn_stat_arr.size() > 10:
+		spawn_stat_arr.pop_front()
+	var rate_acc: float = 0
+	for i in range(spawn_stat_arr.size() - 1):
+		rate_acc += spawn_stat_arr[i + 1] - spawn_stat_arr[i]
+	avg_spawn_rate = rate_acc / (spawn_stat_arr.size() - 1)
+
+	var fake_kill: float = ((1 - real_mult) * food_mgr.get_food_rate() * 10)
+	fake_bacteria_count = max(0, fake_bacteria_count - fake_kill)
+	#print("Bacteria (r/f): (", real_bac_count, "/", fake_bacteria_count,")\nAvg rate: ", avg_spawn_rate, "\nFake Mult: ", fake_mult , "\nFake Kill: ", fake_kill)
+	fake_spawn(avg_spawn_rate * SPAWN_TICK_CD * 2 / real_bac_count * fake_bacteria_count, real_mult)
 
 func get_current_bacterias_count() -> float:
 	return get_child_count() + fake_bacteria_count
 
-func fake_spawn(count: float) -> void:
+func fake_spawn(count: float, real_mult: float) -> void:
 	var bac_count = get_current_bacterias_count()
 	count = min(current_spawn_cap - bac_count, count)
-	var real_spawn_percent: float = real_spawn_curve.sample(get_child_count() / max_bacteria)
-	var real_spawn_count: int = floor(count * real_spawn_percent)
-	fake_bacteria_count += count * (1.0 - real_spawn_percent)
+	var real_spawn_count: int = floor(count * real_mult)
+	fake_bacteria_count += count * (1.0 - real_mult)
 	for i in range(real_spawn_count):
-		_new_smart_bacteria((Vector2.RIGHT * randf() * 700).rotated(randf() * PI * 2))
+		_spawn_bacteria((Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2))
 	spawn_accum += real_spawn_count
-	_add_player_progress(count)
+	_add_player_progress(floor(count))
 
 func instant_spawn(_pos : Vector2) ->void:
 	var real_bac_count = get_child_count()
 	if real_bac_count + fake_bacteria_count + 1 >= current_spawn_cap:
 		# cancel spawn when this would exceed spawn cap
 		return
-	var is_real_spawn: bool = randf() < real_spawn_curve.sample(float(real_bac_count) / max_bacteria)
+	var is_real_spawn: bool = randf() < real_spawn_curve.sample(float(real_bac_count) / GameData.s_max_bacterias)
 	if is_real_spawn:
-		_new_smart_bacteria(_pos)
+		_spawn_bacteria(_pos)
 		spawn_accum += 1
 	else:
 		fake_bacteria_count += 1.0
@@ -75,12 +98,19 @@ func instant_spawn(_pos : Vector2) ->void:
 
 	
 
-func _new_smart_bacteria(pos: Vector2) -> void:
+func _spawn_bacteria(pos: Vector2) -> void:
 	var bacteria: SmartBacteria = SMART_BACTERIA_SCENE.instantiate()
 	add_child(bacteria)
 	bacteria.global_position = pos
 	bacteria.health = start_health
 	SoundManager.play_division_sound()
+
+func _spawn_food() -> void:
+	var food: Food = FOOD_SCENE.instantiate()
+	food_root.add_child(food)
+	food.global_position = (Vector2.RIGHT * randf() * SPAWN_RADIUS).rotated(randf() * PI * 2)
+	var tween = food.create_tween()
+	# tween.tween_interval()
 
 func _add_player_progress(_count :int) ->void:
 	## add bacterias to stats
@@ -88,3 +118,6 @@ func _add_player_progress(_count :int) ->void:
 		GameData.p_bacterias +=1
 		GameData.p_total_bacterias_spawned +=1
 		GameData.p_dna_currency += GameData.get_all_upgrade_levels()
+
+func calc_food_rate() -> float:
+	return GameData.p_food_slider * GameData.u_food_drop_max

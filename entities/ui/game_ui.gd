@@ -18,7 +18,8 @@ func _ready() -> void:
 	_food_slider.value = GameData.p_food_slider
 
 func _on_food_slider_changed(_value : float) ->void:
-	food_slider_changed.emit(MAX_FOOD_INTERVAL -_value)
+	GameData.p_food_slider = _value
+	food_slider_changed.emit(_value)
 
 func on_fps_settings_changed(_value : bool) ->void:
 	show_debug_panel(_value)

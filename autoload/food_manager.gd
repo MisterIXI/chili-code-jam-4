@@ -18,10 +18,10 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 
 	GameUi.food_slider_changed.connect(_on_food_interval_change)
-	#GameUi._food_slider.min_value = 1
-	#GameUi._food_slider.max_value = 10
-	#GameUi._food_slider.value = 5
-	#GameUi._food_slider.step = 1
+	# GameUi._food_slider.min_value = 1
+	# GameUi._food_slider.max_value = 10
+	# GameUi._food_slider.value = 5
+	# GameUi._food_slider.step = 1
 
 func _on_timer_timeout() ->void:
 
@@ -45,7 +45,7 @@ func spawn(_pos : Vector2) ->void:
 
 
 func _on_food_interval_change(_value : float) ->void:
+	print("Food_Manager: feed interval changed to: ", _value)
 	if _value > 0:
 		timer.wait_time = _value
-		print("Food_Manager: feed interval changed to: ", _value)
 		GameData.p_food_slider = _value
