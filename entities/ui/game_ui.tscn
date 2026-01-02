@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://crj0qs4ls8hew" path="res://textures/ui/camera_switch_icon.png" id="7_sscqf"]
 [ext_resource type="Script" uid="uid://bi10p48krxa57" path="res://entities/ui/fps_counter.gd" id="8_3kqnw"]
 [ext_resource type="PackedScene" uid="uid://d1c8cg8ilnlx3" path="res://entities/ui/upgrade_button_base.tscn" id="8_6wbph"]
-[ext_resource type="Script" path="res://entities/ui/camera_button.gd" id="8_sg1uj"]
+[ext_resource type="Script" uid="uid://duwgfctq7t5r8" path="res://entities/ui/camera_button.gd" id="8_sg1uj"]
 [ext_resource type="Script" uid="uid://dfbw6jtgcsjif" path="res://entities/ui/button_one_time_switch.gd" id="8_w31hu"]
 [ext_resource type="Script" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
 [ext_resource type="Script" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="10_8ai8l"]
 [ext_resource type="Script" uid="uid://cqxrsppf7tlj4" path="res://entities/ui/line_2d_bactera.gd" id="12_4cmml"]
 [ext_resource type="Script" uid="uid://dd1w5g1xw2es8" path="res://entities/ui/line_2d_food.gd" id="13_n3qi7"]
-[ext_resource type="Script" path="res://entities/ui/time_label.gd" id="14_fqcpr"]
+[ext_resource type="Script" uid="uid://cq8hj0vg8kyqf" path="res://entities/ui/time_label.gd" id="14_fqcpr"]
 [ext_resource type="Script" path="res://entities/ui/average_bac_value.gd" id="14_n3qi7"]
 [ext_resource type="Script" path="res://entities/ui/average_slider_effect.gd" id="16_mtfkm"]
 [ext_resource type="Script" path="res://entities/ui/average_division_label.gd" id="17_3k6rq"]
@@ -118,7 +118,7 @@ text = "Bacteria Name : "
 custom_minimum_size = Vector2(130, 20)
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
-placeholder_text = "myBacteria"
+placeholder_text = "Pili"
 context_menu_enabled = false
 script = ExtResource("6_ci0l4")
 
