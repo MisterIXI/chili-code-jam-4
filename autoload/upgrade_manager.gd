@@ -41,7 +41,7 @@ func _level_upgrade(_upgrade:Upgrade) ->void:
         SoundManager.play_click()
     else:
         print("Upgrade_Manager: Error you dont have enough Dna")
-        SoundManager.play_error()
+        # SoundManager.play_error()
 func _pay_upgrade(_upgrade_cost : int) ->void:
     GameData.p_dna_currency -= _upgrade_cost
 
