@@ -6,7 +6,7 @@ signal game_data_loaded()
 ################################## Functions ##################################
 func _ready() -> void:
     ### DEBUG 
-    delete_game_data()
+    # delete_game_data()
     ### /DEBUG
     _timer.timeout.connect(_on_timer_timeout)
     #Load existing game data if available
