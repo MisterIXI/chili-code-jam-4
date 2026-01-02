@@ -65,7 +65,10 @@ func _handle_movement(delta: float) -> void:
 		if move_cd <= 0:
 			move_cd = 1.0 / speed_mult
 			linear_velocity -= transform.y.dot(linear_velocity) / 2.0 * transform.y
-			apply_impulse(transform.x * (25 * speed_mult))
+			if is_shiny:
+				apply_impulse(transform.x * (70 * speed_mult))
+			else:
+				apply_impulse(transform.x * (25 * speed_mult))
 			
 
 func _handle_splitting(delta: float) -> void:
