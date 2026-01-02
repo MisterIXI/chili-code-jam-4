@@ -50,6 +50,8 @@ grow_vertical = 2
 script = ExtResource("1_7wnj1")
 
 [node name="ColorRect" type="ColorRect" parent="Menu" unique_id=942755489]
+visible = false
+
 material = ExtResource("2_7g2dv")
 layout_mode = 1
 anchors_preset = 15
@@ -491,6 +493,69 @@ text = "Director"
 [node name="delete_Timer" type="Timer" parent="Menu" unique_id=1452135277]
 wait_time = 5.0
 one_shot = true
+
+[node name="Controls_Container" type="PanelContainer" parent="Menu" unique_id=2072536683]
+custom_minimum_size = Vector2(260, 720)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menu/Controls_Container" unique_id=1295686353]
+material = ExtResource("2_7g2dv")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/Controls_Container" unique_id=874994217]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Controls_Container/MarginContainer" unique_id=1618273169]
+layout_mode = 2
+
+[node name="SFX_Header" type="Label" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=59842597]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.25490198, 0.73333335, 0.8509804, 1)
+theme_override_colors/font_outline_color = Color(0, 0.43137255, 0.5647059, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 5
+theme_override_constants/shadow_outline_size = 7
+theme_override_font_sizes/font_size = 25
+text = "Controls:"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=1151788877]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=18596668]
+layout_mode = 2
+text = "Upgrade  -  Hotkey 1-6"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=2036448722]
+layout_mode = 2
+text = "Upgrade Buttons  -  LMB"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=1895242033]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=1023527753]
+layout_mode = 2
+text = "Menu -  ESC, P"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=615717751]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Menu/Controls_Container/MarginContainer/VBoxContainer" unique_id=728772792]
+layout_mode = 2
+text = "Food Slider - 
+Mouse drag and drop"
+horizontal_alignment = 1
 
 [node name="HUD" type="Control" parent="." unique_id=35774597]
 visible = false
