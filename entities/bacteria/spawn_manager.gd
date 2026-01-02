@@ -181,6 +181,8 @@ func calc_food_rate() -> float:
 	return GameData.p_food_slider * (exp(0.35 * (GameData.u_food_drop_max + 1)))
 
 func get_current_foods() -> float:
+	if not food_root:
+		return 0.0
 	return fake_food_count + food_root.get_child_count()
 func calc_spawn_cap() -> float:
 	return exp(0.35 * (GameData.u_petri_dishes)) * 1000
