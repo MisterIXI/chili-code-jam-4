@@ -1,6 +1,6 @@
 extends Node2D
 class_name Spawn_Manager
-
+signal food_rotted(_value : int)
 signal spawn_tick
 const FOOD_SCENE = preload("res://entities/food/food.tscn")
 const SMART_BACTERIA_SCENE = preload("res://entities/bacteria/smart_bacteria.tscn")
@@ -92,6 +92,8 @@ func handle_bacteria_spawn(real_bac_count: float, real_mult: float) -> void:
 	if fake_food_count >= 1.0:
 		var rotten_food = fake_food_count * 0.1
 		fake_food_count =- rotten_food
+		food_rotted.emit(rotten_food)
+		
 		fake_bacteria_count = max(0.0, fake_bacteria_count - rotten_food)
 		#TODO: Track death
 

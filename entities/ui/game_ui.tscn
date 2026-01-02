@@ -17,6 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="10_8ai8l"]
 [ext_resource type="Script" uid="uid://cqxrsppf7tlj4" path="res://entities/ui/line_2d_bactera.gd" id="12_4cmml"]
 [ext_resource type="Script" uid="uid://dd1w5g1xw2es8" path="res://entities/ui/line_2d_food.gd" id="13_n3qi7"]
+[ext_resource type="Script" uid="uid://cq8hj0vg8kyqf" path="res://entities/ui/time_label.gd" id="14_fqcpr"]
+[ext_resource type="Script" uid="uid://dq3yk7ykincyv" path="res://entities/ui/average_bac_value.gd" id="14_n3qi7"]
+[ext_resource type="Script" uid="uid://byh0ukjpvygu7" path="res://entities/ui/average_slider_effect.gd" id="16_mtfkm"]
+[ext_resource type="Script" uid="uid://d4l62ghjnbmbc" path="res://entities/ui/average_division_label.gd" id="17_3k6rq"]
+[ext_resource type="Script" uid="uid://d2rk73kfp5jrh" path="res://entities/ui/dead_cells_label.gd" id="19_a4idq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
 shader = ExtResource("4_t6hpy")
@@ -743,6 +748,7 @@ offset_right = 220.0
 offset_bottom = 147.0
 theme_override_font_sizes/font_size = 10
 text = "Time : 25m13s"
+script = ExtResource("14_fqcpr")
 
 [node name="GridContainer" type="GridContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer" unique_id=676837710]
 layout_mode = 2
@@ -764,17 +770,21 @@ theme_override_font_sizes/font_size = 10
 text = "Average Bacterias"
 horizontal_alignment = 1
 
-[node name="average_label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=837399063]
+[node name="average_bacteria" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=837399063 node_paths=PackedStringArray("graph_data", "_slider")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Ø 40.5"
 horizontal_alignment = 1
+script = ExtResource("14_n3qi7")
+graph_data = NodePath("../../../../Basic_Graph/VBoxContainer/Panel/Line2D_bactera")
+_slider = NodePath("../bacteria_slider")
 
 [node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_01/VBoxContainer" unique_id=1254526878]
 layout_mode = 2
 theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
 editable = false
 scrollable = false
+script = ExtResource("16_mtfkm")
 
 [node name="Adv_stat_02" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1373995150]
 visible = false
@@ -792,17 +802,20 @@ theme_override_font_sizes/font_size = 10
 text = "Average Division"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02/VBoxContainer" unique_id=1736222282]
+[node name="average_division" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02/VBoxContainer" unique_id=1736222282 node_paths=PackedStringArray("_slider")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Ø 40.5"
 horizontal_alignment = 1
+script = ExtResource("17_3k6rq")
+_slider = NodePath("../bacteria_slider")
 
 [node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_02/VBoxContainer" unique_id=1779986612]
 layout_mode = 2
 theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
 editable = false
 scrollable = false
+script = ExtResource("16_mtfkm")
 
 [node name="Adv_stat_03" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1044816079]
 visible = false
@@ -817,20 +830,24 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=680284993]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "Starved Bacterias"
+text = "Average Food"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=519868425]
+[node name="average_food_value" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=519868425 node_paths=PackedStringArray("graph_data", "_slider")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Ø 40.5"
 horizontal_alignment = 1
+script = ExtResource("14_n3qi7")
+graph_data = NodePath("../../../../Basic_Graph/VBoxContainer/Panel/Line2D_food")
+_slider = NodePath("../bacteria_slider")
 
 [node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_03/VBoxContainer" unique_id=2109024042]
 layout_mode = 2
 theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
 editable = false
 scrollable = false
+script = ExtResource("16_mtfkm")
 
 [node name="Adv_stat_04" type="PanelContainer" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer" unique_id=1885513984]
 visible = false
@@ -845,20 +862,23 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=637518760]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "Rotted Food"
+text = "Dead Cells"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=2143846481]
+[node name="dead_cells" type="Label" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=2143846481 node_paths=PackedStringArray("_slider")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
-text = "Ø 40.5"
+text = "5555555555"
 horizontal_alignment = 1
+script = ExtResource("19_a4idq")
+_slider = NodePath("../bacteria_slider")
 
 [node name="bacteria_slider" type="HSlider" parent="HUD/Stats_Margin/Stat_Panel/VBoxContainer/GridContainer/Adv_stat_04/VBoxContainer" unique_id=343469009]
 layout_mode = 2
 theme_override_icons/grabber_disabled = ExtResource("10_0yrf3")
 editable = false
 scrollable = false
+script = ExtResource("16_mtfkm")
 
 [node name="Button_Margin" type="MarginContainer" parent="HUD" unique_id=2010309721]
 layout_mode = 1

@@ -12,6 +12,8 @@ signal food_slider_changed(_value : float)
 
 ## Color rect
 @onready var _color_rect_menu : ColorRect = $Menu/ColorRect
+## Public Vars
+var start_game_time : int = 0
 var _is_menu_enabled : bool = true
 var _is_game_started :bool = false
 
@@ -65,3 +67,4 @@ func start_game() ->void:
 	_is_game_started =true
 	_is_menu_enabled = false
 	show_hud()
+	start_game_time = Time.get_ticks_msec()

@@ -23,6 +23,7 @@ func _on_body_entered(_body: Node2D) ->void:
 			# queue_free()
 
 func _died() ->void:
+	Spawn_Manager.singleton.food_rotted.emit(1)
 	get_child(0).set_deferred("disabled", true)
 	#only one time
 	var tw = create_tween()

@@ -3,7 +3,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dxy2w32qiii0b" path="res://entities/food/food_sprite_frames.tres" id="1_4y436"]
 [ext_resource type="Material" uid="uid://i7r7rm4i8ve8" path="res://shaders/shader_material_background.tres" id="1_rxu6o"]
 [ext_resource type="SpriteFrames" uid="uid://dkrccksyltqt4" path="res://entities/bacteria/Sprite_Frame_Bacteria_01.tres" id="2_3eab5"]
-[ext_resource type="Script" uid="uid://dhtomqt76td6o" path="res://entities/game/intro/food.gd" id="2_41u3v"]
+[ext_resource type="Script" uid="uid://dhtomqt76td6o" path="res://entities/game/intro/intro_food.gd" id="2_41u3v"]
 [ext_resource type="Script" uid="uid://b3s8j6oyfqrtj" path="res://entities/game/intro/animation_player_02.gd" id="3_3eab5"]
 
 [sub_resource type="Animation" id="Animation_4y436"]
@@ -150,7 +150,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.9, 1.9666667, 7.233333, 7.633333, 10),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-3.0445719, -3.262020371977402, -2.7820548276789614, -2.7820548276789614, 0.010471975511966373, 0.2722713633111158]
+"values": [-3.0445719, -3.262020371977402, -2.7820548276789614, -2.7820548276789614, 0.01047197551196637, 0.2722713633111158]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
