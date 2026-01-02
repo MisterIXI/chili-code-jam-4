@@ -8,5 +8,5 @@ func apply_upgrade():
         upgrade_cost = int(upgrade_cost_multiplier * upgrade_cost)
 
 func get_effect_value_text()  ->String:
-    var _temp :String ="Speed: +%d %%" % [int(upgrade_multiplier * upgrade_level)]
+    var _temp :String ="Speed: %d %%" % [int(100 + upgrade_level * 20)]
     return  _temp
