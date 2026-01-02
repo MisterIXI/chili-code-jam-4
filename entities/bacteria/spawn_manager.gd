@@ -45,7 +45,7 @@ func _physics_process(delta):
 		handle_bacteria_spawn(real_bac_count, real_mult)
 		handle_food_spawn()
 		GameData.p_bacterias = real_bac_count + fake_bacteria_count
-		print("Bact_real: ", real_bac_count, " Bact_fake: ", fake_bacteria_count, " real_food: ", food_root.get_child_count(), " fake_food: ", fake_food_count)
+		#print("Bact_real: ", real_bac_count, " Bact_fake: ", fake_bacteria_count, " real_food: ", food_root.get_child_count(), " fake_food: ", fake_food_count)
 		spawn_tick.emit()
 		if real_bac_count + fake_bacteria_count == 0.0 and no_bacteria_countdown < 0.0:
 			no_bacteria_countdown = 3.0
@@ -56,7 +56,7 @@ func _physics_process(delta):
 func handle_food_spawn() -> void:
 	var count = calc_food_rate() * SPAWN_TICK_CD
 	if count == 0.0:
-		print("No food to spawn")
+		#print("No food to spawn")
 		return
 	# count = max(1.0, count)
 	var real_food_count = food_root.get_child_count()
@@ -195,7 +195,7 @@ func spread_calls(fun: Callable, count: int, max_frames = 10):
 	@warning_ignore("INTEGER_DIVISION")
 	var calls_per_frame = count / (max_frames - 1)
 	var remaining = count % (max_frames - 1)
-	print("count: ", count, " per_frame: ", calls_per_frame, " remaining: ", remaining)
+	#print("count: ", count, " per_frame: ", calls_per_frame, " remaining: ", remaining)
 	for i in range(max_frames - 1):
 		for j in range(calls_per_frame):
 			fun.call()
