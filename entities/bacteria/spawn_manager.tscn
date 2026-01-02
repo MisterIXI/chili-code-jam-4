@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cylit3bor5bo5" path="res://entities/bacteria/spawn_manager.gd" id="1_igys3"]
 
 [sub_resource type="Curve" id="Curve_igys3"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.10382513, 1), 0.0, -0.09461946, 1, 0, Vector2(0.87431693, 0), -2.7668083, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.10382513, 1), 0.0, -0.09461946, 1, 0, Vector2(0.9508196, 0), -2.7668083, 0.0, 0, 0]
 point_count = 3
 
 [node name="Spawn_Manager" type="Node2D" unique_id=1027638047]

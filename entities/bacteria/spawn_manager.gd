@@ -181,7 +181,7 @@ func calc_food_rate() -> float:
 func get_current_foods() -> float:
 	return fake_food_count + food_root.get_child_count()
 func calc_spawn_cap() -> float:
-	return exp(0.35 * (GameData.u_petri_dishes + 1)) * 1000
+	return exp(0.35 * (GameData.u_petri_dishes)) * 1000
 
 func _on_update_visual_upgrade(_upgrade) -> void:
 	bacteria_speed = 100 + 20 * (GameData.u_bacteria_speed) 
