@@ -40,7 +40,7 @@ func reset_game_data() -> void:
     s_sound_volume =0.5
     s_fullscreen =0
     s_fps_counter  =1
-    s_max_bacterias  =1000
+    s_max_bacterias  =500
     s_save_game_data  =1
     s_save_interval=60
     p_dna_currency  = 0.0
