@@ -12,16 +12,16 @@
 [ext_resource type="PackedScene" uid="uid://d1c8cg8ilnlx3" path="res://entities/ui/upgrade_button_base.tscn" id="8_6wbph"]
 [ext_resource type="Script" uid="uid://duwgfctq7t5r8" path="res://entities/ui/camera_button.gd" id="8_sg1uj"]
 [ext_resource type="Script" uid="uid://dfbw6jtgcsjif" path="res://entities/ui/button_one_time_switch.gd" id="8_w31hu"]
-[ext_resource type="Script" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
-[ext_resource type="Script" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
+[ext_resource type="Script" uid="uid://bkdrwa624xqbd" path="res://entities/ui/stats_margin.gd" id="9_qko4k"]
+[ext_resource type="Script" uid="uid://dn5r5d60h7b35" path="res://entities/ui/bacteria_value.gd" id="9_qsif6"]
 [ext_resource type="Texture2D" uid="uid://dmad4olaj7da1" path="res://textures/asesprites/bacteria_01_small.png" id="10_0yrf3"]
 [ext_resource type="Texture2D" uid="uid://qkcjp17hx1vl" path="res://textures/ui/upgrade_bacteria.png" id="10_8ai8l"]
 [ext_resource type="Script" uid="uid://cqxrsppf7tlj4" path="res://entities/ui/line_2d_bactera.gd" id="12_4cmml"]
 [ext_resource type="Script" uid="uid://dd1w5g1xw2es8" path="res://entities/ui/line_2d_food.gd" id="13_n3qi7"]
 [ext_resource type="Script" uid="uid://cq8hj0vg8kyqf" path="res://entities/ui/time_label.gd" id="14_fqcpr"]
-[ext_resource type="Script" path="res://entities/ui/average_bac_value.gd" id="14_n3qi7"]
-[ext_resource type="Script" path="res://entities/ui/average_slider_effect.gd" id="16_mtfkm"]
-[ext_resource type="Script" path="res://entities/ui/average_division_label.gd" id="17_3k6rq"]
+[ext_resource type="Script" uid="uid://dq3yk7ykincyv" path="res://entities/ui/average_bac_value.gd" id="14_n3qi7"]
+[ext_resource type="Script" uid="uid://byh0ukjpvygu7" path="res://entities/ui/average_slider_effect.gd" id="16_mtfkm"]
+[ext_resource type="Script" uid="uid://d4l62ghjnbmbc" path="res://entities/ui/average_division_label.gd" id="17_3k6rq"]
 [ext_resource type="Script" uid="uid://d2rk73kfp5jrh" path="res://entities/ui/dead_cells_label.gd" id="19_a4idq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pp468"]
@@ -586,15 +586,44 @@ layout_mode = 1
 offset_right = 84.0
 offset_bottom = 84.0
 
-[node name="PanelContainer" type="PanelContainer" parent="HUD/Camera_Margin" unique_id=174801138]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Camera_Margin" unique_id=1467670147]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureRect" parent="HUD/Camera_Margin/PanelContainer" unique_id=386963775]
+[node name="Camera_Container" type="PanelContainer" parent="HUD/Camera_Margin/HBoxContainer" unique_id=174801138]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureRect" parent="HUD/Camera_Margin/HBoxContainer/Camera_Container" unique_id=386963775]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("7_sscqf")
 script = ExtResource("8_sg1uj")
+
+[node name="Debug_FPS_container" type="PanelContainer" parent="HUD/Camera_Margin/HBoxContainer" unique_id=452900976]
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Camera_Margin/HBoxContainer/Debug_FPS_container" unique_id=1162146864]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Camera_Margin/HBoxContainer/Debug_FPS_container/MarginContainer" unique_id=350504944]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/Camera_Margin/HBoxContainer/Debug_FPS_container/MarginContainer/HBoxContainer" unique_id=931228579]
+layout_mode = 2
+text = "FPS:"
+
+[node name="FPS_Counter" type="Label" parent="HUD/Camera_Margin/HBoxContainer/Debug_FPS_container/MarginContainer/HBoxContainer" unique_id=680242999 node_paths=PackedStringArray("debug_control")]
+layout_mode = 2
+text = "5555"
+script = ExtResource("8_3kqnw")
+debug_control = NodePath("../../../../../..")
 
 [node name="Dna_Margin" type="MarginContainer" parent="HUD" unique_id=193575111]
 layout_mode = 1
@@ -1036,47 +1065,6 @@ value = 0.5
 tick_count = 10
 ticks_on_borders = true
 ticks_position = 2
-
-[node name="Debug" type="Control" parent="." unique_id=1614430941]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="Debug" unique_id=844518353]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 11
-theme_override_constants/margin_top = 11
-theme_override_constants/margin_right = 11
-theme_override_constants/margin_bottom = 11
-
-[node name="PanelContainer" type="PanelContainer" parent="Debug/MarginContainer" unique_id=452900976]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Debug/MarginContainer/PanelContainer" unique_id=1162146864]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Debug/MarginContainer/PanelContainer/MarginContainer" unique_id=350504944]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="Debug/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=931228579]
-layout_mode = 2
-text = "FPS:"
-
-[node name="FPS_Counter" type="Label" parent="Debug/MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=680242999 node_paths=PackedStringArray("debug_control")]
-layout_mode = 2
-text = "5555"
-script = ExtResource("8_3kqnw")
-debug_control = NodePath("../../../../..")
 
 [connection signal="text_changed" from="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" to="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" method="_on_text_changed"]
 [connection signal="text_submitted" from="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" to="Menu/HBoxContainer/Button_Container/MarginContainer/VBoxContainer/TextEdit" method="_on_text_submitted"]

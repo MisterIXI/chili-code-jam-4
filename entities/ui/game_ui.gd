@@ -8,7 +8,7 @@ signal food_slider_changed(_value : float)
 @onready var _food_slider: HSlider = $HUD/Food_Slider_Margin/PanelContainer/VBoxContainer/MarginContainer/HSlider
 @onready var _menu_panel : Control = $Menu
 @onready var _hud_panel : Control = $HUD
-@onready var _debug_panel :Control = $Debug
+@onready var _debug_panel :Control = $HUD/Camera_Margin/HBoxContainer/Debug_FPS_container
 
 ## Color rect
 @onready var _color_rect_menu : ColorRect = $Menu/ColorRect
